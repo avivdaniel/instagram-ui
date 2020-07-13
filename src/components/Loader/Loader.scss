@@ -1,0 +1,101 @@
+// Default options
+$defaultDuration: 0.3s;
+$primaryColour: #ececec;
+$secondaryColour: #666;
+$shadowColour: rgba(0, 0, 0, 0.6);
+
+@mixin hideTapHighlightColor() {
+  //Prevent highlight colour when element is tapped
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+@mixin hardwareAccel() {
+  //Improve performance on mobile/tablet devices
+  transform: translateZ(0);
+}
+
+@mixin improveAntiAlias() {
+  //Improve aliasing on mobile/tablet devices
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.Loader {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 99;
+
+  @include hideTapHighlightColor();
+  @include hardwareAccel();
+  @include improveAntiAlias();
+
+  animation-name: wobble-vertical;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+
+  @keyframes wobble-vertical {
+    16.65% {
+      transform: translateY(8px);
+    }
+
+    33.3% {
+      transform: translateY(-6px);
+    }
+
+    49.95% {
+      transform: translateY(4px);
+    }
+
+    66.6% {
+      transform: translateY(-2px);
+    }
+
+    83.25% {
+      transform: translateY(1px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .Loader-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Loader-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 512%;
+    border: 1px solid #f58529;
+    border-right-color: #dd2a7b;
+    border-top-color: #8134af;
+    border-bottom-color: #515bd4;
+    position: absolute;
+    animation: rotate 2s infinite linear;
+    .faInstagram {
+      font-size: 2.5rem;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(359deg);
+      }
+    }
+  }
+}

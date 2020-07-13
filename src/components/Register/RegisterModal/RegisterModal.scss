@@ -1,0 +1,38 @@
+@import "~bootstrap";
+$primaryColor: #00b7d6;
+
+.RegisterModal {
+    .btn {
+        .text-white {
+            color: #fafafa;
+        }
+        text-align: center;
+        color: $primaryColor;
+
+        .terms {
+            font-weight: 300;
+            font-style: italic;
+            padding-left: 1px;
+        }
+    }
+    .modal-dialog {
+        color: #000005;
+    }
+    text-align: left;
+    h2 {
+        font-size: 25px;
+    }
+    h1 {
+        font-size: 25px;
+    }
+    .term-title {
+        font-family: "Roboto", sans-serif;
+    }
+    .brand-name {
+        font-family: "Billabong";
+        font-size: 32px;
+    }
+    .btn-link {
+        padding: 0;
+    }
+}

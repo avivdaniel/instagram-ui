@@ -1,0 +1,48 @@
+/* Variables */
+$bounce-color: #fffffff6;
+// $image-size: 60px;
+
+.MenuAvatar-holder {
+	text-align: center;
+	.avatar {
+		h3 {
+			padding: 7px;
+		}
+		margin: 25px auto;
+		img.user {
+			// height: $image-size;
+			// width: $image-size;
+			background-color: $bounce-color;
+			box-shadow: 0 0 0 3px $bounce-color;
+			border-radius: 50%;
+
+			&:hover {
+				cursor: pointer;
+				animation: bounceOut 0.4s linear;
+			}
+		}
+	}
+}
+
+@keyframes bounceOut {
+	0% {
+		box-shadow: 0 0 0 4px $bounce-color;
+		opacity: 1;
+	}
+	25% {
+		box-shadow: 0 0 0 1px $bounce-color;
+		opacity: 1;
+	}
+	50% {
+		box-shadow: 0 0 0 7px $bounce-color;
+		opacity: 1;
+	}
+	75% {
+		box-shadow: 0 0 0 4px $bounce-color;
+		opacity: 1;
+	}
+	100% {
+		box-shadow: 0 0 0 5px $bounce-color;
+		opacity: 1;
+	}
+}

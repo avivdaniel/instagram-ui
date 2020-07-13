@@ -1,0 +1,114 @@
+@import "~bootstrap";
+
+$primaryColor: #00b7d6;
+$shadow: 1px 3px 0px #0086b6;
+
+.Login {
+    height: 100%;
+    width: 100%;
+    .form-check {
+        height: 43px;
+    }
+    .Login-brand-container {
+        color: #fafafa;
+        height: 136px;
+        @include media-breakpoint-up(lg) {
+            min-height: 200px;
+        }
+        .Login-brand {
+            font-family: "Billabong";
+            font-size: 4rem;
+            text-shadow: $shadow;
+            @include media-breakpoint-up(lg) {
+                font-size: 7rem;
+            }
+        }
+        h3 {
+            font-size: 13px;
+            font-weight: 300;
+            @include media-breakpoint-up(lg) {
+                font-size: 16px;
+            }
+        }
+    }
+    .Login-form {
+        height: 100%;
+        color: #fafafa;
+        .form-group {
+            position: relative;
+            height: 62px;
+            margin-bottom: 0px;
+            @include media-breakpoint-up(lg) {
+                margin-bottom: 5px;
+            }
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+            .text-danger {
+                font-size: 12px;
+            }
+        }
+        .form-control {
+            padding-left: 40px;
+            box-shadow: $shadow;
+            background-color: #fafafa;
+        }
+        ::placeholder {
+            color: $primaryColor;
+            font-style: italic;
+            font-size: 15px;
+        }
+        .Login-form-icon {
+            font-size: 20px;
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            color: $primaryColor;
+            &:focus {
+                display: none;
+            }
+        }
+    }
+    .Login-img-container {
+        justify-content: center;
+        background-image: url("./login-collage.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        object-fit: cover;
+        width: 100%;
+        min-height: 34vh;
+        background-position: top center;
+        @include media-breakpoint-up(lg) {
+            max-height: 100vh;
+            background-position: left;
+            border-right: 6px solid #fafafa;
+        }
+        .Login-button {
+            width: 300px;
+            @include media-breakpoint-up(lg) {
+                width: 500px;
+            }
+            .btn-primary {
+                background-color: $primaryColor;
+                border: 2px solid #fafafa;
+                @include media-breakpoint-up(lg) {
+                    height: 57px;
+                    font-size: 20px;
+                    border: 4px solid #fafafa;
+                }
+            }
+        }
+    }
+    .Login-footer {
+        padding: 20px;
+        color: $primaryColor;
+        font-size: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        @include media-breakpoint-up(lg) {
+            font-size: 16px;
+        }
+    }
+}

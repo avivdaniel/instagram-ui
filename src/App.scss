@@ -1,0 +1,41 @@
+@import "~bootstrap";
+
+$primaryColor: #00b7d6;
+
+@font-face {
+    font-family: "Billabong";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Billabong"), local("Billabong"), url("../src/fonts/billabong-cufonfonts/Billabong.woff") format("woff"),
+        /* Modern Browsers */ url("../src/fonts/billabong-cufonfonts/Billabong.ttf") format("truetype"); /* Safari, Android, iOS */
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    // background-color: #00b7d6;
+}
+
+.App {
+    background-color: $primaryColor;
+    font-family: "Roboto", sans-serif;
+    color: #1a1110;
+    .container-fluid {
+        padding: 0;
+    }
+    .App-scroller {
+        overflow-y: auto;
+    }
+    .App-wraper {
+        height: 100%;
+    }
+    .container-fluid {
+        height: 100%;
+    }
+}

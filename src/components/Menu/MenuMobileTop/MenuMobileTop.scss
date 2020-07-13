@@ -1,0 +1,17 @@
+@import "~bootstrap";
+
+$primaryColor: #00b7d6;
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.MenuMobileTop {
+    height: 45px;
+    padding: 0 30px;
+    background-color: $primaryColor;
+    .MenuMobileTop-brand {
+        font-family: "Billabong";
+        font-size: 25px;
+    }
+}

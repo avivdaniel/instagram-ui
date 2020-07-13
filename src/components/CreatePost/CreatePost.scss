@@ -1,0 +1,70 @@
+@import "~bootstrap";
+$shadow: 3px 3px 0px rgba(64, 64, 64, 0.4);
+$primaryColor: #00b7d6;
+
+.CreatePost {
+    .form {
+        padding: 0;
+        @include media-breakpoint-up(lg) {
+            box-shadow: $shadow;
+            background-color: #ffbe42;
+        }
+    }
+    .CropCreate {
+        flex: 1;
+        background-image: url("./558642-200.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    // .exam {
+    //     flex: 1;
+    //     @include media-breakpoint-up(lg) {
+    //         flex: 2;
+    //     }
+    //     .CreatePost-img-container {
+    //         position: relative;
+    //         padding: 0;
+
+    //         flex: 1;
+    //         overflow: hidden;
+    //         @include media-breakpoint-up(lg) {
+    //             box-shadow: $shadow;
+    //             background-color: red;
+    //         }
+    //         .img-err {
+    //             position: absolute;
+    //             padding: 10px;
+    //             left: 0;
+    //             bottom: 0;
+    //         }
+    //     }
+    // }
+
+    .CreatePost-content-container {
+        background-color: #ffbe42;
+        flex: 1;
+        @include media-breakpoint-up(lg) {
+            background-color: transparent;
+            flex: 1;
+        }
+    }
+    .form-control {
+        background-color: #fafafa;
+        box-shadow: $shadow;
+    }
+    .title-field {
+        min-height: 170px;
+        &::placeholder {
+            color: $primaryColor;
+            font-style: italic;
+            font-size: 15px;
+        }
+    }
+    .CreatePost-btn {
+        .btn-primary {
+            background-color: $primaryColor;
+            border: 2px solid #fafafa;
+        }
+    }
+}
