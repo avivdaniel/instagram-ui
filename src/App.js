@@ -12,15 +12,16 @@ import { UserContext } from './user-context';
 import { UserService } from './services/user-service';
 import Menu from './components/Menu/Menu';
 import Feed from './components/Feed/Feed';
-import './App.scss';
-
 import Loader from './components/Loader/Loader';
 import MenuMobileTop from './components/Menu/MenuMobileTop/MenuMobileTop';
 import CropCreate from './components/CreatePost/CropCreate/CropCreate';
+import './App.scss';
+import Profile from './components/Profile/Profile';
 
 const initBackground = '#00b7d6';
+
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [isLoading, setLoading] = useState(true);
   const [background, setBackground] = useState(initBackground);
   const history = useHistory();
@@ -63,8 +64,8 @@ function App() {
                   <CreatePost />
                 </Route>
 
-                <Route path="/crop">
-                  <CropCreate />
+                <Route path="/profile">
+                  <Profile />
                 </Route>
 
                 <Route path="/">

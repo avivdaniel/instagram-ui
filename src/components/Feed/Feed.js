@@ -29,15 +29,13 @@ function Feed() {
     }, []);
 
     return (
-        <div className="Feed">
-            <div className="container d-flex flex-column justify-content-center">
-                {posts.map(post => {
-                    return <Post
-                        key={post._id}
-                        data={post}
-                    />
-                })}
-            </div>
+        <div className="Feed container d-flex flex-column justify-content-center">
+            {posts.map(post => {
+                return <Post
+                    key={post._id}
+                    data={post}
+                />
+            })}
         </div>
     );
 }

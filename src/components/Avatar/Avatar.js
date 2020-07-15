@@ -1,23 +1,30 @@
 import React, { useContext } from 'react';
+import propTypes from 'prop-types';
 import { UserContext } from '../../user-context';
+import deafultAvatar from './avatar.default.png';
 import './Avatar.scss';
 
 function Avatar(props) {
     const { user } = useContext(UserContext);
+    let image = props.image ? props.image : deafultAvatar;
+    let size = props.size ? props.size : 'sm';
+
+
     return (
-        <div className="Avatar">
-            <div className="Avatar-holder">
-                <div className="avatar">
-                    <a href="#">
-                        <img
-                            src={user && user.avatar ? user.avatar : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSnhijtLPGQXbnGn6D6J2igond7G09ZpXPnnw&usqp=CAU'}
-                            alt={user && user.username}
-                            className={`user ${props.size}`} />
-                    </a>
-                </div>
+        <div className="Avatar Avatar-holder">
+            <div className="avatar">
+                <img
+                    src={image}
+                    alt='Avatar'
+                    className={`Avatar-img ${props.size}`} />
             </div>
         </div>
     );
 }
+
+Avatar.propTypes = {
+    size: propTypes.oneOf(['sm', 'md', 'lg'])
+};
+
 
 export default Avatar;

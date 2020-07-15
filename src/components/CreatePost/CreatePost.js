@@ -3,14 +3,13 @@ import { Formik, Form, Field } from 'formik';
 import { UserContext } from '../../user-context';
 import { PostCreateSchema } from './postcreate.schema';
 import { Link, useHistory } from 'react-router-dom';
-import MenuAvatar from '../Menu/MenuAvatar/MenuAvatar';
 import config from '../../config/index';
 import Loader from '../Loader/Loader';
 import Avatar from '../Avatar/Avatar';
 import './CreatePost.scss';
 import CropCreate from './CropCreate/CropCreate';
 
-const initBackground = 'white';
+const initBackground = '#fafafa';
 
 function CreatePost(props) {
     // const imgRef = useRef(null);
@@ -95,7 +94,7 @@ function CreatePost(props) {
                         {/* Title and Share */}
                         <div className="CreatePost-content-container col-12">
                             <div className="col-12 pl-0 pr-0 pt-2 d-flex flex-wrap">
-                                <div className="col-2 p-0"><Avatar size='sm' /></div>
+                                <div className="col-2 p-0"><Avatar size='sm' image={user.avatar} /></div>
 
                                 <div className="form-group col-10 d-flex align-items-center justify-content-center pr-0">
                                     <Field className='form-control title-field' as="textarea" id="title" placeholder={`${user && user.username}, whats on your mind?`} name="title" />

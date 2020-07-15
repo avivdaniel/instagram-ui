@@ -18,7 +18,7 @@ function Post(props) {
     return (
         <article className="Post d-flex flex-column col-12 mt-4 mb-4 p-0">
 
-            <header className="d-flex justify-content-between p-4">
+            <header className="d-flex justify-content-between p-3">
                 <Avatr size='sm' />
                 <span><FormatDate data={createdAt} /></span>
             </header>

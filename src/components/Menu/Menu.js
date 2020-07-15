@@ -36,13 +36,13 @@ function Menu(props) {
                     </Link>
                 </li>
                 <li className="nav-item d-lg-none">
-                    <Link className="effect-4" to="">
+                    <Link className="effect-4" to="/profile">
                         <FontAwesomeIcon icon={faUser} />
                     </Link>
                 </li>
                 <li className="nav-item d-none d-lg-block ml-auto">
                     <Link className="" to="">
-                        <MenuAvatar width={60} height={60} />
+                        <MenuAvatar size='md' />
                     </Link>
                 </li>
             </ul>
