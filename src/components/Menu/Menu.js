@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../user-context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faSearch, faPlusSquare, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
-import './Menu.scss';
 import MenuAvatar from './MenuAvatar/MenuAvatar';
+import './Menu.scss';
+
 
 function Menu(props) {
     const { user } = useContext(UserContext);
@@ -20,7 +21,7 @@ function Menu(props) {
                     </Link>
                 </li>
                 <li className="nav-item d-lg-none">
-                    <Link className="effect-4" to="">
+                    <Link className="effect-4" to="/search">
                         <FontAwesomeIcon icon={faSearch} />
                     </Link>
                 </li>

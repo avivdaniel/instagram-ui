@@ -12,17 +12,18 @@ import { UserContext } from './user-context';
 import { UserService } from './services/user-service';
 import Menu from './components/Menu/Menu';
 import Feed from './components/Feed/Feed';
-import Loader from './components/Loader/Loader';
+import AppLoader from './components/AppLoader/AppLoader';
 import MenuMobileTop from './components/Menu/MenuMobileTop/MenuMobileTop';
 import CropCreate from './components/CreatePost/CropCreate/CropCreate';
 import './App.scss';
 import Profile from './components/Profile/Profile';
+import Search from './components/Search/Search';
 
 const initBackground = '#00b7d6';
 
 function App() {
   const [user, setUser] = useState({});
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setisLoading] = useState(true);
   const [background, setBackground] = useState(initBackground);
   const history = useHistory();
 
@@ -30,7 +31,7 @@ function App() {
     async function getUser() {
       const user = await UserService.get();
       setUser(user);
-      setLoading(false);
+      setisLoading(false);
       if (!user) {
         history.push('/login');
       }
@@ -42,7 +43,8 @@ function App() {
 
   return (
     <UserContext.Provider value={{ user, setUser, setBackground }}>
-      <Loader isLoading={isLoading} />
+      {isLoading && <AppLoader />}
+
 
       <div style={{ backgroundColor: background }} className="App d-flex flex-column flex-lg-column-reverse justify-content-between vh-100">
         {user && < MenuMobileTop />}
@@ -62,6 +64,10 @@ function App() {
 
                 <Route path="/post/create">
                   <CreatePost />
+                </Route>
+
+                <Route path="/search">
+                  <Search />
                 </Route>
 
                 <Route path="/profile">

@@ -1,37 +1,50 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { UserContext } from '../../user-context';
 import { PostCreateSchema } from './postcreate.schema';
 import { Link, useHistory } from 'react-router-dom';
 import config from '../../config/index';
-import Loader from '../Loader/Loader';
+import AppLoader from '../AppLoader/AppLoader';
 import Avatar from '../Avatar/Avatar';
-import './CreatePost.scss';
 import CropCreate from './CropCreate/CropCreate';
+import './CreatePost.scss';
 
 const initBackground = '#fafafa';
 
 function CreatePost(props) {
     // const imgRef = useRef(null);
     // const fileInputRef = useRef(null);
+    const [isLoading, setisLoading] = useState(true);
     const history = useHistory();
     const { user, setBackground } = useContext(UserContext);
 
-    const builtFormData = (values) => {
-        const data = new FormData();
-        for (const key in values) {
-            data.append(key, values[key]);
-        }
-        return data;
-    }
+    // const builtFormData = (values) => {
+    //     const data = new FormData();
+    //     for (const key in values) {
+    //         data.append(key, values[key]);
+    //     }
+    //     return data;
+    // }
 
     const submit = async (values) => {
-        const data = builtFormData(values);
+        // const data = builtFormData(values);
+
+        const file = {
+            title: values.title,
+            imgName: values.image.fileName,
+            imgSource: values.image.croppedImage
+        }
+
+
         const res = await fetch(`${config.apiUrl}/posts`, {
             method: 'PUT',
             credentials: 'include',
-            body: data
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(file)
         });
+
         if (res.status === 201) {
             history.push('/');
         } else {
@@ -106,7 +119,7 @@ function CreatePost(props) {
 
                                 <div className="CreatePost-btn col-8 col-lg-4 pb-2">
                                     <button type="submit" className="btn btn-primary btn-block text-uppercase" disabled={isSubmitting}>Share</button>
-                                    {isSubmitting && <Loader isLoading={true} />}
+                                    {isSubmitting && <AppLoader />}
                                 </div>
 
                             </div>

@@ -15,6 +15,7 @@ const ORIENTATION_TO_ANGLE = {
 function CropCreate(props) {
     const fileInputRef = useRef(null);
     const [imgConfigs, setconfig] = useState({
+        fileName: '',
         imageSrc: null,
         crop: { x: 0, y: 0 },
         zoom: 1,
@@ -77,7 +78,10 @@ function CropCreate(props) {
 
     const onFileChange = async e => {
         if (e.target.files && e.target.files.length > 0) {
-            const file = e.target.files[0]
+            const file = e.target.files[0];
+            const fileName = file.name;
+            console.log(fileName)
+            // console.log(file.name.toString())
             let imageDataUrl = await readFile(file)
 
             // apply rotation if needed
@@ -88,10 +92,15 @@ function CropCreate(props) {
             }
 
             setconfig({
+                ...imgConfigs,
+                fileName: file.name,
                 imageSrc: imageDataUrl,
                 crop: { x: 0, y: 0 },
-                zoom: 1
+                zoom: 1,
+
             })
+
+            console.log(imgConfigs)
         }
     }
 
@@ -106,7 +115,7 @@ function CropCreate(props) {
                 name="image"
                 onChange={(e) => {
                     onFileChange(e);
-                    props.setFieldValue('image', e.currentTarget.files[0]);
+                    props.setFieldValue('image', imgConfigs);
                 }}
             />
 

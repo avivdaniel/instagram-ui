@@ -19,7 +19,7 @@ function Post(props) {
         <article className="Post d-flex flex-column col-12 mt-4 mb-4 p-0">
 
             <header className="d-flex justify-content-between p-3">
-                <Avatr size='sm' />
+                <Avatr size='sm' image={props.data.user.avatar} />
                 <span><FormatDate data={createdAt} /></span>
             </header>
 
