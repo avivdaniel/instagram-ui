@@ -80,9 +80,7 @@ function CropCreate(props) {
         if (e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
             const fileName = file.name;
-            console.log(fileName)
-            // console.log(file.name.toString())
-            let imageDataUrl = await readFile(file)
+            let imageDataUrl = await readFile(e)
 
             // apply rotation if needed
             const orientation = await getOrientation(file)
@@ -100,7 +98,6 @@ function CropCreate(props) {
 
             })
 
-            console.log(imgConfigs)
         }
     }
 
@@ -115,7 +112,7 @@ function CropCreate(props) {
                 name="image"
                 onChange={(e) => {
                     onFileChange(e);
-                    props.setFieldValue('image', imgConfigs);
+                    props.setFieldValue('image', imgConfigs.croppedImage);
                 }}
             />
 
@@ -151,17 +148,6 @@ function CropCreate(props) {
         </div>
     );
 }
-
-// const onFileSelected = e => {
-//     const selectedFile = e.target.files[0];
-//     console.log(selectedFile);
-//     const reader = new FileReader();
-//     reader.onload = e => {
-//         imgRef.current.src = e.target.result;
-//         imgRef.current.title = selectedFile.name;
-//     };
-//     reader.readAsDataURL(selectedFile);
-// };
 
 
 function readFile(file) {

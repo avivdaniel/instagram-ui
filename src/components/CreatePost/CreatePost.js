@@ -18,39 +18,25 @@ function CreatePost(props) {
     const history = useHistory();
     const { user, setBackground } = useContext(UserContext);
 
-    // const builtFormData = (values) => {
-    //     const data = new FormData();
-    //     for (const key in values) {
-    //         data.append(key, values[key]);
-    //     }
-    //     return data;
-    // }
+
+    const buildFormData = (values) => {
+        const data = new FormData();
+        for (const key in values) {
+            data.append(key, values[key]);
+        }
+        return data;
+    };
 
     const submit = async (values) => {
-        // const data = builtFormData(values);
-
-        const file = {
-            title: values.title,
-            imgName: values.image.fileName,
-            imgSource: values.image.croppedImage
-        }
-
-
-        const res = await fetch(`${config.apiUrl}/posts`, {
+        const data = buildFormData(values);
+        console.log(values);
+        console.log(data);
+        await fetch(`${config.apiUrl}/posts`, {
             method: 'PUT',
             credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(file)
+            body: data
         });
-
-        if (res.status === 201) {
-            history.push('/');
-        } else {
-            console.log('unknown error');
-        }
-        return res;
+        history.push('/');
     };
 
     // const onFileSelected = e => {
