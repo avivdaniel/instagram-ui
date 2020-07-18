@@ -14,7 +14,7 @@ const ORIENTATION_TO_ANGLE = {
 }
 
 function CropCreate(props) {
-    const fileInputRef = useRef(null);
+    const fileInputRef = useRef();
     const [imgConfigs, setconfig] = useState({
         imageSrc: null,
         crop: { x: 0, y: 0 },
@@ -70,6 +70,9 @@ function CropCreate(props) {
                 croppedImage: croppedImage,
                 isCropping: false,
             })
+            props.setFieldValue('image', imgConfigs.croppedImage);
+            console.log(imgConfigs)
+            console.log('end!')
         } catch (e) {
             console.error(e)
             setconfig({
@@ -122,19 +125,17 @@ function CropCreate(props) {
                 name="image"
                 onChange={(e) => {
                     onFileChange(e);
-                    props.setFieldValue('image', imgConfigs.croppedImage);
                 }}
             />
-            {!imgConfigs.imageSrc &&
-                <div className="faPlus-container">
-                    <FontAwesomeIcon icon={faPlus} className='faPlus' />
-                </div>}
 
-            {imgConfigs.imageSrc && (
+            {imgConfigs.imageSrc ?
+
                 <Fragment>
+
                     {imgConfigs.isCropping && <div className="spinner-container">
                         <FontAwesomeIcon className='faSpinner' icon={faSpinner} size="2x" style={{ color: '#00b7d6' }} spin />
                     </div>}
+
                     <div className="crop-container">
                         <Cropper
                             image={imgConfigs.imageSrc}
@@ -159,10 +160,12 @@ function CropCreate(props) {
                     <div className="CropCreate-btn-container d-flex justify-content-between p-1">
                         <button className="btn btn-primary text-uppercase btn-block" onClick={deleteResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faTrash} className='faTrash' /></button>
                         <button className="btn btn-primary text-uppercase btn-block  m-0" onClick={showResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faCheck} className='faCheck' /></button>
-
                     </div>
                 </Fragment>
-            )}
+                : <div className="faPlus-container">
+                    <FontAwesomeIcon icon={faPlus} className='faPlus' />
+                </div>
+            }
         </div>
     );
 }

@@ -30,7 +30,7 @@ function Register(props) {
     };
 
     return (
-        <div className="Register">
+        <div className="Register container-fluid">
             <div className="Register-form d-flex flex-column justify-content-between">
 
                 <Formik
