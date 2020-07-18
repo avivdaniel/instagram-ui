@@ -3,7 +3,8 @@ import Cropper from 'react-easy-crop';
 import { getOrientation } from 'get-orientation/browser';
 import getCroppedImg from './cropImage'
 import { getRotatedImage } from './rotateImage';
-// import ImgDialog from './ImgDialog'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faCheck, faTrash, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import './CropCreate.scss';
 
 const ORIENTATION_TO_ANGLE = {
@@ -15,7 +16,6 @@ const ORIENTATION_TO_ANGLE = {
 function CropCreate(props) {
     const fileInputRef = useRef(null);
     const [imgConfigs, setconfig] = useState({
-        fileName: '',
         imageSrc: null,
         crop: { x: 0, y: 0 },
         zoom: 1,
@@ -48,6 +48,9 @@ function CropCreate(props) {
     }
 
     const onImageDisplayerClick = () => {
+        if (imgConfigs.imageSrc) {
+            return;
+        }
         fileInputRef.current.click();
     }
 
@@ -76,11 +79,19 @@ function CropCreate(props) {
         }
     }
 
+    const deleteResult = () => {
+        setconfig({
+            ...imgConfigs,
+            croppedImage: null,
+            isCropping: false,
+            imageSrc: null
+        })
+    }
+
     const onFileChange = async e => {
         if (e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
-            const fileName = file.name;
-            let imageDataUrl = await readFile(e)
+            let imageDataUrl = await readFile(file)
 
             // apply rotation if needed
             const orientation = await getOrientation(file)
@@ -91,7 +102,6 @@ function CropCreate(props) {
 
             setconfig({
                 ...imgConfigs,
-                fileName: file.name,
                 imageSrc: imageDataUrl,
                 crop: { x: 0, y: 0 },
                 zoom: 1,
@@ -103,7 +113,7 @@ function CropCreate(props) {
 
     return (
 
-        <div className="CropCreate exa col-12 p-0" onClick={onImageDisplayerClick}>
+        <div className="CropCreate d-flex justify-content-center align-items-center exa col-12 p-0" onClick={onImageDisplayerClick}>
             <input type="file"
                 ref={fileInputRef}
                 className='form-control d-none'
@@ -115,9 +125,16 @@ function CropCreate(props) {
                     props.setFieldValue('image', imgConfigs.croppedImage);
                 }}
             />
+            {!imgConfigs.imageSrc &&
+                <div className="faPlus-container">
+                    <FontAwesomeIcon icon={faPlus} className='faPlus' />
+                </div>}
 
             {imgConfigs.imageSrc && (
                 <Fragment>
+                    {imgConfigs.isCropping && <div className="spinner-container">
+                        <FontAwesomeIcon className='faSpinner' icon={faSpinner} size="2x" style={{ color: '#00b7d6' }} spin />
+                    </div>}
                     <div className="crop-container">
                         <Cropper
                             image={imgConfigs.imageSrc}
@@ -139,10 +156,11 @@ function CropCreate(props) {
                                 classes={{ container: 'slider' }}
                             />
                     </div> */}
-                    <div className="button">
-                        <button className="btn btn-primary text-uppercase btn-block" onClick={showResult} disabled={imgConfigs.isCropping}>Show result</button>
+                    <div className="CropCreate-btn-container d-flex justify-content-between p-1">
+                        <button className="btn btn-primary text-uppercase btn-block" onClick={deleteResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faTrash} className='faTrash' /></button>
+                        <button className="btn btn-primary text-uppercase btn-block  m-0" onClick={showResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faCheck} className='faCheck' /></button>
+
                     </div>
-                    {/* <ImgDialog img={this.state.croppedImage} onClose={this.onClose} /> */}
                 </Fragment>
             )}
         </div>

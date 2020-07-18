@@ -9,15 +9,12 @@ import Avatar from '../Avatar/Avatar';
 import CropCreate from './CropCreate/CropCreate';
 import './CreatePost.scss';
 
-const initBackground = '#fafafa';
+const initBackground = 'white';
 
 function CreatePost(props) {
-    // const imgRef = useRef(null);
-    // const fileInputRef = useRef(null);
     const [isLoading, setisLoading] = useState(true);
     const history = useHistory();
     const { user, setBackground } = useContext(UserContext);
-
 
     const buildFormData = (values) => {
         const data = new FormData();
@@ -39,16 +36,9 @@ function CreatePost(props) {
         history.push('/');
     };
 
-    // const onFileSelected = e => {
-    //     const selectedFile = e.target.files[0];
-    //     console.log(selectedFile);
-    //     const reader = new FileReader();
-    //     reader.onload = e => {
-    //         imgRef.current.src = e.target.result;
-    //         imgRef.current.title = selectedFile.name;
-    //     };
-    //     reader.readAsDataURL(selectedFile);
-    // };
+    const countLettersLeft = (e) => {
+        console.log(e.target.value)
+    }
 
 
     useEffect(() => {
@@ -65,30 +55,8 @@ function CreatePost(props) {
                 {({ errors, isSubmitting, setFieldValue }) => (
                     <Form className="form col-12 col-lg-6 w-100 h-100 d-flex flex-column justify-content-center align-items-center shadow-lg">
 
-                        {/* Image displayer */}
-
-                        {/* <div className="CreatePost-img-container col-12 d-flex justify-content-center align-items-center rounded"> */}
-
                         <CropCreate setFieldValue={setFieldValue} />
-
-                        {/* </div> */}
-
-                        {/* <div className="exam col-12 col-lg-6 p-0 d-flex justify-content-center align-items-center">
-                            <div className="CreatePost-img-container col-12 d-flex justify-content-center align-items-center rounded" onClick={onImageDisplayerClick}>
-
-                                <img ref={imgRef} height="200" />
-
-                                <div className="form-group">
-                                    <input className='form-control d-none' ref={fileInputRef} type="file" accept="image/*" id="image" placeholder="select image" name="image" onChange={(e) => {
-                                        onFileSelected(e);
-                                        setFieldValue('image', e.currentTarget.files[0]);
-                                    }} />
-                                    {errors.image && <small className="img-err text-danger pl-2">{errors.image}</small>}
-                                </div>
-
-                            </div>
-                        </div> */}
-
+                        {errors.image && <small className="text-danger pl-2">{errors.image}</small>}
 
                         {/* Title and Share */}
                         <div className="CreatePost-content-container col-12">
@@ -96,7 +64,14 @@ function CreatePost(props) {
                                 <div className="col-2 p-0"><Avatar size='sm' image={user.avatar} /></div>
 
                                 <div className="form-group col-10 d-flex align-items-center justify-content-center pr-0">
-                                    <Field className='form-control title-field' as="textarea" id="title" placeholder={`${user && user.username}, whats on your mind?`} name="title" />
+                                    <Field className='form-control title-field'
+                                        as="textarea"
+                                        id="title"
+
+                                        placeholder={`${user && user.username}, whats on your mind?`}
+                                        name="title"
+                                    // onChange={e => countLettersLeft(e)}
+                                    />
                                     {errors.title && <small className="text-danger pl-2">{errors.title}</small>}
                                 </div>
                             </div>
@@ -104,7 +79,7 @@ function CreatePost(props) {
                             <div className="col d-flex justify-content-end  text-right p-0">
 
                                 <div className="CreatePost-btn col-8 col-lg-4 pb-2">
-                                    <button type="submit" className="btn btn-primary btn-block text-uppercase" disabled={isSubmitting}>Share</button>
+                                    <button type="submit" className="btn btn-primary btn-block text-uppercase" disabled={isSubmitting || imgConfigs.isCropping}>Share</button>
                                     {isSubmitting && <AppLoader />}
                                 </div>
 
