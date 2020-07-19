@@ -8,12 +8,12 @@ $primaryColor: #00b7d6;
         }
         text-align: center;
         color: $primaryColor;
-
-        .terms {
-            font-weight: 300;
-            font-style: italic;
-            padding-left: 1px;
-        }
+    }
+    .terms {
+        font-size: 13px;
+        font-weight: 300;
+        font-style: italic;
+        padding-left: 1px;
     }
     .modal-dialog {
         color: #000005;

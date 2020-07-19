@@ -17,7 +17,7 @@ $lg-desk-image-size: 80px;
 
 .Avatar-holder {
     .avatar {
-        margin: 25px auto;
+        padding: 0;
         img.Avatar-img {
             &.sm {
                 height: $sm-mob-image-size;

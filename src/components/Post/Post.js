@@ -1,26 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 import config from '../../config/index';
 import FormatDate from '../FormatDate/FormatDate';
 import { UserContext } from '../../user-context';
 import './Post.scss';
 import Avatr from '../Avatar/Avatar';
 import PostLike from './PostLike/PostLike';
+import ToggleText from '../ToggleText/ToggleText';
 
 
-const initBackground = 'fafafa';
+// const initBackground = '#fafafa';
 
 
 function Post(props) {
-    const { setBackground } = useContext(UserContext);
     const { image, title, user, createdAt, likes } = props.data;
-    setBackground(initBackground);
+
 
     return (
-        <article className="Post d-flex flex-column col-12 mt-4 mb-4 p-0">
+        <article className="Post d-flex flex-column col-12 col-lg-4 p-0">
 
-            <header className="d-flex justify-content-between p-3">
-                <Avatr size='sm' image={props.data.user.avatar} />
-                <span><FormatDate data={createdAt} /></span>
+            <header className="d-flex justify-content-between align-items-center p-3">
+                <div className="d-flex align-items-center">
+                    <Avatr size='sm' image={props.data.user.avatar} />
+                    <span className="text-bold ml-2">{props.data.user.username}</span>
+                </div>
+                <span className="text-secondary"><FormatDate data={createdAt} /></span>
             </header>
 
 
@@ -28,14 +31,29 @@ function Post(props) {
                 <img className="Post-img" src={`${config.apiUrl}/posts/${image}`} />
             </div>
 
-            <div className="Post-content-container p-4">
-                <p>{title}</p>
+            <div className="Post-content-container p-3">
                 <PostLike
                     postId={props.data._id}
                     likes={props.data.likes}
                 />
+                {title &&
+                    <Fragment>
+                        <span className="text-bold pr-1">{props.data.user.username}</span>
+                        < ToggleText text={title} maxLength={20} />
+                    </Fragment>
+                }
+
             </div>
 
+
+            {/* <div className="row">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor feugiat ipsum quis ullamcorper. Nullam vitae velit vitae tortor semper tempor ac vitae magna. Maecenas a ullamcorper neque. Aliquam vitae tortor luctus nisi rutrum eleifend non non leo.</p>
+
+                <div id="collapse" style="display:none">
+                    <p>Sed eleifend lectus id semper accumsan. Sed lobortis id ligula eget blandit. Integer interdum iaculis nunc, sed porttitor magna tincidunt in. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam lobortis accumsan tempor. Aliquam sollicitudin pulvinar est, quis convallis tellus.</p>
+                </div>
+                <a href="#collapse" className="nav-toggle">Read More</a>
+            </div> */}
         </article>
     );
 }

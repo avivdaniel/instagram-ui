@@ -42,8 +42,8 @@ function Menu(props) {
                     </Link>
                 </li>
                 <li className="nav-item d-none d-lg-block ml-auto">
-                    <Link className="" to="">
-                        <MenuAvatar size='md' />
+                    <Link className="" to="/profile">
+                        <MenuAvatar />
                     </Link>
                 </li>
             </ul>

@@ -42,14 +42,14 @@ function PostLike(props) {
         }
     }
 
-    const likedClass = hasLiked ? 'Postlike-liked-red' : '';
+    const likedClass = hasLiked ? 'heartbeat' : '';
 
     return (
         <div className="PostLike">
-            {likes.length}
-            <span className={`${likedClass}`} onClick={() => setLikeStatus(!hasLiked)}>
-                <FontAwesomeIcon icon={faHeart} />
+            <span onClick={() => setLikeStatus(!hasLiked)}>
+                <FontAwesomeIcon icon={faHeart} className={`${likedClass}`} />
             </span>
+            <p className="d-block">Liked by <span>{likes.length} people</span></p>
         </div>
     );
 }

@@ -50,38 +50,38 @@ function App() {
         {user && < MenuMobileTop />}
         <div className="App-scroller flex-grow-1">
           <div className="App-wraper d-flex align-items-center flex-grow-1">
-            {/* <div className="container-fluid"> */}
+            <div className="container-fluid">
 
-            <Switch>
+              <Switch>
 
-              <Route path="/register">
-                <Register />
-              </Route>
+                <Route path="/register">
+                  <Register />
+                </Route>
 
-              <Route path="/login">
-                <Login />
-              </Route>
+                <Route path="/login">
+                  <Login />
+                </Route>
 
-              <Route path="/post/create">
-                <CreatePost />
-              </Route>
+                <Route path="/post/create">
+                  <CreatePost />
+                </Route>
 
-              <Route path="/search">
-                <Search />
-              </Route>
+                <Route path="/search">
+                  <Search />
+                </Route>
 
-              <Route path="/profile">
-                <Profile />
-              </Route>
+                <Route path="/profile">
+                  <Profile />
+                </Route>
 
-              <Route path="/">
-                <Feed />
-              </Route>
+                <Route path="/">
+                  <Feed />
+                </Route>
 
 
-            </Switch>
+              </Switch>
 
-            {/* </div> */}
+            </div>
           </div>
 
         </div>

@@ -4,7 +4,7 @@ import './RegisterModal.scss';
 function RegisterModal(props) {
     return (
         <div className="RegisterModal">
-            Agree to
+            <span className="terms">Agree to</span>
             <button type="button" className="btn btn-link text-white" data-toggle="modal" data-target="#exampleModalCenter">
                 <span className="terms">terms</span> </button>
 

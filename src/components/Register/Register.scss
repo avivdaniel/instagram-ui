@@ -6,9 +6,6 @@ $shadow: 1px 3px 0px #0086b6;
 .Register {
     height: 100%;
     width: 100%;
-    .form-check {
-        height: 43px;
-    }
     .Register-brand-container {
         color: #fafafa;
         height: 136px;
@@ -47,6 +44,9 @@ $shadow: 1px 3px 0px #0086b6;
             .text-danger {
                 font-size: 12px;
             }
+            &.form-check {
+                height: 48px;
+            }
         }
         .form-control {
             padding-left: 40px;
@@ -76,7 +76,7 @@ $shadow: 1px 3px 0px #0086b6;
         background-size: cover;
         object-fit: cover;
         width: 100%;
-        min-height: 34vh;
+        min-height: 20vh;
         background-position: top center;
         @include media-breakpoint-up(lg) {
             max-height: 100vh;

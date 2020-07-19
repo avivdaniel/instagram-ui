@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 
@@ -14,11 +14,12 @@ function FormatDate(props) {
     };
 
     return (
-        <div>
+        <Fragment>
             <Moment fromNow>
                 {props.data}
             </Moment>
-        </div>
+        </Fragment>
+
     );
 }
 

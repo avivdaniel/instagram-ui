@@ -34,7 +34,7 @@ function Login(props) {
         return res;
     }
     return (
-        <div className="Login container-fluid">
+        <div className="Login">
             <div className="Login-form d-flex flex-column justify-content-between">
 
                 <Formik
