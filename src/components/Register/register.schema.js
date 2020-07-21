@@ -26,6 +26,7 @@ const memo = {
     email: {}
 };
 
+
 async function isUnique(field, value) {
     if (memo[field].hasOwnProperty(value)) {
         return memo[field][value];

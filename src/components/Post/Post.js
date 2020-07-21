@@ -6,6 +6,7 @@ import './Post.scss';
 import Avatr from '../Avatar/Avatar';
 import PostLike from './PostLike/PostLike';
 import ToggleText from '../ToggleText/ToggleText';
+import { Link } from 'react-router-dom';
 
 
 // const initBackground = '#fafafa';
@@ -20,7 +21,9 @@ function Post(props) {
 
             <header className="d-flex justify-content-between align-items-center p-3">
                 <div className="d-flex align-items-center">
-                    <Avatr size='sm' image={props.data.user.avatar} />
+                    <Link to={`/profile/${props.data.user._id}`}>
+                        <Avatr size='sm' image={props.data.user.avatar} />
+                    </Link>
                     <span className="text-bold ml-2">{props.data.user.username}</span>
                 </div>
                 <span className="text-secondary"><FormatDate data={createdAt} /></span>
@@ -38,10 +41,11 @@ function Post(props) {
                 />
                 {title &&
                     <Fragment>
-                        <span className="text-bold pr-1">{props.data.user.username}</span>
+                        <span className="text-bold mr-1">{props.data.user.username}</span>
                         < ToggleText text={title} maxLength={20} />
                     </Fragment>
                 }
+
 
             </div>
 

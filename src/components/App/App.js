@@ -5,19 +5,20 @@ import {
   Route,
   useHistory
 } from "react-router-dom";
-import Register from './components/Register/Register';
-import Login from './components/Login/Login';
-import CreatePost from './components/CreatePost/CreatePost';
-import { UserContext } from './user-context';
-import { UserService } from './services/user-service';
-import Menu from './components/Menu/Menu';
-import Feed from './components/Feed/Feed';
-import AppLoader from './components/AppLoader/AppLoader';
-import MenuMobileTop from './components/Menu/MenuMobileTop/MenuMobileTop';
-import CropCreate from './components/CreatePost/CropCreate/CropCreate';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
+import CreatePost from '../CreatePost/CreatePost';
+import { UserContext } from '../../user-context';
+import { UserService } from '../../services/user-service';
+import Menu from '../Menu/Menu';
+import Feed from '../Feed/Feed';
+import AppLoader from '../AppLoader/AppLoader';
+import MenuMobileTop from '../Menu/MenuMobileTop/MenuMobileTop';
+import Profile from '../Profile/Profile';
+import Search from '../Search/Search';
 import './App.scss';
-import Profile from './components/Profile/Profile';
-import Search from './components/Search/Search';
+import PostPage from '../PostPage/PostPage';
+import ProfileEdit from '../Profile/ProfileEdit/ProfileEdit';
 
 const initBackground = '#00b7d6';
 
@@ -70,8 +71,16 @@ function App() {
                   <Search />
                 </Route>
 
-                <Route path="/profile">
+                <Route path="/profile/edit" >
+                  <ProfileEdit />
+                </Route>
+
+                <Route path="/profile/:id" >
                   <Profile />
+                </Route>
+
+                <Route path="/posts/:id" >
+                  {/* <PostPage /> */}
                 </Route>
 
                 <Route path="/">

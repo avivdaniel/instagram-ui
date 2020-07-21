@@ -5,12 +5,9 @@ import AppLoader from '../AppLoader/AppLoader';
 
 function Search(props) {
     const [isLoading, setisLoading] = useState(false);
-    const [query, setquery] = useState(null);
+    const [query, setquery] = useState('');
     const [users, setusers] = useState([]);
 
-    const hasNoResults = () => {
-        return query && users.length === 0;
-    }
 
     useEffect(() => {
         if (query === '') {
@@ -37,6 +34,9 @@ function Search(props) {
         submit();
     }, [query])
 
+    function hasNoResults() {
+        return query && users.length === 0;
+    }
 
     return (
         <div className="Search container">

@@ -1,11 +1,42 @@
+@import "~bootstrap";
+
+$primaryColor: #00b7d6;
+$shadow: 1px 3px 0px #0086b6;
+
 .Profile {
+    .Profile-bg {
+        justify-content: center;
+        background-image: url("./profile.bg.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        object-fit: cover;
+        width: 100%;
+        min-height: 25vh;
+        background-position: bottom;
+    }
+    .Profile-header {
+        padding: 35px 0 0 0;
+        position: relative;
+        .avatar-container {
+            position: absolute;
+            top: -70px;
+        }
+    }
+    .Profile-gallery {
+        padding: 0px;
+    }
     .Profile-username {
-        font-size: 1.5rem;
-        font-weight: 300;
+        font-size: 1rem;
+        font-weight: 500;
     }
     .Profile-bio {
         font-size: 1rem;
         font-weight: 300;
+    }
+    .Profile-post-count {
+        font-size: 1rem;
+        font-weight: 500;
+        border-bottom: 2px solid $primaryColor;
     }
     .Profile-no-posts {
         text-align: center;

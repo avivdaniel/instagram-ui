@@ -51,13 +51,15 @@ function CreatePost(props) {
         <div className="CreatePost container-fluid d-flex justify-content-center h-100">
             <Formik
                 initialValues={{ image: '', title: '' }}
-                // validationSchema={PostCreateSchema}
+                validationSchema={PostCreateSchema}
                 onSubmit={submit}
             >
                 {({ errors, isSubmitting, setFieldValue }) => (
                     <Form className="form col-12 col-lg-6 w-100 h-100 d-flex flex-column justify-content-center align-items-center shadow-lg">
 
-                        <CropCreate setFieldValue={setFieldValue} />
+                        <CropCreate onChange={(value) => {
+                            setFieldValue('image', value);
+                        }} />
                         {/* {errors.image && <small className="text-danger pl-2">{errors.image}</small>} */}
 
                         {/* Title and Share */}

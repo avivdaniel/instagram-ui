@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../user-context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,23 +12,22 @@ function Menu(props) {
     return (
         <nav className="Menu navbar-dark d-flex">
             <a className="Menu-brand navbar-brand" href="#">Instagram</a>
-            <ul className="nav justify-content-around justify-content-lg-start w-100 align-items-center mr-auto">
+            <ul className="nav justify-content-around justify-content-lg-end w-100 align-items-center mr-auto">
                 <li className="nav-item">
                     <Link className="effect-4" to="/">
-                        <FontAwesomeIcon icon={faHome} className="d-lg-none" />
-                        <span className="navlink-title">Home</span>
+                        <FontAwesomeIcon icon={faHome} />
+
                         {/* <span className="sr-only">(current)</span> */}
                     </Link>
                 </li>
-                <li className="nav-item d-lg-none">
+                <li className="nav-item">
                     <Link className="effect-4" to="/search">
                         <FontAwesomeIcon icon={faSearch} />
                     </Link>
                 </li>
                 <li className="nav-item">
                     <Link className="effect-4" to="/post/create">
-                        <span className="navlink-title d-none d-lg-block">Create Post</span>
-                        <FontAwesomeIcon icon={faPlusSquare} className="d-block d-lg-none" />
+                        <FontAwesomeIcon icon={faPlusSquare} className="d-block" />
                     </Link>
                 </li>
                 <li className="nav-item d-lg-none">
@@ -41,10 +40,9 @@ function Menu(props) {
                         <FontAwesomeIcon icon={faUser} />
                     </Link>
                 </li>
-                <li className="nav-item d-none d-lg-block ml-auto">
-                    <Link className="" to="/profile">
-                        <MenuAvatar />
-                    </Link>
+
+                <li className="nav-item d-none d-lg-block ml-2">
+                    <MenuAvatar />
                 </li>
             </ul>
         </nav>

@@ -54,6 +54,7 @@ function CropCreate(props) {
         fileInputRef.current.click();
     }
 
+
     const showResult = async () => {
         try {
             setconfig({
@@ -70,7 +71,7 @@ function CropCreate(props) {
                 croppedImage: croppedImage,
                 isCropping: false,
             })
-            props.setFieldValue('image', imgConfigs.croppedImage);
+            props.onChange(croppedImage);
             console.log(imgConfigs)
             console.log('end!')
         } catch (e) {

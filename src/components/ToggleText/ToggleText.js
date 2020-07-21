@@ -1,13 +1,11 @@
 
-import React, { useState, Fragment } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
 
 function ToggleText({ text, maxLength }) {
 
     const [isHidden, setisHidden] = useState(true);
     const [isShorter] = useState(text.length < maxLength)
 
-    console.log(isShorter);
     const cuttingWords = () => {
         let chortenText = text.substr(0, maxLength);
         if (text.length <= maxLength) {
@@ -20,18 +18,14 @@ function ToggleText({ text, maxLength }) {
     }
 
     return (
-        <p>
+        <p className="ToggleText d-inline-block m-0">
             {!isHidden ? text : cuttingWords()}
-            {!isShorter && <a className='text-secondery ml-1' onClick={() => setisHidden(!isHidden)}>
+            {!isShorter && <a className='text-secondary ml-1' onClick={() => setisHidden(!isHidden)}>
                 {isHidden ? 'more' : 'less'}
             </a>}
-            {/* {!isHidden ? (
-                <a className='text-secondery ml-1' onClick={() => setisHidden(true)}>less</a>
-            ) : (
-                    <a className='text-secondery ml-1' onClick={() => setisHidden(false)}>more</a>
-                )} */}
         </p>
     );
+
 }
 
 export default ToggleText;

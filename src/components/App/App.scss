@@ -6,8 +6,8 @@ $primaryColor: #00b7d6;
     font-family: "Billabong";
     font-style: normal;
     font-weight: 400;
-    src: local("Billabong"), local("Billabong"), url("../src/fonts/billabong-cufonfonts/Billabong.woff") format("woff"),
-        /* Modern Browsers */ url("../src/fonts/billabong-cufonfonts/Billabong.ttf") format("truetype"); /* Safari, Android, iOS */
+    src: local("Billabong"), local("Billabong"), url("../../fonts/billabong-cufonfonts/Billabong.woff") format("woff"),
+        /* Modern Browsers */ url("../../fonts/billabong-cufonfonts/Billabong.ttf") format("truetype"); /* Safari, Android, iOS */
 }
 
 html {
@@ -37,8 +37,5 @@ body {
     }
     .container-fluid {
         height: 100%;
-    }
-    .text-bold {
-        font-weight: 600;
     }
 }

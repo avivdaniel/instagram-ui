@@ -5,7 +5,6 @@ import deafultAvatar from './avatar.default.png';
 import './Avatar.scss';
 
 function Avatar(props) {
-    const { user } = useContext(UserContext);
     let image = props.image ? props.image : deafultAvatar;
     let size = props.size ? props.size : 'sm';
 
@@ -16,7 +15,7 @@ function Avatar(props) {
                 <img
                     src={image}
                     alt='Avatar'
-                    className={`Avatar-img ${props.size}`} />
+                    className={`Avatar-img ${size}`} />
             </div>
         </div>
     );

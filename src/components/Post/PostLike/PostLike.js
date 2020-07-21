@@ -47,9 +47,8 @@ function PostLike(props) {
     return (
         <div className="PostLike">
             <span onClick={() => setLikeStatus(!hasLiked)}>
-                <FontAwesomeIcon icon={faHeart} className={`${likedClass}`} />
+                <span className="text-bold">{likes.length}</span> <FontAwesomeIcon icon={faHeart} className={`${likedClass}`} />
             </span>
-            <p className="d-block">Liked by <span>{likes.length} people</span></p>
         </div>
     );
 }

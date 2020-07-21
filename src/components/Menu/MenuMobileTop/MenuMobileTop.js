@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../../user-context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faCamera } from '@fortawesome/free-solid-svg-icons'
-import MenuAvatar from '../MenuAvatar/MenuAvatar';
 import './MenuMobileTop.scss';
 
 function MenuMobileTop(props) {
-    const { user } = useContext(UserContext);
     return (
         <nav className="MenuMobileTop navbar-dark d-flex d-lg-none">
             <ul className="nav justify-content-between justify-content-lg-start w-100 align-items-center mr-auto">
