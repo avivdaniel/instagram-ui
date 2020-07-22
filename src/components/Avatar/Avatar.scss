@@ -16,6 +16,7 @@ $md-desk-image-size: 60px;
 $lg-desk-image-size: 80px;
 
 .Avatar-holder {
+    display: inline-block;
     .avatar {
         padding: 0;
         img.Avatar-img {

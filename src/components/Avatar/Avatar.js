@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import propTypes from 'prop-types';
 import { UserContext } from '../../user-context';
 import deafultAvatar from './avatar.default.png';
+import config from '../../config/index';
 import './Avatar.scss';
 
 function Avatar(props) {
@@ -13,7 +14,8 @@ function Avatar(props) {
         <div className="Avatar Avatar-holder">
             <div className="avatar">
                 <img
-                    src={image}
+                    // src={image}
+                    src={`${config.apiUrl}/avatars/${image}`}
                     alt='Avatar'
                     className={`Avatar-img ${size}`} />
             </div>

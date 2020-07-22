@@ -35,7 +35,7 @@ function ProfileUser(props) {
                     </div>
                     <h2>Demi Name</h2>
                     <h3 className='Profile-username'>@{profile.username}</h3>
-                    <h4 className='Profile-bio'>a very intrested something</h4>
+                    {profile.bio && <h4 className='Profile-bio'>{profile.bio}</h4>}
                     <hr className="my-3"></hr>
                     <span className='Profile-post-count py-1'>{postNum === 1 ? `${postNum} post` : `${postNum} posts`}</span>
                 </div>

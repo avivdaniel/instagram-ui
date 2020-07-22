@@ -71,16 +71,17 @@ function App() {
                   <Search />
                 </Route>
 
+                {/* 
                 <Route path="/profile/edit" >
                   <ProfileEdit />
-                </Route>
+                </Route> */}
 
                 <Route path="/profile/:id" >
                   <Profile />
                 </Route>
 
                 <Route path="/posts/:id" >
-                  {/* <PostPage /> */}
+                  <PostPage />
                 </Route>
 
                 <Route path="/">

@@ -6,6 +6,7 @@ import Post from '../Post/Post';
 import ProfileUser from './ProfileUser/ProfileUser';
 import { useParams, Link } from 'react-router-dom';
 import './Profile.scss';
+import ProfileEdit from './ProfileEdit/ProfileEdit';
 
 const initBackground = '#fafafa';
 
@@ -46,7 +47,7 @@ function Profile(props) {
         <div className="Profile">
             <ProfileUser userId={id} postNum={posts.length} />
 
-            {isLoged && <Link to="/profile/edit"> edit! </Link>}
+            {isLoged && <ProfileEdit id={id} />}
 
 
             <div className="container">
