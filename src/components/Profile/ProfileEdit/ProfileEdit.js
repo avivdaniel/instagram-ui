@@ -1,17 +1,16 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import { useParams, Link } from 'react-router-dom';
 import { ProfileEditSchema } from './profileedit.schema';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faLock, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { UserContext } from '../../../user-context';
-import { UserService } from '../../../services/user-service';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     useHistory
 } from "react-router-dom";
+import onAllProfileSubmit from './CropAvatar/CropAvatar';
 import CropAvatar from './CropAvatar/CropAvatar';
 import config from '../../../config/index';
 import './ProfileEdit.scss';
@@ -19,7 +18,7 @@ import './ProfileEdit.scss';
 function ProfileEdit(props) {
     const history = useHistory();
     const { user, setUser } = useContext(UserContext);
-
+    let cropAvatarRef = useRef(null);
 
     const buildFormData = (values) => {
         const data = new FormData();
@@ -30,42 +29,28 @@ function ProfileEdit(props) {
     };
 
     const submit = async (values) => {
+        await cropAvatarRef.current.showResult();
         console.log(values)
         const data = buildFormData(values);
-
-        const res = await fetch(`${config.apiUrl}/users/${user._id}`, {
+        const req = await fetch(`${config.apiUrl}/users/${user._id}`, {
             method: 'POST',
             credentials: 'include',
             body: data
         });
-
-        // if (res.status === 200) {
-        //     getUser();
-        // }
-        // } else if (res.status === 409) {
-        //     setError(true);
-        // } else {
-        //     console.log('unknown')
-        // }
-        return res;
+        const editedUser = await req.json();
+        setUser(editedUser);
+        history.push(`/profile/${editedUser._id}`);
     };
 
-    async function getUser() {
-        const user = await UserService.get();
-        setUser(user);
-        if (user) {
-            history.push('/');
-        }
-    }
 
     return (
-        <Fragment>
-            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Launch demo modal
-                </button>
+        <div className="ProfileEdit">
+            <button type="button" className=" btn btn-primary btn-edit m-2" data-toggle="modal" data-target="#exampleModal">
+                <FontAwesomeIcon icon={faEdit} /> Edit
+            </button>
 
 
-            <div className="ProfileEdit modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog h-100" role="document">
                     <div className="modal-content h-100">
                         <div className="modal-header">
@@ -77,9 +62,10 @@ function ProfileEdit(props) {
                         <div className="modal-body h-100">
 
                             <Formik
-                                initialValues={{ username: '', bio: '', avatar: '' }}
+                                initialValues={{ bio: '', avatar: '' }}
                                 validationSchema={ProfileEditSchema}
                                 validateOnChange={true}
+                                validateOnBlur={true}
                                 onSubmit={submit}
                             >
 
@@ -87,31 +73,36 @@ function ProfileEdit(props) {
                                     <Form className="form d-flex flex-column h-100" noValidate>
 
                                         <div className="col-12 cropper-container">
-                                            <CropAvatar onChange={value => {
-                                                setFieldValue('avatar', value);
-                                            }} />
+                                            <CropAvatar
+                                                avatarImage={user.avatar}
+                                                ref={cropAvatarRef}
+                                                onChange={(value) => {
+                                                    setFieldValue('avatar', value);
+                                                }} />
                                         </div>
 
 
-                                        <div className="col-12 inputs-container">
-                                            <div className="form-group">
-                                                <Field className='form-control' id="username" placeholder="Username" name="username" />
-                                                <FontAwesomeIcon className="Register-form-icon" icon={faUserCircle} />
-                                                {errors.username && touched.username && <small className="text-danger pl-2">{errors.username}</small>}
-                                            </div>
-
-                                            <div className="form-group m-0">
+                                        <div className="ProfileEdit-inputs-container">
+                                            <div className="form-group my-2">
                                                 <Field as="textarea" className="form-control" id="bio" placeholder="Bio" name="bio" />
-                                                <FontAwesomeIcon className="Register-form-icon" icon={faLock} />
+                                                <FontAwesomeIcon className="ProfileEdit-form-icon" icon={faLock} />
                                                 {errors.bio && <small className="text-danger pl-2">{errors.bio}</small>}
                                             </div>
-
-
-                                            <div className="modal-footer">
-                                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" className="btn btn-primary" disabled={isSubmitting} >Save changes</button>
-                                            </div>
                                         </div>
+                                        {/* <div className="form-group">
+                                                <Field className='form-control' id="username" placeholder="Username" name="username" />
+                                                <FontAwesomeIcon className="ProfileEdit-form-icon" icon={faUserCircle} />
+                                                {errors.username && touched.username && <small className="text-danger pl-2">{errors.username}</small>}
+                                            </div> */}
+
+
+
+
+                                        <div className="modal-footer">
+                                            <button className="btn btn-primary" data-dismiss="modal">Close</button>
+                                            <button type="submit" className="btn btn-primary" disabled={isSubmitting} >Save changes</button>
+                                        </div>
+
 
 
                                     </Form>
@@ -124,7 +115,7 @@ function ProfileEdit(props) {
                     </div>
                 </div>
             </div>
-        </Fragment >
+        </div >
     );
 }
 

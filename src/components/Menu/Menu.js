@@ -11,7 +11,7 @@ function Menu(props) {
     const { user } = useContext(UserContext);
     return (
         <nav className="Menu navbar-dark d-flex">
-            <a className="Menu-brand navbar-brand" href="#">Instagram</a>
+            <a className="Menu-brand navbar-brand" href="/">Instagram</a>
             <ul className="nav justify-content-around justify-content-lg-end w-100 align-items-center mr-auto">
                 <li className="nav-item">
                     <Link className="effect-4" to="/">
@@ -36,7 +36,7 @@ function Menu(props) {
                     </Link>
                 </li>
                 <li className="nav-item d-lg-none">
-                    <Link className="effect-4" to="/profile">
+                    <Link className="effect-4" to={`/profile/${user._id}`}>
                         <FontAwesomeIcon icon={faUser} />
                     </Link>
                 </li>

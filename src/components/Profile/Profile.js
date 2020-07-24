@@ -7,20 +7,23 @@ import ProfileUser from './ProfileUser/ProfileUser';
 import { useParams, Link } from 'react-router-dom';
 import './Profile.scss';
 import ProfileEdit from './ProfileEdit/ProfileEdit';
+import PageLoader from '../PageLoader/PageLoader';
 
 const initBackground = '#fafafa';
 
 function Profile(props) {
-    const { user } = useContext(UserContext);
+    const { user, setUser, setBackground } = useContext(UserContext);
     const [posts, setPosts] = useState([]);
-    const [isLoged, setisLoged] = useState(false);
+    const [isLoading, setLoading] = useState(true);
+    const [isVerified, setisVerified] = useState(false);
     const { id } = useParams();
 
 
     useEffect(() => {
-        isLogedUser(user, id);
+        setBackground(initBackground);
+        isVerifiedUser(user, id);
         getPosts();
-    }, [id]);
+    }, [id, user]);
 
     async function getPosts() {
         try {
@@ -28,27 +31,31 @@ function Profile(props) {
                 credentials: 'include'
             });
             const fetchedPosts = await res.json();
-            // setLoading(false);
             setPosts(fetchedPosts);
+            setLoading(false);
         } catch (err) {
             console.log(posts);
         }
     }
 
-    function isLogedUser(user, providedId) {
+    function isVerifiedUser(user, providedId) {
         if (user._id !== providedId) {
             return;
         }
-        return setisLoged(true);
+        return setisVerified(true);
     }
 
 
     return (
         <div className="Profile">
+            {isLoading && <PageLoader />}
+
+            <div className="Profile-bg">
+                {isVerified && <ProfileEdit id={id} />}
+            </div>
+
+
             <ProfileUser userId={id} postNum={posts.length} />
-
-            {isLoged && <ProfileEdit id={id} />}
-
 
             <div className="container">
                 <div className="Profile-gallery col-12 d-flex flex-wrap mt-3">

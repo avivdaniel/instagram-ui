@@ -6,9 +6,7 @@ import config from '../../config/index';
 import './Avatar.scss';
 
 function Avatar(props) {
-    // let image = props.image ? props.image : deafultAvatar;
     let image = props.image;
-    console.log('avatar' + image)
     let isDeafultAvatar = image ? `${config.apiUrl}/avatars/${image}` : deafultAvatar;
     let size = props.size ? props.size : 'sm';
 
@@ -17,7 +15,6 @@ function Avatar(props) {
         <div className="Avatar Avatar-holder">
             <div className="avatar">
                 <img
-                    // src={image}
                     src={isDeafultAvatar}
                     alt='Avatar'
                     className={`Avatar-img ${size}`} />

@@ -24,7 +24,7 @@ const initBackground = '#00b7d6';
 
 function App() {
   const [user, setUser] = useState({});
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [background, setBackground] = useState(initBackground);
   const history = useHistory();
 
@@ -32,7 +32,7 @@ function App() {
     async function getUser() {
       const user = await UserService.get();
       setUser(user);
-      setisLoading(false);
+      setLoading(false);
       if (!user) {
         history.push('/login');
       }
@@ -70,11 +70,6 @@ function App() {
                 <Route path="/search">
                   <Search />
                 </Route>
-
-                {/* 
-                <Route path="/profile/edit" >
-                  <ProfileEdit />
-                </Route> */}
 
                 <Route path="/profile/:id" >
                   <Profile />

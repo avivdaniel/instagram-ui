@@ -4,7 +4,7 @@ import { getOrientation } from 'get-orientation/browser';
 import getCroppedImg from './cropImage'
 import { getRotatedImage } from './rotateImage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faCheck, faTrash, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faCheck, faTrash, faSpinner, faAnkh } from '@fortawesome/free-solid-svg-icons';
 import './CropCreate.scss';
 
 const ORIENTATION_TO_ANGLE = {
@@ -95,8 +95,7 @@ function CropCreate(props) {
     const onFileChange = async e => {
         if (e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
-            let imageDataUrl = await readFile(file)
-
+            let imageDataUrl = await readFile(file, setconfig)
             // apply rotation if needed
             const orientation = await getOrientation(file)
             const rotation = ORIENTATION_TO_ANGLE[orientation]
@@ -117,7 +116,7 @@ function CropCreate(props) {
 
     return (
 
-        <div className="CropCreate d-flex justify-content-center align-items-center exa col-12 p-0" onClick={onImageDisplayerClick}>
+        <div className="CropCreate col-12 p-0" onClick={onImageDisplayerClick}>
             <input type="file"
                 ref={fileInputRef}
                 className='form-control d-none'
@@ -129,13 +128,14 @@ function CropCreate(props) {
                 }}
             />
 
+            {imgConfigs.isCropping && <div className="spinner-container">
+                <FontAwesomeIcon className='faSpinner' icon={faSpinner} size="2x" style={{ color: '#00b7d6' }} spin />
+            </div>}
+
             {imgConfigs.imageSrc ?
 
                 <Fragment>
 
-                    {imgConfigs.isCropping && <div className="spinner-container">
-                        <FontAwesomeIcon className='faSpinner' icon={faSpinner} size="2x" style={{ color: '#00b7d6' }} spin />
-                    </div>}
 
                     <div className="crop-container">
                         <Cropper

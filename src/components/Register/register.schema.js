@@ -33,5 +33,5 @@ async function isUnique(field, value) {
     }
     const res = await fetch(`${config.apiUrl}/users/check?${field}=${value}`);
     memo[field][value] = !(await res.json());
+    return memo[field][value];
 }
-

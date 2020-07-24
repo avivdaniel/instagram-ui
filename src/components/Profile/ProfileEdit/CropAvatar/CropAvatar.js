@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef } from 'react';
+import React, { Fragment, useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
 import Cropper from 'react-easy-crop';
 import { getOrientation } from 'get-orientation/browser';
 import getCroppedImg from './cropImage'
@@ -6,6 +6,7 @@ import { getRotatedImage } from './rotateImage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faCheck, faTrash, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import './CropAvatar.scss';
+import Avatar from '../../../Avatar/Avatar';
 
 const ORIENTATION_TO_ANGLE = {
     '3': 180,
@@ -13,8 +14,8 @@ const ORIENTATION_TO_ANGLE = {
     '8': -90,
 }
 
-function CropAvatar(props) {
-    const fileInputRef = useRef();
+const CropAvatar = forwardRef((props, ref) => {
+    const fileInputRef = useRef(null);
     const [imgConfigs, setconfig] = useState({
         imageSrc: null,
         crop: { x: 0, y: 0 },
@@ -24,6 +25,7 @@ function CropAvatar(props) {
         croppedImage: null,
         isCropping: false,
     });
+
 
     const onCropChange = crop => {
         setconfig({
@@ -54,32 +56,39 @@ function CropAvatar(props) {
         fileInputRef.current.click();
     }
 
+    useImperativeHandle(ref, () => ({
 
-    const showResult = async () => {
-        try {
-            setconfig({
-                ...imgConfigs,
-                isCropping: true
-            });
-            const croppedImage = await getCroppedImg(
-                imgConfigs.imageSrc,
-                imgConfigs.croppedAreaPixels
-            )
-            console.log('done', { croppedImage })
-            setconfig({
-                ...imgConfigs,
-                croppedImage: croppedImage,
-                isCropping: false,
-            })
-            props.onChange(croppedImage);
-        } catch (e) {
-            console.error(e)
-            setconfig({
-                ...imgConfigs,
-                isCropping: false,
-            })
+        showResult: async () => {
+            if (imgConfigs.imageSrc === null) {
+                return;
+            }
+            try {
+                setconfig({
+                    ...imgConfigs,
+                    isCropping: true
+                });
+                const croppedImage = await getCroppedImg(
+                    imgConfigs.imageSrc,
+                    imgConfigs.croppedAreaPixels
+                )
+                console.log('done', { croppedImage })
+                setconfig({
+                    ...imgConfigs,
+                    croppedImage: croppedImage,
+                    isCropping: false,
+                })
+                props.onChange(croppedImage);
+            } catch (e) {
+                console.error(e)
+                setconfig({
+                    ...imgConfigs,
+                    isCropping: false,
+                })
+            }
         }
-    }
+
+    }));
+
 
     const deleteResult = () => {
         setconfig({
@@ -158,17 +167,22 @@ function CropAvatar(props) {
                             />
                     </div> */}
                     <div className="CropAvatar-btn-container d-flex justify-content-between p-1">
-                        <button className="btn btn-primary text-uppercase btn-block" onClick={deleteResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faTrash} className='faTrash' /></button>
-                        <button className="btn btn-primary text-uppercase btn-block  m-0" onClick={showResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faCheck} className='faCheck' /></button>
+                        <button className="btn btn-primary text-uppercase btn-block m-2" onClick={deleteResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faTrash} className='faTrash' /></button>
+                        {/* <button className="btn btn-primary text-uppercase btn-block  m-0" onClick={showResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faCheck} className='faCheck' /></button> */}
                     </div>
                 </Fragment>
-                : <div className="faPlus-container">
-                    <FontAwesomeIcon icon={faPlus} className='faPlus' />
+                : <div className="CropAvatar-currentAvatar">
+
+                    <Avatar size='lg' image={props.avatarImage} />
+                    <p className='pt-2'>Change profile picture</p>
+
                 </div>
+
+
             }
         </div>
     );
-}
+});
 
 
 function readFile(file) {

@@ -5,6 +5,7 @@ $shadow: 1px 3px 0px #0086b6;
 
 .Profile {
     .Profile-bg {
+        position: relative;
         justify-content: center;
         background-image: url("./profile.bg.png");
         background-repeat: no-repeat;

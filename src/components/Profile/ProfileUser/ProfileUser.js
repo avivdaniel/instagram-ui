@@ -27,7 +27,6 @@ function ProfileUser(props) {
 
     return (
         <Fragment>
-            <div className="Profile-bg"></div>
             <div className="container">
                 <div className="Profile-header col-12">
                     <div className="avatar-container">
