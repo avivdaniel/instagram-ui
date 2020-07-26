@@ -60,7 +60,7 @@ const CropAvatar = forwardRef((props, ref) => {
 
         showResult: async () => {
             if (imgConfigs.imageSrc === null) {
-                return undefined;
+                return;
             }
             try {
                 setconfig(() => ({

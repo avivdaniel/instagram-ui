@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Register from '../Register/Register';
 import Login from '../Login/Login';
-import CreatePost from '../CreatePost/CreatePost';
+import { CreatePost } from '../CreatePost/CreatePost';
 import { UserContext } from '../../user-context';
 import { UserService } from '../../services/user-service';
 import Menu from '../Menu/Menu';
