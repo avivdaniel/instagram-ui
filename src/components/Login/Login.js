@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { LoginSchema } from './login.schema'
 import { Link, useHistory } from 'react-router-dom';
@@ -8,10 +8,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons'
 import './Login.scss';
 
+const initBackground = '#00b7d6';
 function Login(props) {
-    const { setUser } = useContext(UserContext);
+    const { setBackground, setUser } = useContext(UserContext);
     const history = useHistory();
     const [showError, setError] = useState(false);
+
+    useEffect(() => {
+        setBackground(initBackground);
+    }, [])
+
     const submit = async (values) => {
         const res = await fetch(config.apiUrl + '/users/login', {
             method: 'POST',

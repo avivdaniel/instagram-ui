@@ -43,9 +43,8 @@ function CreatePost(props) {
 
     return (
 
-        <div className="CreatePost d-flex flex-column h-100">
+        <div className="CreatePost container d-flex flex-column h-100">
             {isLoading && <PageLoader />}
-            <div className="CreatePost-bg"></div>
             <Formik
                 initialValues={{ image: '', title: '' }}
                 validationSchema={PostCreateSchema}
@@ -54,9 +53,15 @@ function CreatePost(props) {
                 {({ errors, isSubmitting, setFieldValue }) => (
                     <Form className="form d-flex flex-column h-100">
 
+                        {/* cropper and Share */}
+                        <CropCreate onChange={(value) => {
+                            setFieldValue('image', value);
+                        }} />
+                        {errors.image && <small className="text-danger pl-2">{errors.image}</small>}
+
                         {/* Title and Share */}
-                        <div className="CreatePost-content-container col-12 p-3 ">
-                            {/* <div className="col-12 pl-0 pr-0 pt-2 d-flex flex-wrap justify-content-center">
+
+                        {/* <div className="col-12 pl-0 pr-0 pt-2 d-flex flex-wrap justify-content-center">
                                 <div className="col-2 p-0"><Avatar size='md' image={user.avatar} /></div>
 
                                 <div className="form-group col-10 col-lg-8 d-flex align-items-center justify-content-center pr-0">
@@ -70,39 +75,31 @@ function CreatePost(props) {
                                 </div>
                             </div> */}
 
-                            <div className="col-12">
-                                <div className="col-2 p-0 avt"><Avatar size='lg' image={user.avatar} /></div>
+                        <div className="col-12">
+                            <div className="col-2 p-0 avt"><Avatar size='lg' image={user.avatar} /></div>
 
-                                <div className="form-group">
-                                    <Field className='form-control title-field'
-                                        as="textarea"
-                                        id="title"
-                                        placeholder={`${user && user.username}, whats on your mind?`}
-                                        name="title"
-                                    />
-                                    {errors.title && <small className="text-danger pl-2">{errors.title}</small>}
-                                </div>
+                            <div className="form-group">
+                                <Field className='form-control title-field'
+                                    as="textarea"
+                                    id="title"
+                                    placeholder={`${user && user.username}, whats on your mind?`}
+                                    name="title"
+                                />
+                                {errors.title && <small className="text-danger pl-2">{errors.title}</small>}
                             </div>
 
-                            <div className="col-12 d-flex justify-content-center p-0">
-
-                                <div className="CreatePost-btn col-4 col-lg-2 pb-2">
-                                    <button type="submit" className="btn btn-primary btn-block text-uppercase" disabled={isSubmitting || errors.image}>Share</button>
-                                    {isSubmitting && <PageLoader />}
-                                </div>
-
-                            </div>
-                            <hr className="my-1"></hr>
-
-
-                            {/* cropper and Share */}
-                            <CropCreate onChange={(value) => {
-                                setFieldValue('image', value);
-                            }} />
-                            {errors.image && <small className="text-danger pl-2">{errors.image}</small>}
-
+                            <button type="submit" className="btn btn-primary btn-block text-uppercase" disabled={isSubmitting || errors.image}>Share</button>
+                            {isSubmitting && <PageLoader />}
 
                         </div>
+
+
+
+
+                        <hr className="my-1"></hr>
+
+
+
 
 
 
@@ -110,6 +107,8 @@ function CreatePost(props) {
                     </Form>
                 )}
             </Formik>
+
+
         </div>
 
 

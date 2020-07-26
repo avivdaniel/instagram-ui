@@ -1,0 +1,23 @@
+$text-shadow: 0px 2px 2px rgba(64, 64, 64, 0.2);
+
+.SearchResults {
+    .SearchResults-user {
+        a h5 {
+            font-size: 16px;
+            color: #1a1110;
+            text-shadow: $text-shadow;
+        }
+        .bio {
+            font-style: italic;
+            font-size: 13px;
+            text-shadow: none;
+        }
+    }
+    img {
+        height: 64px;
+        width: 64px;
+    }
+    .SearchResults-user {
+        min-height: 15vh;
+    }
+}

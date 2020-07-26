@@ -7,6 +7,7 @@ import './Avatar.scss';
 
 function Avatar(props) {
     let image = props.image;
+    // debugger;
     let isDeafultAvatar = image ? `${config.apiUrl}/avatars/${image}` : deafultAvatar;
     let size = props.size ? props.size : 'sm';
 

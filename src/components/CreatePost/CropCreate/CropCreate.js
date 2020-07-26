@@ -6,6 +6,7 @@ import { getRotatedImage } from './rotateImage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faCheck, faTrash, faSpinner, faAnkh } from '@fortawesome/free-solid-svg-icons';
 import './CropCreate.scss';
+import PageLoader from '../../PageLoader/PageLoader';
 
 const ORIENTATION_TO_ANGLE = {
     '3': 180,
@@ -128,27 +129,22 @@ function CropCreate(props) {
                 }}
             />
 
-            {imgConfigs.isCropping && <div className="spinner-container">
-                <FontAwesomeIcon className='faSpinner' icon={faSpinner} size="2x" style={{ color: '#00b7d6' }} spin />
-            </div>}
+            {imgConfigs.isCropping && <PageLoader />}
 
-            {imgConfigs.imageSrc ?
-
-                <Fragment>
-
-
-                    <div className="crop-container">
-                        <Cropper
-                            image={imgConfigs.imageSrc}
-                            crop={imgConfigs.crop}
-                            zoom={imgConfigs.zoom}
-                            aspect={imgConfigs.aspect}
-                            onCropChange={onCropChange}
-                            onCropComplete={onCropComplete}
-                            onZoomChange={onZoomChange}
-                        />
-                    </div>
-                    {/* <div className="controls">
+            <>
+                <div className="crop-container">
+                    <Cropper
+                        // disableAutomaticStylesInjection={true}
+                        image={imgConfigs.imageSrc}
+                        crop={imgConfigs.crop}
+                        zoom={imgConfigs.zoom}
+                        aspect={imgConfigs.aspect}
+                        onCropChange={onCropChange}
+                        onCropComplete={onCropComplete}
+                        onZoomChange={onZoomChange}
+                    />
+                </div>
+                {/* <div className="controls">
                         <input type="range" min="1" max="3" aria-labelledby="Zoom" value={imgConfigs.zoom} className="form-control-range" id="myRange" onChange={(e, zoom) => onZoomChange(zoom)} />
                         <Slider
                                 value={imgConfigs.zoom}
@@ -158,15 +154,12 @@ function CropCreate(props) {
                                 classes={{ container: 'slider' }}
                             />
                     </div> */}
-                    <div className="CropCreate-btn-container d-flex justify-content-between p-1">
-                        <button className="btn btn-primary text-uppercase btn-block" onClick={deleteResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faTrash} className='faTrash' /></button>
-                        <button className="btn btn-primary text-uppercase btn-block  m-0" onClick={showResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faCheck} className='faCheck' /></button>
-                    </div>
-                </Fragment>
-                : <div className="faPlus-container">
-                    <FontAwesomeIcon icon={faPlus} className='faPlus' />
+                <div className="CropCreate-btn-container d-flex justify-content-between p-1">
+                    <button className="btn btn-primary text-uppercase btn-block" onClick={deleteResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faTrash} className='faTrash' /></button>
+                    <button className="btn btn-primary text-uppercase btn-block  m-0" onClick={showResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faCheck} className='faCheck' /></button>
                 </div>
-            }
+            </>
+
         </div>
     );
 }

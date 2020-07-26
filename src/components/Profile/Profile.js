@@ -5,17 +5,21 @@ import Avatar from '../Avatar/Avatar';
 import Post from '../Post/Post';
 import ProfileUser from './ProfileUser/ProfileUser';
 import { useParams, Link } from 'react-router-dom';
-import './Profile.scss';
 import ProfileEdit from './ProfileEdit/ProfileEdit';
 import PageLoader from '../PageLoader/PageLoader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import './Profile.scss';
 
 const initBackground = '#fafafa';
 
 function Profile(props) {
     const { user, setUser, setBackground } = useContext(UserContext);
     const [posts, setPosts] = useState([]);
+    const [userImage, setUserImage] = useState(null);
     const [isLoading, setLoading] = useState(true);
     const [isVerified, setisVerified] = useState(false);
+    const [isHovering, setisHovering] = useState(false);
     const { id } = useParams();
 
 
@@ -51,21 +55,38 @@ function Profile(props) {
             {isLoading && <PageLoader />}
 
             <div className="Profile-bg">
-                {isVerified && <ProfileEdit id={id} />}
+                {isVerified && <ProfileEdit id={id} setUserImage={setUserImage} />}
             </div>
 
 
-            <ProfileUser userId={id} postNum={posts.length} />
+            <ProfileUser userId={id} postNum={posts.length} userImage={userImage} />
 
-            <div className="container">
-                <div className="Profile-gallery col-12 d-flex flex-wrap mt-3">
-                    {posts.length ? posts.map(post => {
-                        return <Post
+            <div className="container p-0 d-flex flex-wrap justify-content-center">
+
+                {posts.length ? posts.map(post => {
+                    return (
+                        <Link
                             key={post._id}
-                            data={post}
-                        />
-                    }) : <p className="Profile-no-posts">You have no posts yet</p>}
-                </div>
+                            to={`/posts/${post._id}`}
+                            className="col-5 m-2 col-lg-3 m-lg-4 Post-img-container shadow-sm"
+                            onMouseEnter={() => setisHovering(true)}
+                            onMouseLeave={() => setisHovering(false)}
+                        >
+                            <img className="Post-img" src={`${config.apiUrl}/posts/${post.image}`} />
+                            {isHovering && <div className="likes-modal d-flex align-items-center justify-content-center">
+                                <span className="text-white">
+                                    <span className="mr-2 likes-length">{post.likes.length}</span>
+                                    <FontAwesomeIcon icon={faHeart} />
+                                </span>
+                            </div>
+                            }
+
+                        </Link>
+
+
+                    )
+                }) : <p className="Profile-no-posts">You have no posts yet</p>}
+
             </div>
         </div>
     );

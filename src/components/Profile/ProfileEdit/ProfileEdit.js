@@ -21,27 +21,38 @@ function ProfileEdit(props) {
     let cropAvatarRef = useRef(null);
 
     const buildFormData = (values) => {
+        console.log(values)
+        for (let key in values) {
+            if (values[key] === undefined) {
+                delete values[key];
+            }
+        }
         const data = new FormData();
-        for (const key in values) {
+        for (let key in values) {
             data.append(key, values[key]);
         }
         return data;
     };
 
-    const submit = async (values) => {
-        await cropAvatarRef.current.showResult();
-        console.log(values)
-        const data = buildFormData(values);
+    const submit = async values => {
+        const avatar = await cropAvatarRef.current.showResult();
+        console.log(avatar)
+        let data;
+
+        data = buildFormData({ ...values, avatar });
+
+        console.log(data)
         const req = await fetch(`${config.apiUrl}/users/${user._id}`, {
             method: 'POST',
             credentials: 'include',
             body: data
         });
         const editedUser = await req.json();
-        setUser(editedUser);
-        history.push(`/profile/${editedUser._id}`);
-    };
+        // setUser(editedUser);
+        // props.setUserImage(editedUser.avatar);
+        // history.push(`/profile/${editedUser._id}`);
 
+    }
 
     return (
         <div className="ProfileEdit">
@@ -75,10 +86,7 @@ function ProfileEdit(props) {
                                         <div className="col-12 cropper-container">
                                             <CropAvatar
                                                 avatarImage={user.avatar}
-                                                ref={cropAvatarRef}
-                                                onChange={(value) => {
-                                                    setFieldValue('avatar', value);
-                                                }} />
+                                                ref={cropAvatarRef} />
                                         </div>
 
 

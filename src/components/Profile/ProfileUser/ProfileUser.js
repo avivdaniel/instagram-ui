@@ -24,13 +24,12 @@ function ProfileUser(props) {
             console.log(err);
         }
     }
-
     return (
         <Fragment>
             <div className="container">
                 <div className="Profile-header col-12">
                     <div className="avatar-container">
-                        <Avatar size="lg" image={profile.avatar} />
+                        <Avatar size="lg" image={props.userImage || profile.avatar} />
                     </div>
                     <h2>Demi Name</h2>
                     <h3 className='Profile-username'>@{profile.username}</h3>

@@ -17,7 +17,7 @@ function Post(props) {
 
 
     return (
-        <article className="Post d-flex flex-column col-12 col-lg-4 p-0">
+        <article className="Post d-flex flex-column col-12 col-lg-3 p-0 m-lg-4 shadow-sm">
 
             <header className="d-flex justify-content-between align-items-center p-3">
                 <div className="d-flex align-items-center">
@@ -29,13 +29,11 @@ function Post(props) {
                 <span className="text-secondary"><FormatDate data={createdAt} /></span>
             </header>
 
-
-            <div className="Post-img-container d-flex justify-content-center align-itens center">
-                <Link to={`/posts/${props.data._id}`}>
+            <Link to={`/posts/${props.data._id}`}>
+                <div className="Post-img-container border border-light d-flex justify-content-center align-itens-center">
                     <img className="Post-img" src={`${config.apiUrl}/posts/${image}`} />
-                </Link>
-
-            </div>
+                </div>
+            </Link>
 
             <div className="Post-content-container p-3">
                 <PostLike

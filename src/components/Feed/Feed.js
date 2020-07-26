@@ -31,7 +31,7 @@ function Feed() {
     }, []);
 
     return (
-        <div className="Feed d-flex flex-column flex-lg-row flex-wrap justify-content-center">
+        <div className="Feed h-100 d-flex flex-column flex-lg-row flex-wrap justify-content-center align-items-center">
             {posts.map(post => {
                 return <Post
                     key={post._id}

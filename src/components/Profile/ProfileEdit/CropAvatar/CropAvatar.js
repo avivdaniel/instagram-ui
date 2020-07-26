@@ -60,24 +60,23 @@ const CropAvatar = forwardRef((props, ref) => {
 
         showResult: async () => {
             if (imgConfigs.imageSrc === null) {
-                return;
+                return undefined;
             }
             try {
-                setconfig({
+                setconfig(() => ({
                     ...imgConfigs,
                     isCropping: true
-                });
+                }));
                 const croppedImage = await getCroppedImg(
                     imgConfigs.imageSrc,
                     imgConfigs.croppedAreaPixels
                 )
-                console.log('done', { croppedImage })
-                setconfig({
+                setconfig(() => ({
                     ...imgConfigs,
                     croppedImage: croppedImage,
                     isCropping: false,
-                })
-                props.onChange(croppedImage);
+                }))
+                return croppedImage;
             } catch (e) {
                 console.error(e)
                 setconfig({
@@ -129,8 +128,8 @@ const CropAvatar = forwardRef((props, ref) => {
                 ref={fileInputRef}
                 className='form-control d-none'
                 accept="image/*"
-                id="image"
-                name="image"
+                id="avatar"
+                name="avatar"
                 onChange={(e) => {
                     onFileChange(e);
                 }}

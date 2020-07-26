@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import config from '../../config/index';
 import SearchResults from './SearchResults/SearchResults';
-import AppLoader from '../AppLoader/AppLoader';
+import { UserContext } from '../../user-context';
+import PageLoader from '../PageLoader/PageLoader';
 
+const initBackground = '#fafafa';
 function Search(props) {
+    const { setBackground } = useContext(UserContext)
     const [isLoading, setisLoading] = useState(false);
     const [query, setquery] = useState('');
     const [users, setusers] = useState([]);
 
 
     useEffect(() => {
-        if (query === '') {
-            return;
-        }
+        setBackground(initBackground);
         const submit = async () => {
             setisLoading(true);
             const res = await fetch(`${config.apiUrl}/users?username=${query}`, {
@@ -39,8 +40,8 @@ function Search(props) {
     }
 
     return (
-        <div className="Search container">
-            {isLoading && <AppLoader />}
+        <div className="Search container mt-2">
+            {isLoading && <PageLoader />}
             <input
                 value={query}
                 className="form-control"

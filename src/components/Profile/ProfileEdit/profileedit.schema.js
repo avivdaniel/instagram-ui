@@ -9,7 +9,4 @@ export const ProfileEditSchema = Yup.object().shape({
         .max(30, 'bio should contain at most than 30 characters')
 });
 
-const memo = {
-    username: {}
-};
 
