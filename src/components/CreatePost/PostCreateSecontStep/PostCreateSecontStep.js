@@ -3,7 +3,7 @@ import React from "react";
 import { Field } from "formik";
 
 export const PostCreateSecontStep = formikProps => {
-    const { errors, touched } = formikProps;
+    const { errors, setFieldValue } = formikProps;
     return (
         <>
             <span>this is the first step</span>
@@ -17,8 +17,10 @@ export const PostCreateSecontStep = formikProps => {
             {errors.image && <small className="text-danger pl-2">{errors.image}</small>}
 
             <button
-                type="submit" >
-
+                type="submit"
+                onClick={() => {
+                    setFieldValue('isSecondButton', false)
+                }}>
                 this realyy submit </button>
         </>
     );

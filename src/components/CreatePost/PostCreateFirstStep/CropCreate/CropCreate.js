@@ -68,6 +68,7 @@ const CropCreate = forwardRef((props, ref) => {
                     croppedImage: croppedImage,
                     isCropping: false,
                 }))
+                console.log('done', { croppedImage })
                 return croppedImage;
             } catch (e) {
                 console.error(e)

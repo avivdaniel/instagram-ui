@@ -4,7 +4,7 @@ import { Field } from "formik";
 import CropCreate from "./CropCreate/CropCreate";
 
 export const PostCreateFirstStep = formikProps => {
-    const { errors, setFieldValue } = formikProps;
+    const { errors, setFieldValue, submitForm } = formikProps;
     const [event, setEvent] = useState({});
     const postCropRef = useRef(null);
     return (
@@ -24,37 +24,21 @@ export const PostCreateFirstStep = formikProps => {
                 name="image"
                 onChange={(e) => {
                     return postCropRef.current.onFileChange(e);
-
                 }}
             />
 
             <button
                 type="submit"
-                onClick={(e) => {
+                onClick={async (e) => {
                     setFieldValue('isSecondButton', true)
-                    return setFieldValue('image', postCropRef.current.showResult())
+                    const image = await postCropRef.current.showResult();
+                    setFieldValue('image', image)
+                    submitForm();
                 }} >
 
                 onlly this </button>
             {errors.image && <small className="text-danger pl-2">{errors.image}</small>}
 
-            {/* <Field
-        name="firstName"
-        label="First Name *"
-        as={TextField}
-        error={touched.firstName && errors.firstName}
-        helperText={touched.firstName && errors.firstName}
-      />
-
-      <Field name="middleName" label="Middle Name" as={TextField} />
-
-      <Field
-        name="lastName"
-        label="Last Name *"
-        as={TextField}
-        error={touched.lastName && errors.lastName}
-        helperText={touched.lastName && errors.lastName}
-      /> */}
         </>
     );
 };

@@ -7,22 +7,21 @@ import config from '../../config/index';
 import Avatar from '../Avatar/Avatar';
 import CropCreate from './PostCreateFirstStep/CropCreate/CropCreate';
 import showResult from './PostCreateFirstStep/CropCreate/CropCreate';
-import { StepButton } from './StepButton/StepButton';
-import './CreatePost.scss';
 import PageLoader from '../PageLoader/PageLoader';
 import { PostCreateFirstStep } from './PostCreateFirstStep/PostCreateFirstStep';
 import { PostCreateSecontStep } from './PostCreateSecontStep/PostCreateSecontStep';
 import { PostCreateSuccess } from './PostCreateSuccess/PostCreateSuccess';
+import './CreatePost.scss';
 
 const initBackground = '#fafafa';
 
 
-const renderStep = (step, values, errors, setFieldValue, isSubmitting) => {
+const renderStep = (step, values, errors, setFieldValue, submitForm, isSubmitting) => {
     switch (step) {
         case 1:
-            return <PostCreateFirstStep errors={errors} setFieldValue={setFieldValue} />
+            return <PostCreateFirstStep errors={errors} submitForm={submitForm} setFieldValue={setFieldValue} />
         case 2:
-            return <PostCreateSecontStep errors={errors} />
+            return <PostCreateSecontStep errors={errors} setFieldValue={setFieldValue} />
         case 3:
             return <PostCreateSuccess values={values} />
         default:
@@ -33,11 +32,9 @@ const renderStep = (step, values, errors, setFieldValue, isSubmitting) => {
 
 export const CreatePost = (props) => {
     const [isLoading, setLoading] = useState(true);
-    const history = useHistory();
     const { user, setBackground } = useContext(UserContext);
-
-
     const [step, setStep] = useState(1);
+    const history = useHistory();
 
     const formData = {
         isSecondButton: false,
@@ -45,10 +42,22 @@ export const CreatePost = (props) => {
         title: ''
     }
 
-    const handleSubmit = async (value) => {
-        setStep(step => step + 1);
-        const data = buildFormData(value)
-
+    const handleSubmit = async (values) => {
+        if (values.isSecondButton) {
+            setStep(step => step + 1);
+            console.log("hey first!")
+            console.log(values)
+        } else {
+            setStep(step => step + 1);
+            console.log('onlysecond!!!')
+            const data = buildFormData(values);
+            await fetch(`${config.apiUrl}/posts`, {
+                method: 'PUT',
+                credentials: 'include',
+                body: data
+            });
+            history.push('/');
+        }
     }
 
 
@@ -86,10 +95,9 @@ export const CreatePost = (props) => {
                 onSubmit={handleSubmit}
             >
 
-
-                {({ values, errors, touched, setFieldValue, isSubmitting }) => (
+                {({ values, errors, touched, setFieldValue, submitForm, isSubmitting }) => (
                     <Form className="h-100 d-flex flex-column">
-                        {renderStep(step, values, errors, setFieldValue, isSubmitting)}
+                        {renderStep(step, values, errors, setFieldValue, submitForm, isSubmitting)}
                     </Form>
                 )}
 
