@@ -9,7 +9,6 @@ export const PostCreateFirstStep = formikProps => {
     const postCropRef = useRef(null);
     return (
         <>
-            <span>this is the first step</span>
             <CropCreate
                 ref={postCropRef}
                 event={event}
@@ -34,9 +33,10 @@ export const PostCreateFirstStep = formikProps => {
                     const image = await postCropRef.current.showResult();
                     setFieldValue('image', image)
                     submitForm();
-                }} >
+                }}
+                className="" >
 
-                onlly this </button>
+                next </button>
             {errors.image && <small className="text-danger pl-2">{errors.image}</small>}
 
         </>

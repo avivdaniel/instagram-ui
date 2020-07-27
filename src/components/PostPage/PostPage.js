@@ -6,8 +6,9 @@ import AppLoader from '../AppLoader/AppLoader';
 import PostLike from '../Post/PostLike/PostLike';
 import Avatar from '../Avatar/Avatar';
 import { Link } from 'react-router-dom';
-import './PostPage.scss';
+import PageLoader from '../PageLoader/PageLoader';
 import PostComments from './PostComments/PostComments';
+import './PostPage.scss';
 
 function PostPage(props) {
     const { id } = useParams();
@@ -35,9 +36,9 @@ function PostPage(props) {
 
     return (
         <article className="PostPage">
-            {isLoading ? <AppLoader />
+            {isLoading ? <PageLoader />
                 : (
-                    <Fragment>
+                    <>
                         <header className="d-flex justify-content-between align-items-center p-3">
                             <div className="d-flex align-items-center">
                                 <Link to={`/profile/${post.user._id}`}>
@@ -63,7 +64,7 @@ function PostPage(props) {
 
                             <PostComments id={post._id} />
                         </div>
-                    </Fragment>
+                    </>
 
                 )
 
