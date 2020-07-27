@@ -5,11 +5,12 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Post from '../Post/Post';
 import config from '../../config/index';
 import './Feed.scss';
+import PageLoader from '../PageLoader/PageLoader';
 
 const initBackground = '#fafafa';
 
 function Feed() {
-    // const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(true);
     const { setBackground } = useContext(UserContext);
     const [posts, setPosts] = useState([]);
 
@@ -21,7 +22,7 @@ function Feed() {
                     credentials: 'include'
                 });
                 const fetchedPosts = await res.json();
-                // setLoading(false);
+                setLoading(false);
                 setPosts(fetchedPosts);
             } catch (err) {
                 console.log(posts);
@@ -32,6 +33,7 @@ function Feed() {
 
     return (
         <div className="Feed h-100 mt-3 d-md-flex flex-wrap justify-content-center align-items-center">
+            {isLoading && <PageLoader />}
             {posts.map(post => {
                 return <Post
                     key={post._id}

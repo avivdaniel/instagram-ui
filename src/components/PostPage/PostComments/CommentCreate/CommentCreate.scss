@@ -1,0 +1,14 @@
+.CommentCreate {
+    .PostPage-commentInput-container {
+        border: none;
+        width: 100%;
+        padding-right: 123px;
+    }
+    .PostPage-commentInput-container .input-group-prepend {
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        bottom: 4px;
+        z-index: 9;
+    }
+}

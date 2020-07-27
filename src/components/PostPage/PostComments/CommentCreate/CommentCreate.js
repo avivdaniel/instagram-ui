@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { CommentCreateSchema } from './commentcreate.schema';
-import AppLoader from '../../../AppLoader/AppLoader';
+import { UserContext } from '../../../../user-context';
+import Avatar from '../../../Avatar/Avatar';
 import config from '../../../../config/index';
+import PageLoader from '../../../PageLoader/PageLoader';
+import './CommentCreate.scss';
 
 function CommentCreate(props) {
     const postId = props.id;
+    const { user } = useContext(UserContext);
     const history = useHistory();
-    const submit = async (values) => {
-        console.log(values);
+
+    const submit = async (values, { resetForm }) => {
         const res = await fetch(`${config.apiUrl}/posts/${postId}/comment`, {
             method: 'PUT',
             headers: {
@@ -21,12 +25,12 @@ function CommentCreate(props) {
         const comment = await res.json();
         if (res.status === 201) {
             props.onAddComment(comment);
-            console.log(comment);
+            resetForm();
         }
     };
 
     return (
-        <div>
+        <div className="CommentCreate col-12">
             <Formik
                 initialValues={{ content: '' }}
                 validationSchema={CommentCreateSchema}
@@ -34,23 +38,33 @@ function CommentCreate(props) {
             >
                 {({ errors, isSubmitting }) => (
                     <Form>
+                        <hr />
+                        <div className="form-group col-12 d-flex p-0">
+                            <div className="PostPage-avatar-container col-2 p-0 d-flex justify-content-center align-items-center">
+                                <Avatar size="md" image={user.avatar} />
+                            </div>
+                            <div className="input-group PostPage-commentInput-container col-10 p-0">
 
-                        <div className="form-group col-10 col-lg-8 d-flex align-items-center justify-content-center pr-0">
-                            <Field className='form-control title-field'
-                                as="textarea"
-                                id="content"
-                                placeholder='write comment'
-                                name="content"
-                            />
-                            {errors.content && <small className="text-danger pl-2">{errors.content}</small>}
+                                <div className="input-group-prepend">
+                                    <button type="submit" className="PostPage-btn-post btn input-group-text text-uppercase" disabled={isSubmitting || errors.content}>post</button>
+                                    {isSubmitting && <PageLoader />}
+                                </div>
+
+                                <Field className='form-control title-field'
+                                    as="textarea"
+                                    id="content"
+                                    placeholder='write comment'
+                                    name="content"
+                                    className="form-control"
+                                    aria-label="With textarea"
+                                />
+                                {/* {errors.content && <small className="text-danger pl-2">{errors.content}</small>} */}
+
+                            </div>
                         </div>
 
 
 
-                        <div className="">
-                            <button type="submit" className="btn btn-block text-uppercase" disabled={isSubmitting}>post</button>
-                            {isSubmitting && <AppLoader />}
-                        </div>
 
                     </Form>
                 )}
