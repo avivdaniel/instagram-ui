@@ -5,8 +5,8 @@ import getCroppedImg from './cropImage'
 import { getRotatedImage } from './rotateImage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faCheck, faTrash, faSpinner, faAnkh } from '@fortawesome/free-solid-svg-icons';
-import './CropCreate.scss';
 import PageLoader from '../../../PageLoader/PageLoader';
+import './CropCreate.scss';
 
 const ORIENTATION_TO_ANGLE = {
     '3': 180,
@@ -15,11 +15,11 @@ const ORIENTATION_TO_ANGLE = {
 }
 
 const CropCreate = forwardRef((props, ref) => {
-    // const fileInputRef = useRef();
     const [imgConfigs, setconfig] = useState({
         imageSrc: null,
         crop: { x: 0, y: 0 },
         zoom: 1,
+        rotation: 0,
         aspect: 1 / 1,
         croppedAreaPixels: null,
         croppedImage: null,
@@ -44,9 +44,7 @@ const CropCreate = forwardRef((props, ref) => {
                     imageSrc: imageDataUrl,
                     crop: { x: 0, y: 0 },
                     zoom: 1,
-
                 })
-
             }
         },
 
@@ -61,13 +59,14 @@ const CropCreate = forwardRef((props, ref) => {
                 }));
                 const croppedImage = await getCroppedImg(
                     imgConfigs.imageSrc,
-                    imgConfigs.croppedAreaPixels
-                )
+                    imgConfigs.croppedAreaPixels,
+                    imgConfigs.rotation
+                );
                 setconfig(() => ({
                     ...imgConfigs,
                     croppedImage: croppedImage,
                     isCropping: false,
-                }))
+                }));
                 console.log('done', { croppedImage })
                 return croppedImage;
             } catch (e) {
@@ -75,7 +74,7 @@ const CropCreate = forwardRef((props, ref) => {
                 setconfig({
                     ...imgConfigs,
                     isCropping: false,
-                })
+                });
             }
         }
 
@@ -89,18 +88,24 @@ const CropCreate = forwardRef((props, ref) => {
     }
 
     const onCropComplete = (croppedArea, croppedAreaPixels) => {
-        console.log(croppedArea, croppedAreaPixels)
         setconfig({
             ...imgConfigs,
             croppedAreaPixels: croppedAreaPixels
-        })
+        });
     }
 
     const onZoomChange = zoom => {
         setconfig({
             ...imgConfigs,
             zoom: zoom
-        })
+        });
+    }
+
+    const onRotateChange = rotation => {
+        setconfig({
+            ...imgConfigs,
+            rotation: rotation
+        });
     }
 
     // const onImageDisplayerClick = () => {
@@ -110,14 +115,13 @@ const CropCreate = forwardRef((props, ref) => {
     //     fileInputRef.current.click();
     // }
 
-
-    const deleteResult = () => {
+    const onDelete = () => {
         setconfig({
             ...imgConfigs,
             croppedImage: null,
             isCropping: false,
             imageSrc: null
-        })
+        });
     }
 
     return (
@@ -132,26 +136,42 @@ const CropCreate = forwardRef((props, ref) => {
                         image={imgConfigs.imageSrc}
                         crop={imgConfigs.crop}
                         zoom={imgConfigs.zoom}
+                        rotation={imgConfigs.rotation}
                         aspect={imgConfigs.aspect}
+                        showGrid={false}
                         onCropChange={onCropChange}
                         onCropComplete={onCropComplete}
                         onZoomChange={onZoomChange}
+                        onRotationChange={onRotateChange}
                     />
                 </div>
-                {/* <div className="controls">
-                        <input type="range" min="1" max="3" aria-labelledby="Zoom" value={imgConfigs.zoom} className="form-control-range" id="myRange" onChange={(e, zoom) => onZoomChange(zoom)} />
-                        <Slider
-                                value={imgConfigs.zoom}
-                                step={0.1}
-                                aria-labelledby="Zoom"
-                                onChange={(e, zoom) => this.onZoomChange(zoom)}
-                                classes={{ container: 'slider' }}
-                            />
-                    </div> */}
-                <div className="CropCreate-btn-container d-flex justify-content-between p-1">
-                    <button className="btn btn-primary text-uppercase btn-block" onClick={deleteResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faTrash} className='faTrash' /></button>
-                    {/* <button className="btn btn-primary text-uppercase btn-block  m-0" onClick={showResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faCheck} className='faCheck' /></button> */}
+
+                <div className="controls">
+                    <input type="range" step="0.1" min="1" max="10" value={imgConfigs.zoom} className="form-control-range" onChange={(e) => {
+
+                        onZoomChange(e.target.value)
+                    }} />
+                    <input type="range" step="1" min="0" max="360" value={imgConfigs.rotation} className="form-control-range" onChange={(e) => {
+                        onRotateChange(e.target.value);
+                    }} />
+
+                    {/* <Slider
+            value={rotation}
+            min={0}
+            max={360}
+            step={1}
+            aria-labelledby="Rotation"
+            classes={{ container: classes.slider }}
+            onChange={(e, rotation) => setRotation(rotation)}
+          /> */}
                 </div>
+
+
+
+                <div className="CropCreate-btn-container d-flex justify-content-between p-1">
+                    <button className="btn btn-primary text-uppercase btn-block" onClick={onDelete} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faTrash} className='faTrash' /></button>
+                </div>
+
             </>
 
         </div>

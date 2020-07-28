@@ -7,7 +7,7 @@ export const createImage = url =>
         image.src = url
     })
 
-export async function getRotatedImage(imageSrc, rotation = 0) {
+export async function getRotatedImage(imageSrc, rotation) {
     const image = await createImage(imageSrc)
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')

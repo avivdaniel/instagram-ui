@@ -11,13 +11,13 @@ export const PostCreateFirstStep = formikProps => {
         <>
             <CropCreate
                 ref={postCropRef}
-                event={event}
+                // event={event}
                 onChange={(value) => {
                     setFieldValue('image', value);
                 }} />
 
             <input type="file"
-                className='form-control'
+                className='form-control btn'
                 accept="image/*"
                 id="image"
                 name="image"
