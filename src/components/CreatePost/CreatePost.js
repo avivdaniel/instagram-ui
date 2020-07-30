@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect, useState } from 'react';
+import React, { useContext, useRef, useEffect, useState, version } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { UserContext } from '../../user-context';
 import { PostCreateSchema } from './postcreate.schema';
@@ -13,14 +13,25 @@ import './CreatePost.scss';
 const initBackground = '#fafafa';
 
 
-const renderStep = (step, values, errors, setFieldValue, submitForm, isSubmitting) => {
+const renderStep = (step, getPrevStage, values, errors, setFieldValue, submitForm, isSubmitting) => {
     switch (step) {
         case 1:
-            return <PostCreateFirstStep errors={errors} submitForm={submitForm} setFieldValue={setFieldValue} />
+            return <PostCreateFirstStep
+                errors={errors}
+                values={values}
+                submitForm={submitForm}
+                isSubmitting={isSubmitting}
+                setFieldValue={setFieldValue} />
         case 2:
-            return <PostCreateSecontStep errors={errors} submitForm={submitForm} setFieldValue={setFieldValue} />
+            return <PostCreateSecontStep
+                errors={errors}
+                submitForm={submitForm}
+                setFieldValue={setFieldValue}
+                getPrevStage={getPrevStage} />
         default:
-            return <PostCreateFirstStep errors={errors} setFieldValue={setFieldValue} />;
+            return <PostCreateFirstStep
+                errors={errors}
+                setFieldValue={setFieldValue} />;
     }
 }
 
@@ -37,14 +48,16 @@ export const CreatePost = (props) => {
         title: ''
     }
 
+    const getPrevStage = () => {
+        setStep(step => step - 1);
+    }
+
     const handleSubmit = async (values) => {
         if (values.isSecondButton) {
             setStep(step => step + 1);
-            console.log("hey first!")
-            console.log(values)
         } else {
+            console.log('pls nooo')
             setStep(step => step + 1);
-            console.log('onlysecond!!!')
             const data = buildFormData(values);
             await fetch(`${config.apiUrl}/posts`, {
                 method: 'PUT',
@@ -72,7 +85,7 @@ export const CreatePost = (props) => {
 
     return (
 
-        <div className="CreatePost container d-flex flex-column h-100">
+        <div className="CreatePost h-100">
             {isLoading && <PageLoader />}
             <Formik
                 initialValues={{ ...FormData }}
@@ -82,7 +95,7 @@ export const CreatePost = (props) => {
 
                 {({ values, errors, touched, setFieldValue, submitForm, isSubmitting }) => (
                     <Form className="h-100 d-flex flex-column">
-                        {renderStep(step, values, errors, setFieldValue, submitForm, isSubmitting)}
+                        {renderStep(step, getPrevStage, values, errors, setFieldValue, submitForm, isSubmitting)}
                     </Form>
                 )}
 

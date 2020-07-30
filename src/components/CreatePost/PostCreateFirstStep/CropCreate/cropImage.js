@@ -18,7 +18,6 @@ function getRadianAngle(degreeValue) {
  * @param {number} rotation - optional rotation parameter
  */
 export default async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
-    console.log(rotation)
     const image = await createImage(imageSrc)
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')

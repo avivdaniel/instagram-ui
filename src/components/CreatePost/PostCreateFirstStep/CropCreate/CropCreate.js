@@ -15,6 +15,8 @@ const ORIENTATION_TO_ANGLE = {
 }
 
 const CropCreate = forwardRef((props, ref) => {
+    // const hasImage = props.image ? props.image : null;
+
     const [imgConfigs, setconfig] = useState({
         imageSrc: null,
         crop: { x: 0, y: 0 },
@@ -25,6 +27,7 @@ const CropCreate = forwardRef((props, ref) => {
         croppedImage: null,
         isCropping: false,
     });
+
 
 
     useImperativeHandle(ref, () => ({
@@ -49,9 +52,6 @@ const CropCreate = forwardRef((props, ref) => {
         },
 
         showResult: async () => {
-            if (imgConfigs.imageSrc === null) {
-                return undefined;
-            }
             try {
                 setconfig(() => ({
                     ...imgConfigs,
@@ -67,7 +67,6 @@ const CropCreate = forwardRef((props, ref) => {
                     croppedImage: croppedImage,
                     isCropping: false,
                 }));
-                console.log('done', { croppedImage })
                 return croppedImage;
             } catch (e) {
                 console.error(e)
@@ -108,13 +107,6 @@ const CropCreate = forwardRef((props, ref) => {
         });
     }
 
-    // const onImageDisplayerClick = () => {
-    //     if (imgConfigs.imageSrc) {
-    //         return;
-    //     }
-    //     fileInputRef.current.click();
-    // }
-
     const onDelete = () => {
         setconfig({
             ...imgConfigs,
@@ -125,56 +117,66 @@ const CropCreate = forwardRef((props, ref) => {
     }
 
     return (
-
-        <div className="CropCreate col-12 p-0">
-
+        <div className="CropCreate">
             {imgConfigs.isCropping && <PageLoader />}
 
-            <>
-                <div className="crop-container">
-                    <Cropper
-                        image={imgConfigs.imageSrc}
-                        crop={imgConfigs.crop}
-                        zoom={imgConfigs.zoom}
-                        rotation={imgConfigs.rotation}
-                        aspect={imgConfigs.aspect}
-                        showGrid={false}
-                        onCropChange={onCropChange}
-                        onCropComplete={onCropComplete}
-                        onZoomChange={onZoomChange}
-                        onRotationChange={onRotateChange}
-                    />
+            <div className="col crop-container">
+                <Cropper
+                    image={imgConfigs.imageSrc}
+                    crop={imgConfigs.crop}
+                    zoom={imgConfigs.zoom}
+                    rotation={imgConfigs.rotation}
+                    aspect={imgConfigs.aspect}
+                    showGrid={false}
+                    onCropChange={onCropChange}
+                    onCropComplete={onCropComplete}
+                    onZoomChange={onZoomChange}
+                    onRotationChange={onRotateChange}
+                />
+            </div>
+
+
+            <div className="col mt-2">
+                <div className="col form-group d-flex p-0">
+                    <label htmlFor="zoom " className="col-4 text-uppercase p-0 m-0">Zoom</label>
+                    <input
+                        id="zoom"
+                        type="range"
+                        step="0.1"
+                        min="1"
+                        max="10"
+                        value={imgConfigs.zoom}
+                        className="col-8 form-control-range custom-slider p-0"
+                        onChange={(e) => {
+                            onZoomChange(e.target.value)
+                        }} />
                 </div>
 
-                <div className="controls">
-                    <input type="range" step="0.1" min="1" max="10" value={imgConfigs.zoom} className="form-control-range" onChange={(e) => {
-
-                        onZoomChange(e.target.value)
-                    }} />
-                    <input type="range" step="1" min="0" max="360" value={imgConfigs.rotation} className="form-control-range" onChange={(e) => {
-                        onRotateChange(e.target.value);
-                    }} />
-
-                    {/* <Slider
-            value={rotation}
-            min={0}
-            max={360}
-            step={1}
-            aria-labelledby="Rotation"
-            classes={{ container: classes.slider }}
-            onChange={(e, rotation) => setRotation(rotation)}
-          /> */}
+                <div className="col form-group d-flex p-0">
+                    <label htmlFor="rotation" className="col-4 text-uppercase p-0 m-0">Rotation</label>
+                    <input
+                        id="rotation"
+                        type="range"
+                        step="1"
+                        min="0"
+                        max="360"
+                        value={imgConfigs.rotation}
+                        className="col-8 form-control-range p-0"
+                        onChange={(e) => {
+                            onRotateChange(e.target.value);
+                        }} />
                 </div>
+            </div>
 
 
-
-                <div className="CropCreate-btn-container d-flex justify-content-between p-1">
-                    <button className="btn btn-primary text-uppercase btn-block" onClick={onDelete} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faTrash} className='faTrash' /></button>
-                </div>
-
-            </>
-
+            <button
+                className="btn btn-primary text-uppercase btn-block"
+                onClick={onDelete}
+                disabled={imgConfigs.isCropping}>
+                <FontAwesomeIcon icon={faTrash} className='faTrash' />
+            </button>
         </div>
+
     );
 })
 
