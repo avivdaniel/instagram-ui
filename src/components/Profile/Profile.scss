@@ -46,6 +46,10 @@ $shadow: 1px 3px 0px #0086b6;
         text-align: center;
         font-size: 1rem;
     }
+    .img-container.col-4:nth-child(3n + 2) {
+        border: 2px solid red;
+        // padding: 0 10px;
+    }
     .Post-img-container {
         position: relative;
         &::after {
@@ -53,13 +57,16 @@ $shadow: 1px 3px 0px #0086b6;
             content: "";
             padding-bottom: 100%;
         }
-        .Post-img {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-        }
+        // .Post-img {
+        //     box-sizing: border-box;
+        //     border-right: 3px solid black;
+        //     border-bottom: 3px solid black;
+        //     position: absolute;
+        //     left: 0;
+        //     top: 0;
+        //     width: 100%;
+        //     height: 100%;
+        // }
         .likes-modal {
             position: absolute;
             display: inline-block;

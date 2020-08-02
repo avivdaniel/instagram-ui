@@ -117,64 +117,86 @@ const CropCreate = forwardRef((props, ref) => {
     }
 
     return (
-        <div className="CropCreate">
+        <div className="CropCreate d-flex flex-column flex-md-row ">
             {imgConfigs.isCropping && <PageLoader />}
 
-            <div className="col crop-container">
-                <Cropper
-                    image={imgConfigs.imageSrc}
-                    crop={imgConfigs.crop}
-                    zoom={imgConfigs.zoom}
-                    rotation={imgConfigs.rotation}
-                    aspect={imgConfigs.aspect}
-                    showGrid={false}
-                    onCropChange={onCropChange}
-                    onCropComplete={onCropComplete}
-                    onZoomChange={onZoomChange}
-                    onRotationChange={onRotateChange}
-                />
-            </div>
 
-
-            <div className="col mt-2">
-                <div className="col form-group d-flex p-0">
-                    <label htmlFor="zoom " className="col-4 text-uppercase p-0 m-0">Zoom</label>
-                    <input
-                        id="zoom"
-                        type="range"
-                        step="0.1"
-                        min="1"
-                        max="10"
-                        value={imgConfigs.zoom}
-                        className="col-8 form-control-range custom-slider p-0"
-                        onChange={(e) => {
-                            onZoomChange(e.target.value)
-                        }} />
-                </div>
-
-                <div className="col form-group d-flex p-0">
-                    <label htmlFor="rotation" className="col-4 text-uppercase p-0 m-0">Rotation</label>
-                    <input
-                        id="rotation"
-                        type="range"
-                        step="1"
-                        min="0"
-                        max="360"
-                        value={imgConfigs.rotation}
-                        className="col-8 form-control-range p-0"
-                        onChange={(e) => {
-                            onRotateChange(e.target.value);
-                        }} />
+            <div className="iPhone-container col-12 col-md-6 d-md-flex justify-content-center align-items-center">
+                <div class="phone">
+                    <div class="iPhone">
+                        <div className="cover">
+                            <div className="n_light"></div>
+                            <div className="camera"></div>
+                            <div className="speaker"></div>
+                            <div className="col crop-container screen">
+                                <Cropper
+                                    image={imgConfigs.imageSrc}
+                                    crop={imgConfigs.crop}
+                                    zoom={imgConfigs.zoom}
+                                    rotation={imgConfigs.rotation}
+                                    aspect={imgConfigs.aspect}
+                                    showGrid={false}
+                                    onCropChange={onCropChange}
+                                    onCropComplete={onCropComplete}
+                                    onZoomChange={onZoomChange}
+                                    onRotationChange={onRotateChange}
+                                />
+                            </div>
+                            <div className="home_btn"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
 
-            <button
-                className="btn btn-primary text-uppercase btn-block"
-                onClick={onDelete}
-                disabled={imgConfigs.isCropping}>
-                <FontAwesomeIcon icon={faTrash} className='faTrash' />
-            </button>
+            <div className="controllers-container col-12 col-md-6 d-flex align-items-center justify-content-center my-1">
+                <div className="col controllers-content bg-white rounded shadow-sm p-2">
+                    <div className="col form-group d-flex p-0 p-lg-2">
+                        <label htmlFor="zoom " className="col-4 text-uppercase p-0 m-0">Zoom</label>
+                        <input
+                            id="zoom"
+                            type="range"
+                            step="0.1"
+                            min="1"
+                            max="10"
+                            value={imgConfigs.zoom}
+                            className="col-8 form-control-range custom-slider p-0"
+                            onChange={(e) => {
+                                onZoomChange(e.target.value)
+                            }} />
+                    </div>
+
+                    <div className="col form-group d-flex p-0 p-lg-2">
+                        <label htmlFor="rotation" className="col-4 text-uppercase p-0 m-0">Rotation</label>
+                        <input
+                            id="rotation"
+                            type="range"
+                            step="1"
+                            min="0"
+                            max="360"
+                            value={imgConfigs.rotation}
+                            className="col-8 form-control-range p-0"
+                            onChange={(e) => {
+                                onRotateChange(e.target.value);
+                            }} />
+                    </div>
+
+                    <div className="col form-group d-flex p-0 p-lg-2">
+                        <button
+                            className="btn btn-primary text-uppercase btn-block"
+                            onClick={onDelete}
+                            disabled={imgConfigs.isCropping}>
+                            <FontAwesomeIcon icon={faTrash} className='faTrash' />
+                        </button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
         </div>
 
     );

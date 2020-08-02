@@ -39,15 +39,15 @@ function PostPage(props) {
     }
 
     return (
-        <article className="PostPage d-lg-flex">
+        <article className="PostPage h-100 d-lg-flex justify-content-center align-items-center">
             {isLoading ? <PageLoader />
                 : (
                     <>
-                        <div className="col-12 col-lg-4 p-0">
+                        <div className="col-12 col-lg-4 p-0 p-lg-3">
                             <header className="d-flex justify-content-between align-items-center p-3">
                                 <div className="d-flex align-items-center">
                                     <Link to={`/profile/${post.user._id}`}>
-                                        <Avatar size='sm' image={post.user.avatar} />
+                                        <Avatar size='md' image={post.user.avatar} />
                                         <span className="text-bold ml-2">{post.user.username}</span>
                                     </Link>
 
@@ -76,9 +76,12 @@ function PostPage(props) {
                         </div>
 
 
-                        <div className="col-12 col-lg-8 p-0">
+                        <div className="col-12 col-lg-4 p-0">
                             <div className="PostPage-content-container p-3">
+
                                 <PostComments id={post._id} />
+
+
                             </div>
                         </div>
                     </>

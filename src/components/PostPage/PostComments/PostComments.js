@@ -3,6 +3,7 @@ import config from '../../../config/index';
 import PostComment from './PostComment/PostComment';
 import CommentCreate from './CommentCreate/CommentCreate';
 import PageLoader from '../../PageLoader/PageLoader';
+import './PostComments.scss';
 
 function PostComments(props) {
 
@@ -35,14 +36,16 @@ function PostComments(props) {
     }
 
     return (
-        <div className="PostComments d-flex flex-column flex-lg-row flex-wrap justify-content-center mt-1">
+        <div className="PostComments d-flex flex-column flex-lg-row flex-wrap mt-1">
             {isLoading && <PageLoader />}
-            {comments.map(comment => {
-                return <PostComment
-                    key={comment._id}
-                    data={comment}
-                />
-            })}
+            <div className="comments-scroller overflow-auto">
+                {comments.map(comment => {
+                    return <PostComment
+                        key={comment._id}
+                        data={comment}
+                    />
+                })}
+            </div>
             <CommentCreate id={postId} onAddComment={addComment} />
         </div>
     );

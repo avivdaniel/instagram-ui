@@ -17,7 +17,7 @@ export const PostCreateFirstStep = formikProps => {
 
     return (
         <>
-            <nav className="PostCreateFirstStep d-flex justify-content-between mb-1
+            <nav className="PostCreateFirstStep d-flex justify-content-between justify-content-md-center mb-1
             ">
                 <div onClick={handleAddImageClick}>
                     <span className="btn text-secondary"><FontAwesomeIcon icon={faUpload} /></span>
@@ -51,11 +51,7 @@ export const PostCreateFirstStep = formikProps => {
             // image={values.image}
             />
 
-            <div className="iphone">
-                <div className="iphone__img">
-                    <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*" />
-                </div>
-            </div>
+
 
 
         </>

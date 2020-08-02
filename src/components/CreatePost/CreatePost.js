@@ -27,6 +27,7 @@ const renderStep = (step, getPrevStage, values, errors, setFieldValue, submitFor
                 errors={errors}
                 submitForm={submitForm}
                 setFieldValue={setFieldValue}
+                isSubmitting={isSubmitting}
                 getPrevStage={getPrevStage} />
         default:
             return <PostCreateFirstStep

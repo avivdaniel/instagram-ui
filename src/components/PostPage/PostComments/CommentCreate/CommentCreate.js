@@ -30,7 +30,7 @@ function CommentCreate(props) {
     };
 
     return (
-        <div className="CommentCreate col-12">
+        <div className="CommentCreate col-12 p-0">
             <Formik
                 initialValues={{ content: '' }}
                 validationSchema={CommentCreateSchema}
@@ -40,10 +40,10 @@ function CommentCreate(props) {
                     <Form>
                         <hr />
                         <div className="form-group col-12 d-flex p-0">
-                            <div className="PostPage-avatar-container col-2 p-0 d-flex justify-content-center align-items-center">
+                            <div className="PostPage-avatar-container col-3 pl-0 pr-1 d-flex justify-content-center align-items-center">
                                 <Avatar size="md" image={user.avatar} />
                             </div>
-                            <div className="input-group PostPage-commentInput-container col-10 p-0">
+                            <div className="input-group PostPage-commentInput-container col-9 p-0">
 
                                 <div className="input-group-prepend">
                                     <button type="submit" className="PostPage-btn-post btn input-group-text text-uppercase" disabled={isSubmitting || errors.content}>post</button>
@@ -53,7 +53,7 @@ function CommentCreate(props) {
                                 <Field className='form-control title-field'
                                     as="textarea"
                                     id="content"
-                                    placeholder='write comment'
+                                    placeholder='Write comment...'
                                     name="content"
                                     className="form-control"
                                     aria-label="With textarea"

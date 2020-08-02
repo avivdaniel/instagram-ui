@@ -61,29 +61,29 @@ function Profile(props) {
 
             <ProfileUser userId={id} postNum={posts.length} userImage={userImage} />
 
-            <div className="container p-0 d-flex flex-wrap justify-content-center">
+            <div className="Posts-container container d-flex flex-wrap justify-content-center">
 
                 {posts.length ? posts.map(post => {
                     return (
-                        <Link
-                            key={post._id}
-                            to={`/posts/${post._id}`}
-                            className="col-5 m-2 col-lg-3 m-lg-4 Post-img-container shadow-sm"
-                            onMouseEnter={() => setisHovering(true)}
-                            onMouseLeave={() => setisHovering(false)}
-                        >
-                            <img className="Post-img" src={`${config.apiUrl}/posts/${post.image}`} />
-                            {isHovering && <div className="likes-modal d-flex align-items-center justify-content-center">
-                                <span className="text-white">
-                                    <span className="mr-2 likes-length">{post.likes.length}</span>
-                                    <FontAwesomeIcon icon={faHeart} />
-                                </span>
-                            </div>
-                            }
+                        <figure className="img-container col-4 p-0">
+                            <Link
+                                key={post._id}
+                                to={`/posts/${post._id}`}
+                                className=""
+                                onMouseEnter={() => setisHovering(true)}
+                                onMouseLeave={() => setisHovering(false)}
+                            >
+                                <img className="Post-img img-fluid" src={`${config.apiUrl}/posts/${post.image}`} />
+                                {isHovering && <div className="likes-modal d-flex align-items-center justify-content-center">
+                                    <span className="text-white">
+                                        <span className="mr-2 likes-length">{post.likes.length}</span>
+                                        <FontAwesomeIcon icon={faHeart} />
+                                    </span>
+                                </div>
+                                }
 
-                        </Link>
-
-
+                            </Link>
+                        </figure>
                     )
                 }) : <p className="Profile-no-posts">You have no posts yet</p>}
 

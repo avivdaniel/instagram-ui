@@ -25,8 +25,8 @@ function ProfileUser(props) {
         }
     }
     return (
-        <Fragment>
-            <div className="container">
+        <>
+            <div className="ProfileUser container mb-2">
                 <div className="Profile-header col-12">
                     <div className="avatar-container">
                         <Avatar size="lg" image={props.userImage || profile.avatar} />
@@ -38,7 +38,7 @@ function ProfileUser(props) {
                     <span className='Profile-post-count py-1'>{postNum === 1 ? `${postNum} post` : `${postNum} posts`}</span>
                 </div>
             </div>
-        </Fragment>
+        </>
     );
 }
 

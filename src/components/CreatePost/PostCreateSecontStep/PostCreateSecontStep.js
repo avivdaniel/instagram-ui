@@ -5,11 +5,12 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import './PostCreateSecontStep.scss';
 
 export const PostCreateSecontStep = formikProps => {
-    const { errors, getPrevStage, setFieldValue, submitForm } = formikProps;
+    const { errors, getPrevStage, setFieldValue, submitForm, isSubmitting } = formikProps;
     return (
         <>
             <nav className="PostCreateSecontStep d-flex justify-content-between">
                 <button
+                    disabled={isSubmitting}
                     type="button"
                     className="btn"
                     onClick={() => {
@@ -19,6 +20,7 @@ export const PostCreateSecontStep = formikProps => {
                 </button>
 
                 <button
+                    disabled={isSubmitting}
                     className="btn next-btn"
                     onClick={() => {
                         setFieldValue('isSecondButton', false)
@@ -34,7 +36,6 @@ export const PostCreateSecontStep = formikProps => {
                 name="title"
                 placeholder={`whats on your mind?`}
             />
-            {errors.image && <small className="text-danger pl-2">{errors.image}</small>}
 
         </>
     );
