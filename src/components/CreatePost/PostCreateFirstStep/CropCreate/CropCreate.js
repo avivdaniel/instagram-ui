@@ -122,8 +122,8 @@ const CropCreate = forwardRef((props, ref) => {
 
 
             <div className="iPhone-container col-12 col-md-6 d-md-flex justify-content-center align-items-center">
-                <div class="phone">
-                    <div class="iPhone">
+                <div className="phone">
+                    <div className="iPhone">
                         <div className="cover">
                             <div className="n_light"></div>
                             <div className="camera"></div>

@@ -1,0 +1,22 @@
+$primaryColor: #00b7d6;
+.PostCreateSecondStep {
+    border-bottom: 1px solid #e9ecef;
+    .btn.next-btn {
+        font-weight: 500;
+        color: $primaryColor;
+    }
+}
+
+.input-group-prepend {
+    background-color: $primaryColor;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    bottom: 4px;
+    z-index: 9;
+}
+
+.title-field::placeholder {
+    font-weight: 300;
+    font-style: italic;
+}

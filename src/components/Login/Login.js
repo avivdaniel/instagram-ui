@@ -32,7 +32,6 @@ function Login(props) {
             setUser(loggedUser);
             history.push('/')
         } else if (res.status === 401) {
-            console.log('no')
             setError(true);
         } else {
             console.log('unknown error')

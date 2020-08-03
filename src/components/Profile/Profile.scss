@@ -46,10 +46,24 @@ $shadow: 1px 3px 0px #0086b6;
         text-align: center;
         font-size: 1rem;
     }
-    .img-container.col-4:nth-child(3n + 2) {
-        border: 2px solid red;
-        // padding: 0 10px;
+
+    .img-container.col-6:nth-child(odd) {
+        padding-right: 6px;
     }
+    .img-container.col-6:nth-child(even) {
+        padding-left: 6px;
+    }
+    @include media-breakpoint-up(lg) {
+        .img-container.col-6:nth-child(odd),
+        .img-container.col-6:nth-child(even) {
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+        // .img-container.col-4 {
+        //     padding: 0 6px !important;
+        // }
+    }
+
     .Post-img-container {
         position: relative;
         &::after {

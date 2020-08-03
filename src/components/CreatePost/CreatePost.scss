@@ -4,60 +4,31 @@ $text-shadow: 0px 2px 2px rgba(64, 64, 64, 0.2);
 $primaryColor: #00b7d6;
 
 .CreatePost {
-    .CreatePost-bg {
-        flex: 1;
-        position: relative;
-        justify-content: center;
-        background-image: url("./profile.bg.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        object-fit: cover;
-        width: 100%;
-        min-height: 25vh;
-        background-position: bottom;
-    }
-    .form {
-        padding: 0;
-        @include media-breakpoint-up(lg) {
-            box-shadow: $shadow;
-            // background-color: #ffbe42;
-        }
-    }
     .CropCreate {
         flex: 1;
     }
     .avt {
         position: absolute;
     }
-    // .CreatePost-content-container {
-    //     // flex: 3;
-    //     // @include media-breakpoint-up(lg) {
-    //     //     background-color: transparent;
-    //     //     flex: 1;
-    //     // }
+    // .form-control {
+    //     border: 1px solid $primaryColor;
+    //     resize: none;
+    //     // box-shadow: $shadow;
     // }
-    .form-control {
-        border: 1px solid $primaryColor;
-        resize: none;
-        // box-shadow: $shadow;
-    }
-    .title-field {
-        &::placeholder {
-            color: $primaryColor;
-            text-shadow: $text-shadow;
-            font-weight: 300;
-            font-style: italic;
-            font-size: 12px;
-        }
-    }
-    .CreatePost-btn {
-        .btn.btn-primary {
-            font-size: 12px;
-            background-color: $primaryColor;
-            border: 2px solid #fafafa;
-        }
-    }
-    .text-danger {
-        position: absolute;
-    }
+    // .title-field {
+    //     &::placeholder {
+    //         color: $primaryColor;
+    //         text-shadow: $text-shadow;
+    //         font-weight: 300;
+    //         font-style: italic;
+    //         font-size: 12px;
+    //     }
+    // }
+    // .CreatePost-btn {
+    //     .btn.btn-primary {
+    //         font-size: 12px;
+    //         background-color: $primaryColor;
+    //         border: 2px solid #fafafa;
+    //     }
+    // }
 }

@@ -7,7 +7,7 @@ import config from '../../config/index';
 import Avatar from '../Avatar/Avatar';
 import PageLoader from '../PageLoader/PageLoader';
 import { PostCreateFirstStep } from './PostCreateFirstStep/PostCreateFirstStep';
-import { PostCreateSecontStep } from './PostCreateSecontStep/PostCreateSecontStep';
+import { PostCreateSecondStep } from './PostCreateSecondStep/PostCreateSecondStep';
 import './CreatePost.scss';
 
 const initBackground = '#fafafa';
@@ -23,7 +23,7 @@ const renderStep = (step, getPrevStage, values, errors, setFieldValue, submitFor
                 isSubmitting={isSubmitting}
                 setFieldValue={setFieldValue} />
         case 2:
-            return <PostCreateSecontStep
+            return <PostCreateSecondStep
                 errors={errors}
                 submitForm={submitForm}
                 setFieldValue={setFieldValue}
@@ -57,7 +57,6 @@ export const CreatePost = (props) => {
         if (values.isSecondButton) {
             setStep(step => step + 1);
         } else {
-            console.log('pls nooo')
             setStep(step => step + 1);
             const data = buildFormData(values);
             await fetch(`${config.apiUrl}/posts`, {

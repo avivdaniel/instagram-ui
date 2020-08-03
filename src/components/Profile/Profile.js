@@ -65,7 +65,7 @@ function Profile(props) {
 
                 {posts.length ? posts.map(post => {
                     return (
-                        <figure className="img-container col-4 p-0">
+                        <figure className="img-container col-6 col-lg-4">
                             <Link
                                 key={post._id}
                                 to={`/posts/${post._id}`}

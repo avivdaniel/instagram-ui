@@ -58,7 +58,6 @@ function CommentCreate(props) {
                                     className="form-control"
                                     aria-label="With textarea"
                                 />
-                                {/* {errors.content && <small className="text-danger pl-2">{errors.content}</small>} */}
 
                             </div>
                         </div>
