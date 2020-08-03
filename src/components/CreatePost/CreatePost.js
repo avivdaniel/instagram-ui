@@ -57,7 +57,6 @@ export const CreatePost = (props) => {
         if (values.isSecondButton) {
             setStep(step => step + 1);
         } else {
-            setStep(step => step + 1);
             const data = buildFormData(values);
             await fetch(`${config.apiUrl}/posts`, {
                 method: 'PUT',
