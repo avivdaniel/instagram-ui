@@ -29,9 +29,9 @@ function ProfileUser(props) {
             <div className="ProfileUser container mb-2">
                 <div className="Profile-header col-12">
                     <div className="avatar-container">
-                        <Avatar size="lg" image={props.userImage || profile.avatar} />
+                        <Avatar size="lg" image={profile.avatar} />
                     </div>
-                    <h2>Demi Name</h2>
+                    <h2>{profile.fullName}</h2>
                     <h3 className='Profile-username'>@{profile.username}</h3>
                     {profile.bio && <h4 className='Profile-bio'>{profile.bio}</h4>}
                     <hr className="my-3"></hr>

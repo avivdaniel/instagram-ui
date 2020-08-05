@@ -34,7 +34,7 @@ function Register(props) {
             <div className="Register-form d-flex flex-column justify-content-between">
 
                 <Formik
-                    initialValues={{ username: '', password: '', email: '', agreeTerms: false }}
+                    initialValues={{ fullName: '', username: '', password: '', email: '', agreeTerms: false }}
                     validationSchema={RegisterSchema}
                     validateOnChange={true}
                     onSubmit={submit}
@@ -50,6 +50,11 @@ function Register(props) {
                                         <h3 className="text-center">Sign up to see photos and videos from your friends.</h3>
                                     </div>
 
+                                    <div className="form-group">
+                                        <Field className='form-control' id="fullName" placeholder="Full Name" name="fullName" />
+                                        <FontAwesomeIcon className="Register-form-icon" icon={faUserCircle} />
+                                        {errors.fullName && touched.fullName && <small className="text-danger pl-2">{errors.fullName}</small>}
+                                    </div>
                                     <div className="form-group">
                                         <Field className='form-control' id="username" placeholder="Username" name="username" />
                                         <FontAwesomeIcon className="Register-form-icon" icon={faUserCircle} />
