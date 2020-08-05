@@ -37,6 +37,7 @@ function Register(props) {
                     initialValues={{ fullName: '', username: '', password: '', email: '', agreeTerms: false }}
                     validationSchema={RegisterSchema}
                     validateOnChange={true}
+                    validateOnBlur={true}
                     onSubmit={submit}
                 >
 

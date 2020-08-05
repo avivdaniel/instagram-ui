@@ -3,7 +3,6 @@ import config from '../../../config/index';
 import Avatar from '../../Avatar/Avatar';
 import { UserContext } from '../../../user-context';
 
-const initBackground = '#fafafa';
 
 function ProfileUser(props) {
     const { userId, postNum } = props;

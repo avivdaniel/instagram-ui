@@ -35,7 +35,6 @@ const CropAvatar = forwardRef((props, ref) => {
     }
 
     const onCropComplete = (croppedArea, croppedAreaPixels) => {
-        console.log(croppedArea, croppedAreaPixels)
         setconfig({
             ...imgConfigs,
             croppedAreaPixels: croppedAreaPixels
@@ -137,7 +136,7 @@ const CropAvatar = forwardRef((props, ref) => {
 
             {imgConfigs.imageSrc ?
 
-                <Fragment>
+                <>
 
                     {imgConfigs.isCropping && <div className="spinner-container">
                         <FontAwesomeIcon className='faSpinner' icon={faSpinner} size="2x" style={{ color: '#00b7d6' }} spin />
@@ -169,7 +168,7 @@ const CropAvatar = forwardRef((props, ref) => {
                         <button className="btn btn-primary text-uppercase btn-block m-2" onClick={deleteResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faTrash} className='faTrash' /></button>
                         {/* <button className="btn btn-primary text-uppercase btn-block  m-0" onClick={showResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faCheck} className='faCheck' /></button> */}
                     </div>
-                </Fragment>
+                </>
                 : <div className="CropAvatar-currentAvatar">
 
                     <Avatar size='lg' image={props.avatarImage} />

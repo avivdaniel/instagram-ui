@@ -34,23 +34,20 @@ function ProfileEdit(props) {
         return data;
     };
 
-    const submit = async values => {
+    const submit = async (values, { resetForm }) => {
         const avatar = await cropAvatarRef.current.showResult();
-        console.log(avatar)
-        let data;
-
-        data = buildFormData({ ...values, avatar });
-
-        console.log(data)
+        const updatedValues = { ...values, avatar };
+        const data = buildFormData(updatedValues);
         const req = await fetch(`${config.apiUrl}/users/${user._id}`, {
             method: 'POST',
             credentials: 'include',
             body: data
         });
-        const editedUser = await req.json();
+        resetForm();
+        // const editedUser = await req.json();
         // setUser(editedUser);
         // props.setUserImage(editedUser.avatar);
-        // history.push(`/profile/${editedUser._id}`);
+        // history.push(`/serch`);
 
     }
 
@@ -73,14 +70,14 @@ function ProfileEdit(props) {
                         <div className="modal-body h-100">
 
                             <Formik
-                                initialValues={{ bio: '', avatar: '' }}
+                                initialValues={{ fullName: user.fullName, bio: user.bio, avatar: '' }}
                                 validationSchema={ProfileEditSchema}
                                 validateOnChange={true}
                                 validateOnBlur={true}
                                 onSubmit={submit}
                             >
 
-                                {({ errors, touched, isSubmitting, setFieldValue }) => (
+                                {({ values, errors, touched, isSubmitting, setFieldValue }) => (
                                     <Form className="form d-flex flex-column h-100" noValidate>
 
                                         <div className="col-12 cropper-container">
@@ -92,18 +89,19 @@ function ProfileEdit(props) {
 
                                         <div className="ProfileEdit-inputs-container">
                                             <div className="form-group my-2">
+                                                <Field className="form-control" id="fullName" placeholder="Full name" name="fullName" />
+                                                <FontAwesomeIcon className="ProfileEdit-form-icon" icon={faLock} />
+                                                {errors.fullName && <small className="text-danger pl-2">{errors.fullName}</small>}
+                                            </div>
+                                        </div>
+
+                                        <div className="ProfileEdit-inputs-container">
+                                            <div className="form-group my-2">
                                                 <Field as="textarea" className="form-control" id="bio" placeholder="Bio" name="bio" />
                                                 <FontAwesomeIcon className="ProfileEdit-form-icon" icon={faLock} />
                                                 {errors.bio && <small className="text-danger pl-2">{errors.bio}</small>}
                                             </div>
                                         </div>
-                                        {/* <div className="form-group">
-                                                <Field className='form-control' id="username" placeholder="Username" name="username" />
-                                                <FontAwesomeIcon className="ProfileEdit-form-icon" icon={faUserCircle} />
-                                                {errors.username && touched.username && <small className="text-danger pl-2">{errors.username}</small>}
-                                            </div> */}
-
-
 
 
                                         <div className="modal-footer">
