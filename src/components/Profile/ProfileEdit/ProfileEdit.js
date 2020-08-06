@@ -43,11 +43,13 @@ function ProfileEdit(props) {
             credentials: 'include',
             body: data
         });
-        resetForm();
-        // const editedUser = await req.json();
-        // setUser(editedUser);
+
+
+        // resetForm();
+        const editedUser = await req.json();
+        setUser(editedUser);
         // props.setUserImage(editedUser.avatar);
-        // history.push(`/serch`);
+        history.push(`/profile/${editedUser._id}`);
 
     }
 

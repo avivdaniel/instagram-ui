@@ -14,14 +14,14 @@ import './Profile.scss';
 const initBackground = '#fafafa';
 
 function Profile(props) {
-    const { user, setUser, setBackground } = useContext(UserContext);
+    const { user, setBackground } = useContext(UserContext);
     const [posts, setPosts] = useState([]);
     const [userImage, setUserImage] = useState(null);
     const [isLoading, setLoading] = useState(true);
     const [isVerified, setisVerified] = useState(false);
     const [isHovering, setisHovering] = useState(false);
+    // const [postThatHover, setPostHover] = use
     const { id } = useParams();
-
 
     useEffect(() => {
         setBackground(initBackground);
@@ -65,21 +65,21 @@ function Profile(props) {
 
                 {posts.length ? posts.map(post => {
                     return (
-                        <figure className="img-container col-6 col-lg-4">
+                        <figure key={post._id} className="img-container col-6 col-lg-4">
                             <Link
-                                key={post._id}
                                 to={`/posts/${post._id}`}
                                 className=""
                                 onMouseEnter={() => setisHovering(true)}
                                 onMouseLeave={() => setisHovering(false)}
                             >
                                 <img className="Post-img img-fluid" src={`${config.apiUrl}/posts/${post.image}`} />
-                                {isHovering && <div className="likes-modal d-flex align-items-center justify-content-center">
-                                    <span className="text-white">
-                                        <span className="mr-2 likes-length">{post.likes.length}</span>
-                                        <FontAwesomeIcon icon={faHeart} />
-                                    </span>
-                                </div>
+                                {isHovering &&
+                                    <div className="likes-modal d-flex align-items-center justify-content-center">
+                                        <span className="text-white">
+                                            <span className="mr-2 likes-length">{post.likes.length}</span>
+                                            <FontAwesomeIcon icon={faHeart} />
+                                        </span>
+                                    </div>
                                 }
 
                             </Link>

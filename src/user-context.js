@@ -2,5 +2,7 @@ import React from 'react';
 
 export const UserContext = React.createContext({
     user: {},
-    setUser: () => { }
+    setUser: () => {
+        console.log('user change');
+    }
 });

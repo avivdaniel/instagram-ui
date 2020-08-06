@@ -11,23 +11,32 @@ function Search(props) {
     const [query, setquery] = useState('');
     const [users, setusers] = useState([]);
 
+    let timer;
 
     useEffect(() => {
         setBackground(initBackground);
-        const submit = async () => {
-            setisLoading(true);
-            const res = await fetch(`${config.apiUrl}/users?username=${query}`, {
-                credentials: "include"
-            });
-            if (res.status === 200) {
-                const fetchedUsers = await res.json();
-                setusers(fetchedUsers);
-                setisLoading(false);
-            }
-            return res;
+        if (query === '') {
+            return;
         }
-        submit();
+        if (timer) {
+            clearTimeout(timer);
+        }
+        timer = setTimeout(submit, 3000);
+
     }, [query])
+
+    async function submit() {
+        setisLoading(true);
+        const res = await fetch(`${config.apiUrl}/users?username=${query}`, {
+            credentials: "include"
+        });
+        if (res.status === 200) {
+            const fetchedUsers = await res.json();
+            setusers(fetchedUsers);
+            setisLoading(false);
+        }
+        return res;
+    }
 
     function hasNoResults() {
         return query && users.length === 0;

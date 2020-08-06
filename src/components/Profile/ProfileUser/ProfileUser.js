@@ -5,13 +5,12 @@ import { UserContext } from '../../../user-context';
 
 
 function ProfileUser(props) {
-    const { userId, postNum } = props;
+    const { userId, postNum, fullname } = props;
     const [profile, setProfile] = useState({});
 
     useEffect(() => {
         getUser(userId);
-    }, [userId]);
-
+    }, [userId, fullname]);
     const getUser = async (id) => {
         try {
             const fetchedUser = await (await fetch(`${config.apiUrl}/users/${id}`, {
