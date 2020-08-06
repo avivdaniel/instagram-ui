@@ -24,7 +24,7 @@ const initBackground = '#00b7d6';
 
 function App() {
   const [user, setUser] = useState({});
-  const [editedUser, setEditedUser] = useState({});
+  const [lastEdited, setLastEdited] = useState(undefined);
   const [isLoading, setLoading] = useState(true);
   const [background, setBackground] = useState(initBackground);
   const history = useHistory();
@@ -42,13 +42,10 @@ function App() {
 
   }, []);
 
-  useEffect(() => {
-    console.log(user);
-  }, [user])
 
 
   return (
-    <UserContext.Provider value={{ user, setUser, setBackground, }}>
+    <UserContext.Provider value={{ user, setUser, setBackground, lastEdited, setLastEdited }}>
       {isLoading && <AppLoader />}
 
 

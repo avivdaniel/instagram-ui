@@ -17,11 +17,10 @@ import './ProfileEdit.scss';
 
 function ProfileEdit(props) {
     const history = useHistory();
-    const { user, setUser } = useContext(UserContext);
+    const { user, setUser, setLastEdited } = useContext(UserContext);
     let cropAvatarRef = useRef(null);
 
     const buildFormData = (values) => {
-        console.log(values)
         for (let key in values) {
             if (values[key] === undefined) {
                 delete values[key];
@@ -48,6 +47,7 @@ function ProfileEdit(props) {
         // resetForm();
         const editedUser = await req.json();
         setUser(editedUser);
+        setLastEdited(new Date());
         // props.setUserImage(editedUser.avatar);
         history.push(`/profile/${editedUser._id}`);
 
@@ -92,7 +92,7 @@ function ProfileEdit(props) {
                                         <div className="ProfileEdit-inputs-container">
                                             <div className="form-group my-2">
                                                 <Field className="form-control" id="fullName" placeholder="Full name" name="fullName" />
-                                                <FontAwesomeIcon className="ProfileEdit-form-icon" icon={faLock} />
+                                                <FontAwesomeIcon className="ProfileEdit-form-icon" icon={faUserCircle} />
                                                 {errors.fullName && <small className="text-danger pl-2">{errors.fullName}</small>}
                                             </div>
                                         </div>

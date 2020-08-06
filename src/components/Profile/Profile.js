@@ -59,7 +59,7 @@ function Profile(props) {
             </div>
 
 
-            <ProfileUser userId={id} postNum={posts.length} userImage={userImage} />
+            <ProfileUser userId={id} postNum={posts.length} />
 
             <div className="Posts-container container d-flex flex-wrap justify-content-center">
 

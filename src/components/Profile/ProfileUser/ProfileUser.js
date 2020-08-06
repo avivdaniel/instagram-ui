@@ -5,18 +5,20 @@ import { UserContext } from '../../../user-context';
 
 
 function ProfileUser(props) {
-    const { userId, postNum, fullname } = props;
+    const { lastEdited } = useContext(UserContext);
+    const { userId, postNum } = props;
     const [profile, setProfile] = useState({});
 
     useEffect(() => {
         getUser(userId);
-    }, [userId, fullname]);
+    }, [userId, lastEdited]);
+
+
     const getUser = async (id) => {
         try {
             const fetchedUser = await (await fetch(`${config.apiUrl}/users/${id}`, {
                 credentials: 'include'
             })).json();
-            // setLoading(false);
             setProfile(fetchedUser);
         } catch (err) {
             console.log(err);
