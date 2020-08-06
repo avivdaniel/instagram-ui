@@ -24,12 +24,6 @@ function Search(props) {
                 setusers(fetchedUsers);
                 setisLoading(false);
             }
-            if (res.status === 400) {
-                console.log('no')
-            }
-            else {
-                console.log('unknown error')
-            }
             return res;
         }
         submit();

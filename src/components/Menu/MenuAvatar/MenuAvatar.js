@@ -13,7 +13,7 @@ function MenuAvatar(props) {
     }, [user]);
     return (
         <Fragment>
-            <Link to={`profile/${user._id}`}>
+            <Link to={`/profile/${user._id}`}>
                 <Avatar size='md' image={user.avatar} />
             </Link>
 
