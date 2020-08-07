@@ -21,22 +21,22 @@ function Menu(props) {
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="effect-4" to="/search">
+                    <Link className="shadow-drop-2-center" to="/search">
                         <FontAwesomeIcon icon={faSearch} />
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="effect-4" to="/post/create">
+                    <Link className="shadow-drop-2-center" to="/post/create">
                         <FontAwesomeIcon icon={faPlusSquare} className="d-block" />
                     </Link>
                 </li>
                 <li className="nav-item d-lg-none">
-                    <Link className="effect-4" to="">
+                    <Link className="shadow-drop-2-center" to="">
                         <FontAwesomeIcon icon={faHeart} />
                     </Link>
                 </li>
                 <li className="nav-item d-lg-none">
-                    <Link className="effect-4" to={`/profile/${user._id}`}>
+                    <Link className="shadow-drop-2-center" to={`/profile/${user._id}`}>
                         <FontAwesomeIcon icon={faUser} />
                     </Link>
                 </li>

@@ -54,7 +54,7 @@ function Profile(props) {
             {isLoading && <PageLoader />}
 
             <div className="Profile-bg">
-                {isVerified && <ProfileEdit id={id} setUserImage={setUserImage} />}
+                {isVerified && <ProfileEdit id={id} />}
             </div>
 
 

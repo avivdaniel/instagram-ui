@@ -5,44 +5,48 @@ $primaryColor: #00b7d6;
 
 .ProfileEdit {
     .cropper-container {
-        flex: 2;
+        flex: 1;
+    }
+    .ProfileEdit-content {
+        height: 60vh;
     }
     .ProfileEdit-inputs-container {
         flex: 1;
-    }
-    .form-group {
-        position: relative;
-        height: 62px;
-        margin-bottom: 0px;
-        // @include media-breakpoint-up(lg) {
-        //     margin-bottom: 5px;
-        // }
-        &:last-of-type {
-            margin-bottom: 0;
+        .form-group {
+            position: relative;
+            height: 60px;
+            margin-bottom: 0px;
+            // @include media-breakpoint-up(lg) {
+            //     margin-bottom: 5px;
+            // }
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+            .text-danger {
+                font-size: 12px;
+            }
+            .form-control {
+                padding-left: 40px;
+                box-shadow: $shadow;
+            }
+            ::placeholder {
+                color: $primaryColor;
+                font-style: italic;
+                font-size: 15px;
+            }
+            .ProfileEdit-form-icon {
+                font-size: 20px;
+                position: absolute;
+                top: 8px;
+                left: 10px;
+                color: $primaryColor;
+                &:focus {
+                    display: none;
+                }
+            }
         }
-        .text-danger {
-            font-size: 12px;
-        }
     }
-    .form-control {
-        padding-left: 40px;
-        box-shadow: $shadow;
-    }
-    ::placeholder {
-        color: $primaryColor;
-        font-style: italic;
-        font-size: 15px;
-    }
-    .ProfileEdit-form-icon {
-        font-size: 20px;
-        position: absolute;
-        top: 8px;
-        left: 10px;
-        color: $primaryColor;
-        &:focus {
-            display: none;
-        }
-    }
+
     .btn.btn-primary {
         font-size: 12px;
         background-color: $primaryColor;

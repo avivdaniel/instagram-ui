@@ -92,7 +92,7 @@ export const CreatePost = (props) => {
                 onSubmit={handleSubmit}
             >
 
-                {({ values, errors, touched, setFieldValue, submitForm, isSubmitting }) => (
+                {({ values, errors, setFieldValue, submitForm, isSubmitting }) => (
                     <Form className="h-100 d-flex flex-column">
                         {renderStep(step, getPrevStage, values, errors, setFieldValue, submitForm, isSubmitting)}
                     </Form>

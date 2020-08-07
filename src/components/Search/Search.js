@@ -12,12 +12,14 @@ function Search(props) {
     const { setBackground } = useContext(UserContext)
     const [isLoading, setisLoading] = useState(false);
     const [query, setquery] = useState('');
-    const [users, setusers] = useState([]);
+    const [users, setusers] = useState(null);
     const [timer, setTimer] = useState(undefined);
-
 
     useEffect(() => {
         setBackground(initBackground);
+    }, []);
+
+    useEffect(() => {
         if (query === '') {
             return;
         }
@@ -43,7 +45,7 @@ function Search(props) {
     }
 
     function hasNoResults() {
-        return query && users.length === 0;
+        return !query;
     }
 
     return (
@@ -63,10 +65,13 @@ function Search(props) {
             </div>
 
             <div>
-                {hasNoResults() ?
-                    <span>no results</span>
-                    :
-                    <SearchResults data={users} />
+                {users !== null &&
+                    <>
+                        {users.length > 0
+                            ? <SearchResults data={users} />
+                            : <div>no results</div>
+                        }
+                    </>
                 }
             </div>
         </div>
