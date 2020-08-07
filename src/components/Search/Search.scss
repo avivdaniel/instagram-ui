@@ -1,0 +1,28 @@
+$primaryColor: #00b7d6;
+$shadow: 3px 3px 0px rgba(64, 64, 64, 0.4);
+
+.Search {
+    .form-group {
+        position: relative;
+    }
+    .form-control {
+        padding-left: 40px;
+        box-shadow: $shadow;
+        background-color: #fafafa;
+        &::placeholder {
+            color: $primaryColor;
+            font-style: italic;
+            font-size: 15px;
+        }
+    }
+    .Search-form-icon {
+        font-size: 20px;
+        position: absolute;
+        top: 8px;
+        left: 10px;
+        color: $primaryColor;
+        &:focus {
+            display: none;
+        }
+    }
+}

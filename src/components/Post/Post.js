@@ -21,7 +21,7 @@ function Post(props) {
 
             <header className="d-flex justify-content-between align-items-center p-3">
                 <div className="d-flex align-items-center">
-                    <Link to={`/profile/${props.data.user._id}`}>
+                    <Link to={`/profile/${props.data.user._id}`} className="text-decoration-none">
                         <Avatar size='sm' image={props.data.user.avatar} />
                         <span className="text-bold ml-2">{props.data.user.username}</span>
                     </Link>
@@ -46,8 +46,6 @@ function Post(props) {
                         < ToggleText text={title} maxLength={30} />
                     </Fragment>
                 }
-
-
             </div>
 
         </article>

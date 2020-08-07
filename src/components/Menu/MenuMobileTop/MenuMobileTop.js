@@ -1,27 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../../user-context';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane, faCamera } from '@fortawesome/free-solid-svg-icons'
 import './MenuMobileTop.scss';
 
 function MenuMobileTop(props) {
     return (
         <nav className="MenuMobileTop navbar-dark d-flex d-lg-none">
-            <ul className="nav justify-content-between justify-content-lg-start w-100 align-items-center mr-auto">
+            <ul className="nav justify-content-center w-100 align-items-center">
                 <li className="nav-item">
-                    <Link className="text-white" to="">
-                        <FontAwesomeIcon icon={faCamera} />
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="MenuMobileTop-brand text-white" to="/">
+                    <Link className="MenuMobileTop-brand text-decoration-none text-white" to="/">
                         Instagram
-                    </Link>
-                </li>
-                <li className="nav-item d-lg-none">
-                    <Link className="text-white" to="">
-                        <FontAwesomeIcon icon={faPaperPlane} />
                     </Link>
                 </li>
             </ul>

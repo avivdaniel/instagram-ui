@@ -3,6 +3,9 @@ import config from '../../config/index';
 import SearchResults from './SearchResults/SearchResults';
 import { UserContext } from '../../user-context';
 import PageLoader from '../PageLoader/PageLoader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import './Search.scss';
 
 const initBackground = '#fafafa';
 function Search(props) {
@@ -10,8 +13,8 @@ function Search(props) {
     const [isLoading, setisLoading] = useState(false);
     const [query, setquery] = useState('');
     const [users, setusers] = useState([]);
+    const [timer, setTimer] = useState(undefined);
 
-    let timer;
 
     useEffect(() => {
         setBackground(initBackground);
@@ -20,8 +23,9 @@ function Search(props) {
         }
         if (timer) {
             clearTimeout(timer);
+            setTimer(undefined);
         }
-        timer = setTimeout(submit, 3000);
+        setTimer(setTimeout(submit, 1000));
 
     }, [query])
 
@@ -45,15 +49,19 @@ function Search(props) {
     return (
         <div className="Search container mt-2">
             {isLoading && <PageLoader />}
-            <input
-                value={query}
-                className="form-control"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                onChange={e => {
-                    setquery(e.target.value)
-                }} />
+            <div className="form-group">
+                <input
+                    value={query}
+                    className="form-control"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                    onChange={e => {
+                        setquery(e.target.value)
+                    }} />
+                <FontAwesomeIcon className="Search-form-icon" icon={faSearch} />
+            </div>
+
             <div>
                 {hasNoResults() ?
                     <span>no results</span>

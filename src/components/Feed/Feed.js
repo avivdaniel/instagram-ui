@@ -32,7 +32,7 @@ function Feed() {
     }, []);
 
     return (
-        <div className="Feed h-100 mt-3 d-md-flex flex-wrap justify-content-center align-items-center">
+        <div className="Feed h-100 mt-lg-3 d-md-flex flex-wrap justify-content-center align-items-center">
             {isLoading && <PageLoader />}
             {posts.map(post => {
                 return <Post

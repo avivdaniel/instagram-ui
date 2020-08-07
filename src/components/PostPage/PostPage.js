@@ -46,7 +46,7 @@ function PostPage(props) {
                         <div className="col-12 col-lg-4 p-0 p-lg-3">
                             <header className="d-flex justify-content-between align-items-center p-3">
                                 <div className="d-flex align-items-center">
-                                    <Link to={`/profile/${post.user._id}`}>
+                                    <Link to={`/profile/${post.user._id}`} className="text-decoration-none">
                                         <Avatar size='md' image={post.user.avatar} />
                                         <span className="text-bold ml-2">{post.user.username}</span>
                                     </Link>
@@ -60,7 +60,7 @@ function PostPage(props) {
                                     <img className="PostPage-img" src={`${config.apiUrl}/posts/${post.image}`} />
                                 </div>
 
-                                <div className="col-12">
+                                <div className="col-12 mt-2">
                                     <PostLike
                                         postId={post._id}
                                         likes={post.likes}

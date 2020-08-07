@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import RegisterModal from './RegisterModal/RegisterModal';
 import config from '../../config/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle, faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import './Register.scss';
 
 function Register(props) {

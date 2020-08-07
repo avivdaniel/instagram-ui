@@ -42,14 +42,10 @@ function ProfileEdit(props) {
             credentials: 'include',
             body: data
         });
-
-
-        // resetForm();
         const editedUser = await req.json();
         setUser(editedUser);
         setLastEdited(new Date());
-        // props.setUserImage(editedUser.avatar);
-        history.push(`/profile/${editedUser._id}`);
+        // history.push(`/profile/${editedUser._id}`);
 
     }
 

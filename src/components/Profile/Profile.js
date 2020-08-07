@@ -20,7 +20,6 @@ function Profile(props) {
     const [isLoading, setLoading] = useState(true);
     const [isVerified, setisVerified] = useState(false);
     const [isHovering, setisHovering] = useState(false);
-    // const [postThatHover, setPostHover] = use
     const { id } = useParams();
 
     useEffect(() => {
