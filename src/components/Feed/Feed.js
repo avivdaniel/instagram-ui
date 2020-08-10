@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, createContext } from 'react';
 import { UserContext } from '../../user-context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,8 @@ import PageLoader from '../PageLoader/PageLoader';
 import './Feed.scss';
 
 const initBackground = '#fafafa';
+
+
 
 function Feed() {
     const [isLoading, setLoading] = useState(true);
@@ -34,6 +36,7 @@ function Feed() {
     }, []);
 
     return (
+
         <div className="Feed h-100 mt-lg-3 d-md-flex flex-wrap justify-content-center align-items-center">
             {isLoading && <PageLoader />}
             {posts.map(post => {
@@ -43,6 +46,7 @@ function Feed() {
                 />
             })}
         </div>
+
     );
 }
 

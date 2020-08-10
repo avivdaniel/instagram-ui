@@ -2,9 +2,11 @@ import React, { Fragment, useEffect, useState, useContext } from 'react';
 import config from '../../../config/index';
 import Avatar from '../../Avatar/Avatar';
 import { UserContext } from '../../../user-context';
+import { ProfileContext } from '../Profile';
 
 
 function ProfileUser(props) {
+    const { setLoadingPerson } = useContext(ProfileContext);
     const { lastEdited } = useContext(UserContext);
     const { userId, postNum } = props;
     const [profile, setProfile] = useState({});
@@ -20,6 +22,7 @@ function ProfileUser(props) {
                 credentials: 'include'
             })).json();
             setProfile(fetchedUser);
+            setLoadingPerson(false);
         } catch (err) {
             console.log(err);
         }

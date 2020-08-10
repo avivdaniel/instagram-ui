@@ -14,7 +14,7 @@ import Menu from '../Menu/Menu';
 import Feed from '../Feed/Feed';
 import AppLoader from '../AppLoader/AppLoader';
 import MenuMobileTop from '../Menu/MenuMobileTop/MenuMobileTop';
-import Profile from '../Profile/Profile';
+import { Profile } from '../Profile/Profile';
 import Search from '../Search/Search';
 import PostPage from '../PostPage/PostPage';
 import './App.scss';

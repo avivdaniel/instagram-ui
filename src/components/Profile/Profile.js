@@ -10,9 +10,11 @@ import { faHeart, faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 import './Profile.scss';
 
 const initBackground = '#fafafa';
+const ProfileContext = React.createContext();
 
 function Profile(props) {
-    const { user, setBackground } = useContext(UserContext);
+    const { user, setBackground, setOverFlow } = useContext(UserContext);
+    const [isLoadingPerson, setLoadingPerson] = useState(true);
     const [posts, setPosts] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -59,48 +61,58 @@ function Profile(props) {
 
 
     return (
-        <div className="Profile">
-            {isLoading && <PageLoader />}
+        <ProfileContext.Provider value={{ setLoadingPerson }}>
+            <div className="Profile">
+                {isLoadingPerson && isLoading && <PageLoader />}
 
-            <div className="Profile-bg">
-                {isVerified && <ProfileEdit id={id} />}
+                <div className="Profile-bg">
+                    {isVerified && <ProfileEdit id={id} />}
+                </div>
+
+
+                <ProfileUser userId={id} postNum={posts.length} />
+
+                <div className="Posts-container container d-flex flex-wrap justify-content-center">
+
+                    {posts.length ? posts.map((post, i) => {
+                        return (
+                            <figure key={post._id} className="img-container col-6 col-lg-4">
+                                <Link
+                                    to={`/posts/${post._id}`}
+                                    className="img-link"
+                                    onMouseEnter={() => selectImage(i)}
+                                    onMouseLeave={() => selectImage(null)}
+                                >
+                                    <img className="Post-img img-fluid" src={`${config.apiUrl}/posts/${post.image}`} />
+
+                                    <div className={getSelectedClass(i)}>
+                                        <span className="text-white mr-2">
+                                            <span>{post.likes.length}</span>
+                                            <FontAwesomeIcon icon={faHeart} className="ml-1" />
+                                        </span>
+                                        <span className="text-white">
+                                            <span>{post.comments.length}</span>
+                                            <FontAwesomeIcon icon={faCommentAlt} className="ml-1" />
+                                        </span>
+                                    </div>
+
+                                </Link>
+                            </figure>
+                        )
+                    }) : <p className="Profile-no-posts">You have no posts yet</p>}
+
+                </div>
             </div>
-
-
-            <ProfileUser userId={id} postNum={posts.length} />
-
-            <div className="Posts-container container d-flex flex-wrap justify-content-center">
-
-                {posts.length ? posts.map((post, i) => {
-                    return (
-                        <figure key={post._id} className="img-container col-6 col-lg-4">
-                            <Link
-                                to={`/posts/${post._id}`}
-                                className="img-link"
-                                onMouseEnter={() => selectImage(i)}
-                                onMouseLeave={() => selectImage(null)}
-                            >
-                                <img className="Post-img img-fluid" src={`${config.apiUrl}/posts/${post.image}`} />
-
-                                <div className={getSelectedClass(i)}>
-                                    <span className="text-white mr-2">
-                                        <span>{post.likes.length}</span>
-                                        <FontAwesomeIcon icon={faHeart} className="ml-1" />
-                                    </span>
-                                    <span className="text-white">
-                                        <span>{post.comments.length}</span>
-                                        <FontAwesomeIcon icon={faCommentAlt} className="ml-1" />
-                                    </span>
-                                </div>
-
-                            </Link>
-                        </figure>
-                    )
-                }) : <p className="Profile-no-posts">You have no posts yet</p>}
-
-            </div>
-        </div>
+        </ProfileContext.Provider>
     );
 }
 
-export default Profile;
+export {
+    Profile,
+    ProfileContext
+};
+
+
+
+
+
