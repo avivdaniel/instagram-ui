@@ -42,13 +42,13 @@ export const PostCreateFirstStep = formikProps => {
                         submitForm();
                     }}
                     className="btn next-btn" >
-                    Next </button>
+                    Next
+                     </button>
             </nav>
 
 
             <CropCreate
                 ref={postCropRef}
-            // image={values.image}
             />
 
 

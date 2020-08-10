@@ -17,7 +17,6 @@ import MenuMobileTop from '../Menu/MenuMobileTop/MenuMobileTop';
 import Profile from '../Profile/Profile';
 import Search from '../Search/Search';
 import PostPage from '../PostPage/PostPage';
-import ProfileEdit from '../Profile/ProfileEdit/ProfileEdit';
 import './App.scss';
 
 const initBackground = '#00b7d6';

@@ -14,7 +14,7 @@ export const ProfileEditSchema = Yup.object().shape({
         ),
     avatar: Yup.string(),
     bio: Yup.string()
-        .max(30, 'bio should contain at most than 30 characters')
-});
+        .max(30, 'Bio should contain no more than 30 characters')
 
+});
 

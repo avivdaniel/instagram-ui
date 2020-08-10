@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { ProfileEditSchema } from './profileedit.schema';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faLock, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faLock, faEdit, faUser } from '@fortawesome/free-solid-svg-icons';
 import { UserContext } from '../../../user-context';
 import {
     BrowserRouter as Router,
@@ -17,10 +17,10 @@ import Modal from 'react-bootstrap/Modal';
 import './ProfileEdit.scss';
 
 function ProfileEdit(props) {
-    const formRef = useRef(null);
-    const history = useHistory();
     const { user, setUser, setLastEdited } = useContext(UserContext);
-    let cropAvatarRef = useRef(null);
+    const bioTextMaxLength = 31;
+    const formRef = useRef(null);
+    const cropAvatarRef = useRef(null);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -38,7 +38,7 @@ function ProfileEdit(props) {
         return data;
     };
 
-    const submit = async (values, { resetForm }) => {
+    const submit = async (values) => {
         const avatar = await cropAvatarRef.current.showResult();
         const updatedValues = { ...values, avatar };
         const data = buildFormData(updatedValues);
@@ -50,7 +50,6 @@ function ProfileEdit(props) {
         const editedUser = await req.json();
         setUser(editedUser);
         setLastEdited(new Date());
-        // history.push(`/profile/${editedUser._id}`);
 
     }
 
@@ -58,7 +57,7 @@ function ProfileEdit(props) {
         <>
             <Button variant="primary" onClick={handleShow} className="btn-edit m-2">
                 <FontAwesomeIcon icon={faEdit} /> Edit
-      </Button>
+             </Button>
 
             <Modal show={show} onHide={handleClose} dialogClassName={'ProfileEdit'}>
                 <Modal.Header closeButton>
@@ -74,7 +73,7 @@ function ProfileEdit(props) {
                         onSubmit={submit}
                     >
 
-                        {({ errors, isSubmitting, setFieldValue }) => (
+                        {({ values, errors, isSubmitting, setFieldValue }) => (
                             <Form className="form d-flex flex-column h-100" noValidate>
 
                                 <div className="col-12 cropper-container">
@@ -86,14 +85,27 @@ function ProfileEdit(props) {
 
                                 <div className="ProfileEdit-inputs-container">
                                     <div className="form-group my-2">
-                                        <Field className="form-control" id="fullName" placeholder="Full name" name="fullName" />
-                                        <FontAwesomeIcon className="ProfileEdit-form-icon" icon={faUserCircle} />
+                                        <Field
+                                            className="form-control"
+                                            id="fullName"
+                                            placeholder="Full name"
+                                            name="fullName"
+                                        />
+                                        <FontAwesomeIcon className="ProfileEdit-form-icon" icon={faUser} />
                                         {errors.fullName && <small className="text-danger pl-2">{errors.fullName}</small>}
                                     </div>
 
                                     <div className="form-group my-2">
-                                        <Field as="textarea" className="form-control" id="bio" placeholder="Bio" name="bio" />
+                                        <Field
+                                            component="textarea"
+                                            maxLength={bioTextMaxLength}
+                                            className="form-control"
+                                            id="bio"
+                                            placeholder="Bio"
+                                            name="bio"
+                                        />
                                         <FontAwesomeIcon className="ProfileEdit-form-icon" icon={faLock} />
+                                        <span className="bio-counter float-right mt-2">{values.bio.length}/{bioTextMaxLength - 1}</span>
                                         {errors.bio && <small className="text-danger pl-2">{errors.bio}</small>}
                                     </div>
                                 </div>
@@ -103,15 +115,18 @@ function ProfileEdit(props) {
                     </Formik>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="primary" onClick={handleClose}>
                         Close
-          </Button>
-                    <Button variant="primary" onClick={async () => {
-                        await formRef.current.submitForm();
-                        handleClose();
-                    }}>
+                     </Button>
+                    <Button
+                        variant="primary"
+                        // disabled={formRef.current.isSubmitting()}
+                        onClick={async () => {
+                            await formRef.current.submitForm();
+                            handleClose();
+                        }}>
                         Save Changes
-          </Button>
+                 </Button>
                 </Modal.Footer>
             </Modal>
         </>

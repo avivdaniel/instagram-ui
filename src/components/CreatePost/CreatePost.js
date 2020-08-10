@@ -25,6 +25,7 @@ const renderStep = (step, getPrevStage, values, errors, setFieldValue, submitFor
         case 2:
             return <PostCreateSecondStep
                 errors={errors}
+                values={values}
                 submitForm={submitForm}
                 setFieldValue={setFieldValue}
                 isSubmitting={isSubmitting}

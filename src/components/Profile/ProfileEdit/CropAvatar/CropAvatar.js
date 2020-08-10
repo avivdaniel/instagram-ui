@@ -154,19 +154,10 @@ const CropAvatar = forwardRef((props, ref) => {
                             onZoomChange={onZoomChange}
                         />
                     </div>
-                    {/* <div className="controls">
-                        <input type="range" min="1" max="3" aria-labelledby="Zoom" value={imgConfigs.zoom} className="form-control-range" id="myRange" onChange={(e, zoom) => onZoomChange(zoom)} />
-                        <Slider
-                                value={imgConfigs.zoom}
-                                step={0.1}
-                                aria-labelledby="Zoom"
-                                onChange={(e, zoom) => this.onZoomChange(zoom)}
-                                classes={{ container: 'slider' }}
-                            />
-                    </div> */}
+
                     <div className="CropAvatar-btn-container d-flex justify-content-between p-1">
                         <button className="btn btn-primary text-uppercase btn-block m-2" onClick={deleteResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faTrash} className='faTrash' /></button>
-                        {/* <button className="btn btn-primary text-uppercase btn-block  m-0" onClick={showResult} disabled={imgConfigs.isCropping}>  <FontAwesomeIcon icon={faCheck} className='faCheck' /></button> */}
+
                     </div>
                 </>
                 : <div className="CropAvatar-currentAvatar">

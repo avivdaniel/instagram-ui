@@ -18,11 +18,12 @@ function PostPage(props) {
     const [post, setPost] = useState({});
     const [isLoading, setLoading] = useState(true);
 
+    useEffect(() => setBackground(initialBackground), [])
+
     useEffect(() => {
         if (!id) {
             return;
         }
-        setBackground(initialBackground);
         getPost(id);
     }, [id]);
 

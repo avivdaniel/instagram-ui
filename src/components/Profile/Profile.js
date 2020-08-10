@@ -1,14 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../user-context';
 import config from '../../config/index';
-import Avatar from '../Avatar/Avatar';
-import Post from '../Post/Post';
 import ProfileUser from './ProfileUser/ProfileUser';
 import { useParams, Link } from 'react-router-dom';
 import ProfileEdit from './ProfileEdit/ProfileEdit';
 import PageLoader from '../PageLoader/PageLoader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 import './Profile.scss';
 
 const initBackground = '#fafafa';
@@ -16,14 +14,14 @@ const initBackground = '#fafafa';
 function Profile(props) {
     const { user, setBackground } = useContext(UserContext);
     const [posts, setPosts] = useState([]);
-    const [userImage, setUserImage] = useState(null);
     const [isLoading, setLoading] = useState(true);
+    const [selectedImage, setSelectedImage] = useState(null);
     const [isVerified, setisVerified] = useState(false);
-    const [isHovering, setisHovering] = useState(false);
     const { id } = useParams();
 
+    useEffect(() => setBackground(initBackground), [])
+
     useEffect(() => {
-        setBackground(initBackground);
         isVerifiedUser(user, id);
         getPosts();
     }, [id, user]);
@@ -48,6 +46,16 @@ function Profile(props) {
         return setisVerified(true);
     }
 
+    function selectImage(index) {
+        setSelectedImage(index);
+    }
+
+    function getSelectedClass(index) {
+        return selectedImage === index
+            ? 'likes-modal'
+            : 'd-none'
+    }
+
 
     return (
         <div className="Profile">
@@ -62,24 +70,27 @@ function Profile(props) {
 
             <div className="Posts-container container d-flex flex-wrap justify-content-center">
 
-                {posts.length ? posts.map(post => {
+                {posts.length ? posts.map((post, i) => {
                     return (
                         <figure key={post._id} className="img-container col-6 col-lg-4">
                             <Link
                                 to={`/posts/${post._id}`}
-                                className=""
-                                onMouseEnter={() => setisHovering(true)}
-                                onMouseLeave={() => setisHovering(false)}
+                                className="img-link"
+                                onMouseEnter={() => selectImage(i)}
+                                onMouseLeave={() => selectImage(null)}
                             >
                                 <img className="Post-img img-fluid" src={`${config.apiUrl}/posts/${post.image}`} />
-                                {isHovering &&
-                                    <div className="likes-modal d-flex align-items-center justify-content-center">
-                                        <span className="text-white">
-                                            <span className="mr-2 likes-length">{post.likes.length}</span>
-                                            <FontAwesomeIcon icon={faHeart} />
-                                        </span>
-                                    </div>
-                                }
+
+                                <div className={getSelectedClass(i)}>
+                                    <span className="text-white mr-2">
+                                        <span>{post.likes.length}</span>
+                                        <FontAwesomeIcon icon={faHeart} className="ml-1" />
+                                    </span>
+                                    <span className="text-white">
+                                        <span>{post.comments.length}</span>
+                                        <FontAwesomeIcon icon={faCommentAlt} className="ml-1" />
+                                    </span>
+                                </div>
 
                             </Link>
                         </figure>

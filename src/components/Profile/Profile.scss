@@ -20,7 +20,7 @@ $shadow: 1px 3px 0px #0086b6;
         position: relative;
         .avatar-container {
             position: absolute;
-            top: -70px;
+            top: -80px;
             @include media-breakpoint-up(lg) {
                 top: -100px;
             }
@@ -59,29 +59,23 @@ $shadow: 1px 3px 0px #0086b6;
             padding-left: 6px;
             padding-right: 6px;
         }
-        // .img-container.col-4 {
-        //     padding: 0 6px !important;
-        // }
     }
 
     .img-container {
-        // position: relative;
-        // &::after {
-        //     display: block;
-        //     content: "";
-        //     padding-bottom: 100%;
-        // }
+        .img-link {
+            display: inline-block;
+            height: 100%;
+            position: relative;
+        }
         .Post-img {
-            // box-sizing: border-box;
-            // border-right: 3px solid black;
-            // border-bottom: 3px solid black;
-            // position: relative;
             width: 100%;
             height: 100%;
         }
         .likes-modal {
             position: absolute;
-            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             top: 0;
             bottom: 0;
             left: 0;
