@@ -40,7 +40,7 @@ const renderStep = (step, getPrevStage, values, errors, setFieldValue, submitFor
 
 export const CreatePost = (props) => {
     const [isLoading, setLoading] = useState(true);
-    const { user, setBackground } = useContext(UserContext);
+    const { user, setBackground, setOverFlow } = useContext(UserContext);
     const [step, setStep] = useState(1);
     const history = useHistory();
 
@@ -80,7 +80,9 @@ export const CreatePost = (props) => {
 
     useEffect(() => {
         setBackground(initBackground);
+        setOverFlow('hidden');
         setLoading(false);
+        setOverFlow('unset');
     }, []);
 
     return (

@@ -25,6 +25,7 @@ function App() {
   const [user, setUser] = useState({});
   const [lastEdited, setLastEdited] = useState(undefined);
   const [isLoading, setLoading] = useState(true);
+  const [overflow, setOverFlow] = useState('unset');
   const [background, setBackground] = useState(initBackground);
   const history = useHistory();
 
@@ -44,14 +45,13 @@ function App() {
 
 
   return (
-    <UserContext.Provider value={{ user, setUser, setBackground, lastEdited, setLastEdited }}>
-      {isLoading && <AppLoader />}
-
+    <UserContext.Provider value={{ user, setUser, setBackground, lastEdited, setLastEdited, overflow, setOverFlow }}>
 
       <div style={{ backgroundColor: background }} className="App d-flex flex-column flex-lg-column-reverse justify-content-between vh-100">
+        {isLoading && <AppLoader />}
         {user && < MenuMobileTop />}
         <div className="App-scroller flex-grow-1">
-          <div className="App-wraper d-flex align-items-center flex-grow-1">
+          <div style={{ overflowY: overflow }} className="App-wraper d-flex align-items-center flex-grow-1">
             <div className="container-fluid">
 
               <Switch>

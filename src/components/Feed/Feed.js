@@ -4,26 +4,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Post from '../Post/Post';
 import config from '../../config/index';
-import './Feed.scss';
 import PageLoader from '../PageLoader/PageLoader';
+import './Feed.scss';
 
 const initBackground = '#fafafa';
 
 function Feed() {
     const [isLoading, setLoading] = useState(true);
-    const { setBackground } = useContext(UserContext);
+    const { setBackground, setOverFlow } = useContext(UserContext);
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         setBackground(initBackground);
+        setOverFlow('hidden');
         async function getPosts() {
             try {
                 const res = await fetch(config.apiUrl + '/posts?sort=-1', {
                     credentials: 'include'
                 });
                 const fetchedPosts = await res.json();
-                setLoading(false);
                 setPosts(fetchedPosts);
+                setLoading(false);
+                setOverFlow('unset');
             } catch (err) {
                 console.log(posts);
             }

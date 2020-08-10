@@ -26,6 +26,7 @@ function Profile(props) {
         getPosts();
     }, [id, user]);
 
+
     async function getPosts() {
         try {
             const res = await fetch(`${config.apiUrl}/users/${id}/posts?sort=-1`, {
