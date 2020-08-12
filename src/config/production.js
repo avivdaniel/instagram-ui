@@ -1,3 +1,3 @@
 export default {
-    apiUrl: 'https://desolate-temple-21783.herokuapp.com'
+    apiUrl: 'http://18.217.81.254:4000'
 }
