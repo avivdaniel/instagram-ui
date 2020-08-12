@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom';
 import PageLoader from '../PageLoader/PageLoader';
 import PostComments from './PostComments/PostComments';
 import { UserContext } from '../../user-context';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './PostPage.scss';
+import { faGripHorizontal } from '@fortawesome/free-solid-svg-icons';
 
 const initialBackground = '#fafafa';
 
@@ -40,59 +42,47 @@ function PostPage(props) {
     }
 
     return (
-        <article className="PostPage h-100 d-lg-flex justify-content-center align-items-center">
+        <div className="PostPage d-lg-flex flex-lg-column justify-content-center align-items-center h-100">
             {isLoading ? <PageLoader />
                 : (
-                    <>
-                        <div className="col-12 col-lg-4 p-0 p-lg-3">
-                            <header className="d-flex justify-content-between align-items-center p-3">
-                                <div className="d-flex align-items-center">
+                    <article className="PostPage-article">
+
+
+
+                        <div className="d-flex flex-column flex-lg-row shadow-lg-lg rounded">
+                            <div className="PostPage-right order-2 col-12 col-lg-4 p-0">
+                                {post.title &&
+                                    <>
+                                        <span>{post.title}</span>
+                                    </>}
+
+                                <PostLike
+                                    postId={post._id}
+                                    likes={post.likes}
+                                />
+                                <hr />
+                                <PostComments id={post._id} />
+                            </div>
+
+                            <div className="PostPage-left order-1 col-12 col-lg-8 p-0">
+                                <header className=" PostPage-header col-12 d-flex justify-content-between justify-content-lg-center align-items-center p-3">
                                     <Link to={`/profile/${post.user._id}`} className="text-decoration-none">
                                         <Avatar size='md' image={post.user.avatar} />
                                         <span className="text-bold ml-2">{post.user.username}</span>
                                     </Link>
-
-                                </div>
-                                <span className="text-secondary"><FormatDate data={post.createdAt} /></span>
-                            </header>
-
-                            <div>
+                                    <span className="text-secondary"><FormatDate data={post.createdAt} /></span>
+                                </header>
                                 <div className="PostPage-img-container d-flex justify-content-center align-itens center">
                                     <img className="PostPage-img" src={`${config.apiUrl}/posts/${post.image}`} />
                                 </div>
-
-                                <div className="col-12 mt-2">
-                                    <PostLike
-                                        postId={post._id}
-                                        likes={post.likes}
-                                    />
-                                    {post.title && <>
-                                        <span className="text-bold mr-2">{post.user.username}</span>
-                                        <span>{post.title}</span>
-                                    </>}
-                                </div>
                             </div>
 
-
                         </div>
-
-
-                        <div className="col-12 col-lg-4 p-0">
-                            <div className="PostPage-content-container p-3">
-
-                                <PostComments id={post._id} />
-
-
-                            </div>
-                        </div>
-                    </>
+                    </article>
                 )
-
             }
+        </div>
 
-
-
-        </article>
     );
 }
 

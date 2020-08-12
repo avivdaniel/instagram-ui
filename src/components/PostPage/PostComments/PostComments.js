@@ -36,9 +36,9 @@ function PostComments(props) {
     }
 
     return (
-        <div className="PostComments d-flex flex-column flex-lg-row flex-wrap mt-1">
+        <div className="PostComments col-12 p-0">
             {isLoading && <PageLoader />}
-            <div className="comments-scroller overflow-auto">
+            <div className="col-12 comments-scroller">
                 {comments.map(comment => {
                     return <PostComment
                         key={comment._id}

@@ -1,5 +1,11 @@
 .PostComment {
+    margin: 10px 0;
+    word-wrap: break-word;
+    font-size: 12px;
     .PostComment-createdAt {
         font-size: 12px;
+    }
+    &:first-child {
+        margin-top: 20px;
     }
 }
