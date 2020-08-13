@@ -49,7 +49,7 @@ function Register(props) {
                                 <div className="col-12 col-md-8 col-lg-8">
                                     <div className="Register-brand-container mt-4">
                                         <h2 className="Register-brand text-center">Instagram </h2>
-                                        <h3 className="text-center">Sign up to see photos and videos from your friends.</h3>
+                                        <h3 className="text-center">Sign up to see photos and videos from your friends. (NEWWWW)</h3>
                                     </div>
 
                                     <div className="form-group">
