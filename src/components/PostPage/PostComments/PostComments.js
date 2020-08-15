@@ -37,22 +37,28 @@ function PostComments(props) {
     }
 
     return (
-        <div className="PostComments col-12 p-0">
-            {isLoading && <PageLoader />}
-            {comments &&
-                <div className="col-12 comments-scroller">
-                    <hr />
-                    {comments.map(comment => {
-                        return <PostComment
-                            key={comment._id}
-                            data={comment}
-                        />
-                    })}
-                </div>
-            }
+        <>
+            {!isLoading
+                ? <div className="PostComments d-flex flex-column">
+                    {comments &&
+                        <div className="order-1 order-lg-2">
+                            <hr />
+                            {comments.map(comment => {
+                                return <PostComment
+                                    key={comment._id}
+                                    data={comment}
+                                />
+                            })}
+                        </div>
+                    }
+                    <div className="order-2 order-lg-1">
+                        <CommentCreate id={postId} onAddComment={addComment} />
+                    </div>
 
-            <CommentCreate id={postId} onAddComment={addComment} />
-        </div>
+                </div>
+                : <PageLoader />
+            }
+        </>
     );
 }
 

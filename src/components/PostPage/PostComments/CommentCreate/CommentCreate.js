@@ -30,45 +30,46 @@ function CommentCreate(props) {
     };
 
     return (
-        <div className="CommentCreate col-12">
+        <div className="CommentCreate ">
             <hr />
-            <Formik
-                initialValues={{ content: '' }}
-                validationSchema={CommentCreateSchema}
-                onSubmit={submit}
-            >
-                {({ errors, isSubmitting }) => (
-                    <Form>
+            <div className="d-flex">
 
-                        <div className="form-group m-0 d-flex">
-                            <div className="PostPage-avatar-container col-3 pl-0 pr-1 d-flex justify-content-center align-items-center">
-                                <Avatar size="md" image={user.avatar} />
-                            </div>
-                            <div className="input-group PostPage-commentInput-container col-9">
+                <div className="avatar-container">
+                    <Avatar size="md" image={user.avatar} />
+                </div>
 
-                                <div className="input-group-prepend">
-                                    <button type="submit" className="PostPage-btn-post btn input-group-text text-uppercase" disabled={isSubmitting || errors.content}>post</button>
-                                    {isSubmitting && <PageLoader />}
+
+                <Formik
+                    initialValues={{ content: '' }}
+                    validationSchema={CommentCreateSchema}
+                    onSubmit={submit}
+                >
+                    {({ errors, isSubmitting }) => (
+                        <Form className="comment-form">
+                            <div className="form-group">
+                                <div className="input-group">
+
+                                    <div className="input-group-prepend">
+                                        <button type="submit" className="PostPage-btn-post btn input-group-text text-uppercase" disabled={isSubmitting || errors.content}>post</button>
+                                        {isSubmitting && <PageLoader />}
+                                    </div>
+
+                                    <Field className='form-control title-field'
+                                        as="textarea"
+                                        id="content"
+                                        placeholder='Write comment...'
+                                        name="content"
+                                        className="form-control"
+                                        aria-label="With textarea"
+                                    />
+
                                 </div>
-
-                                <Field className='form-control title-field'
-                                    as="textarea"
-                                    id="content"
-                                    placeholder='Write comment...'
-                                    name="content"
-                                    className="form-control"
-                                    aria-label="With textarea"
-                                />
-
                             </div>
-                        </div>
+                        </Form>
+                    )}
+                </Formik>
+            </div>
 
-
-
-
-                    </Form>
-                )}
-            </Formik>
         </div>
     );
 }

@@ -2,14 +2,8 @@
 
 .PostPage {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.1);
     .PostPage-article {
         background-color: white;
-        .PostPage-header {
-            @include media-breakpoint-up(lg) {
-                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            }
-        }
     }
     .PostPage-left {
         @include media-breakpoint-up(lg) {
