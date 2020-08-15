@@ -12,6 +12,7 @@ function PostComments(props) {
     const postId = props.id;
 
     useEffect(() => {
+        console.log(comments)
         if (!postId) {
             return;
         }
@@ -38,14 +39,18 @@ function PostComments(props) {
     return (
         <div className="PostComments col-12 p-0">
             {isLoading && <PageLoader />}
-            <div className="col-12 comments-scroller">
-                {comments.map(comment => {
-                    return <PostComment
-                        key={comment._id}
-                        data={comment}
-                    />
-                })}
-            </div>
+            {comments &&
+                <div className="col-12 comments-scroller">
+                    <hr />
+                    {comments.map(comment => {
+                        return <PostComment
+                            key={comment._id}
+                            data={comment}
+                        />
+                    })}
+                </div>
+            }
+
             <CommentCreate id={postId} onAddComment={addComment} />
         </div>
     );

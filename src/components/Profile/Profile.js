@@ -10,10 +10,10 @@ import { faHeart, faCommentAlt } from '@fortawesome/free-solid-svg-icons';
 import './Profile.scss';
 
 const initBackground = '#fafafa';
-const ProfileContext = React.createContext();
 
 function Profile(props) {
-    const { user, setBackground, setOverFlow } = useContext(UserContext);
+    const { user, setBackground, setOverFlow, lastEdited } = useContext(UserContext);
+    const [profile, setProfile] = useState({});
     const [isLoadingPerson, setLoadingPerson] = useState(true);
     const [posts, setPosts] = useState([]);
     const [isLoading, setLoading] = useState(true);
@@ -21,12 +21,14 @@ function Profile(props) {
     const [isVerified, setisVerified] = useState(false);
     const { id } = useParams();
 
+
     useEffect(() => setBackground(initBackground), [])
 
     useEffect(() => {
         isVerifiedUser(user, id);
         getPosts();
-    }, [id, user]);
+        getUser(id);
+    }, [id, user, lastEdited]);
 
 
     async function getPosts() {
@@ -59,57 +61,72 @@ function Profile(props) {
             : 'd-none'
     }
 
+    const getUser = async (id) => {
+        try {
+            const fetchedUser = await (await fetch(`${config.apiUrl}/users/${id}`, {
+                credentials: 'include'
+            })).json();
+            console.log('false')
+            setProfile(fetchedUser);
+            setLoadingPerson(false);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     return (
-        <ProfileContext.Provider value={{ setLoadingPerson }}>
-            <div className="Profile">
-                {isLoadingPerson && isLoading && <PageLoader />}
 
-                <div className="Profile-bg">
-                    {isVerified && <ProfileEdit id={id} />}
+        <>
+            {!isLoadingPerson && !isLoading
+                ? (<div className="Profile">
+
+                    <div className="Profile-bg">
+                        {isVerified && <ProfileEdit id={id} />}
+                    </div>
+
+
+                    <ProfileUser profile={profile} postNum={posts.length} />
+
+                    <div className="Posts-container container d-flex flex-wrap justify-content-center">
+
+                        {posts.length ? posts.map((post, i) => {
+                            return (
+                                <figure key={post._id} className="img-container col-6 col-lg-4">
+                                    <Link
+                                        to={`/posts/${post._id}`}
+                                        className="img-link"
+                                        onMouseEnter={() => selectImage(i)}
+                                        onMouseLeave={() => selectImage(null)}
+                                    >
+                                        <img className="Post-img img-fluid" src={`${config.apiUrl}/posts/${post.image}`} />
+
+                                        <div className={getSelectedClass(i)}>
+                                            <span className="text-white mr-2">
+                                                <span>{post.likes.length}</span>
+                                                <FontAwesomeIcon icon={faHeart} className="ml-1" />
+                                            </span>
+                                            <span className="text-white">
+                                                <span>{post.comments.length}</span>
+                                                <FontAwesomeIcon icon={faCommentAlt} className="ml-1" />
+                                            </span>
+                                        </div>
+
+                                    </Link>
+                                </figure>
+                            )
+                        }) : <p className="Profile-no-posts">You have no posts yet</p>}
+
+                    </div>
                 </div>
-
-
-                <ProfileUser userId={id} postNum={posts.length} />
-
-                <div className="Posts-container container d-flex flex-wrap justify-content-center">
-
-                    {posts.length ? posts.map((post, i) => {
-                        return (
-                            <figure key={post._id} className="img-container col-6 col-lg-4">
-                                <Link
-                                    to={`/posts/${post._id}`}
-                                    className="img-link"
-                                    onMouseEnter={() => selectImage(i)}
-                                    onMouseLeave={() => selectImage(null)}
-                                >
-                                    <img className="Post-img img-fluid" src={`${config.apiUrl}/posts/${post.image}`} />
-
-                                    <div className={getSelectedClass(i)}>
-                                        <span className="text-white mr-2">
-                                            <span>{post.likes.length}</span>
-                                            <FontAwesomeIcon icon={faHeart} className="ml-1" />
-                                        </span>
-                                        <span className="text-white">
-                                            <span>{post.comments.length}</span>
-                                            <FontAwesomeIcon icon={faCommentAlt} className="ml-1" />
-                                        </span>
-                                    </div>
-
-                                </Link>
-                            </figure>
-                        )
-                    }) : <p className="Profile-no-posts">You have no posts yet</p>}
-
-                </div>
-            </div>
-        </ProfileContext.Provider>
+                )
+                : <PageLoader />
+            }
+        </>
     );
 }
 
 export {
-    Profile,
-    ProfileContext
+    Profile
 };
 
 

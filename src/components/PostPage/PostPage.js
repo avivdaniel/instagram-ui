@@ -47,21 +47,22 @@ function PostPage(props) {
                 : (
                     <article className="PostPage-article">
 
+                        <div className="">
+                            <div className="">
+                                <div className="">
+                                    {post.title &&
+                                        <>
+                                            <span>{post.title}</span>
+                                        </>
+                                    }
 
+                                    <PostLike
+                                        postId={post._id}
+                                        likes={post.likes}
+                                    />
 
-                        <div className="d-flex flex-column flex-lg-row shadow-lg-lg rounded">
-                            <div className="PostPage-right order-2 col-12 col-lg-4 p-0">
-                                {post.title &&
-                                    <>
-                                        <span>{post.title}</span>
-                                    </>}
-
-                                <PostLike
-                                    postId={post._id}
-                                    likes={post.likes}
-                                />
-                                <hr />
-                                <PostComments id={post._id} />
+                                    <PostComments id={post._id} />
+                                </div>
                             </div>
 
                             <div className="PostPage-left order-1 col-12 col-lg-8 p-0">

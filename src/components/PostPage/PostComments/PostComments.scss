@@ -2,7 +2,7 @@
     height: fit-content;
     .comments-scroller {
         overflow-y: auto;
-        height: 43vh;
+        max-height: 43vh;
         width: 100%;
     }
 }

@@ -10,7 +10,6 @@ function Avatar(props) {
     let isDeafultAvatar = image ? `${config.apiUrl}/avatars/${image}` : deafultAvatar;
     let size = props.size ? props.size : 'sm';
 
-
     return (
         <div className="Avatar Avatar-holder">
             <div className="avatar">
