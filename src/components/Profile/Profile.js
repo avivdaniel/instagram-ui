@@ -6,7 +6,7 @@ import { useParams, Link } from 'react-router-dom';
 import ProfileEdit from './ProfileEdit/ProfileEdit';
 import PageLoader from '../PageLoader/PageLoader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faCommentAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faCommentAlt, faCameraRetro } from '@fortawesome/free-solid-svg-icons';
 import './Profile.scss';
 
 const initBackground = '#fafafa';
@@ -66,7 +66,7 @@ function Profile(props) {
             const fetchedUser = await (await fetch(`${config.apiUrl}/users/${id}`, {
                 credentials: 'include'
             })).json();
-            console.log('false')
+
             setProfile(fetchedUser);
             setLoadingPerson(false);
         } catch (err) {
@@ -114,7 +114,15 @@ function Profile(props) {
                                     </Link>
                                 </figure>
                             )
-                        }) : <p className="Profile-no-posts">You have no posts yet</p>}
+                        })
+
+                            : <div className="no-posts-container text-center">
+                                <p className="Profile-no-posts text-secondary">No Posts Yet</p>
+
+                                <FontAwesomeIcon icon={faCameraRetro} size='4x' className='text-secondary d-block m-0' />
+
+                            </div>
+                        }
 
                     </div>
                 </div>

@@ -34,7 +34,7 @@ function CommentCreate(props) {
             <hr />
             <div className="d-flex">
 
-                <div className="avatar-container">
+                <div className="avatar-container d-flex align-items-center px-2">
                     <Avatar size="md" image={user.avatar} />
                 </div>
 
@@ -46,7 +46,7 @@ function CommentCreate(props) {
                 >
                     {({ errors, isSubmitting }) => (
                         <Form className="comment-form">
-                            <div className="form-group">
+                            <div className="form-group m-0">
                                 <div className="input-group">
 
                                     <div className="input-group-prepend">

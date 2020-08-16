@@ -59,7 +59,7 @@ function ProfileEdit(props) {
                 <FontAwesomeIcon icon={faEdit} /> Edit
              </Button>
 
-            <Modal show={show} onHide={handleClose} dialogClassName={'ProfileEdit'}>
+            <Modal show={show} onHide={handleClose} dialogClassName={'ProfileEdit'} >
                 <Modal.Header closeButton>
                     <Modal.Title>Edit Profile</Modal.Title>
                 </Modal.Header>
@@ -105,7 +105,7 @@ function ProfileEdit(props) {
                                             name="bio"
                                         />
                                         <FontAwesomeIcon className="ProfileEdit-form-icon" icon={faLock} />
-                                        <span className="bio-counter float-right mt-2">{values.bio.length}/{bioTextMaxLength - 1}</span>
+                                        <span className="bio-counter float-right mt-2">{values.bio && `${values.bio.length}/${bioTextMaxLength - 1}`}</span>
                                         {errors.bio && <small className="text-danger pl-2">{errors.bio}</small>}
                                     </div>
                                 </div>

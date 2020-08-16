@@ -1,7 +1,18 @@
 .PostComment {
-    margin: 10px 0;
-    word-wrap: break-word;
+    margin-bottom: 10px;
     font-size: 12px;
+    .avatar-container {
+        padding: 0 10px;
+        flex: 1 1 10%;
+    }
+
+    .PostComment-content-container {
+        padding: 0 10px;
+        flex: 1 1 90%;
+        .PostComment-content {
+            word-break: break-all;
+        }
+    }
     .PostComment-createdAt {
         font-size: 12px;
     }

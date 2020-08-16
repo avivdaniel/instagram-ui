@@ -40,7 +40,7 @@ function PostComments(props) {
         <>
             {!isLoading
                 ? <div className="PostComments d-flex flex-column">
-                    {comments &&
+                    {comments.length != 0 &&
                         <div className="order-1 order-lg-2">
                             <hr />
                             {comments.map(comment => {

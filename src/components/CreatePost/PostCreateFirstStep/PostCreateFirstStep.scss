@@ -4,8 +4,14 @@
 $primaryColor: #00b7d6;
 .PostCreateFirstStep {
     border-bottom: 1px solid #e9ecef;
+    // .nav-item {
+    //     flex: 1;
+    // }
     .btn.next-btn {
         font-weight: 500;
+        color: $primaryColor;
+    }
+    .btn.text-secondary {
         color: $primaryColor;
     }
 }

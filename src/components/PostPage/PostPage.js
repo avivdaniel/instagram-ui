@@ -42,18 +42,17 @@ function PostPage(props) {
     }
 
     return (
-        <div className="PostPage">
-            {isLoading ? <PageLoader />
-                : (
+        <>
+            {!isLoading
+                ? <div className="PostPage">
                     <article className="PostPage-article d-flex flex-column flex-lg-row">
-
-                        <div className="col-12 col-lg-8" >
-                            <header className="p-3">
+                        <div className="col-12 col-lg-7 p-0 px-lg-2" >
+                            <header className="p-3 d-flex justify-content-between">
                                 <Link to={`/profile/${post.user._id}`} className="text-decoration-none">
                                     <Avatar size='md' image={post.user.avatar} />
                                     <span className="text-bold ml-2">{post.user.username}</span>
                                 </Link>
-                                <span className="text-secondary"><FormatDate data={post.createdAt} /></span>
+                                <span className="text-secondary d-flex align-items-center"><FormatDate data={post.createdAt} /></span>
                             </header>
 
 
@@ -73,20 +72,23 @@ function PostPage(props) {
                                         postId={post._id}
                                         likes={post.likes}
                                     />
+
                                 </div>
                             </div>
 
                         </div>
 
-                        <div className="col-12 col-lg-4">
+                        <div className="col-12 col-lg-5 pb-3">
                             <PostComments id={post._id} />
                         </div>
 
 
                     </article>
-                )
+                </div>
+                : <PageLoader />
             }
-        </div>
+        </>
+
 
     );
 }

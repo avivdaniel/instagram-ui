@@ -90,7 +90,7 @@ function Login(props) {
                 </Formik>
 
                 <div className="Login-footer">
-                    <span> Dont have an account? <Link to="/register" className="text-reset">Sign Up</Link></span>
+                    <span> Don't have an account? <Link to="/register" className="text-reset">Sign Up</Link></span>
                 </div>
 
             </div>

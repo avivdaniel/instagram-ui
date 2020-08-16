@@ -9,11 +9,11 @@ function PostComment(props) {
     const username = props.data.user.username;
     return (
         <div className="PostComment d-flex">
-            <div className="">
+            <div className="avatar-container d-flex align-items-center">
                 <Avatar size="sm" image={userAvatar} />
-                <span className="PostComment-content ml-1">{username}</span>
+                <span className="PostComment-content ml-2">{username}</span>
             </div>
-            <div className="">
+            <div className="PostComment-content-container">
                 <span className="PostComment-content">{content}</span>
                 <span className="PostComment-createdAt d-block text-secondary"><FormatDate data={createdAt} /></span>
             </div>

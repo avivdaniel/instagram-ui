@@ -43,9 +43,14 @@ $shadow: 1px 3px 0px #0086b6;
         font-weight: 500;
         border-bottom: 2px solid $primaryColor;
     }
-    .Profile-no-posts {
-        text-align: center;
-        font-size: 1rem;
+    .no-posts-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .Profile-no-posts {
+            text-align: center;
+            font-size: 1.5rem;
+        }
     }
 
     .img-container.col-6:nth-child(odd) {
