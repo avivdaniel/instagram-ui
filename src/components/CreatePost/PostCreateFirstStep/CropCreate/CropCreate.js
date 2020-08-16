@@ -4,7 +4,7 @@ import { getOrientation } from 'get-orientation/browser';
 import getCroppedImg from './cropImage'
 import { getRotatedImage } from './rotateImage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faCheck, faTrash, faSpinner, faAnkh } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import PageLoader from '../../../PageLoader/PageLoader';
 import './CropCreate.scss';
 
@@ -15,7 +15,6 @@ const ORIENTATION_TO_ANGLE = {
 }
 
 const CropCreate = forwardRef((props, ref) => {
-    // const hasImage = props.image ? props.image : null;
 
     const [imgConfigs, setconfig] = useState({
         imageSrc: null,
@@ -181,22 +180,16 @@ const CropCreate = forwardRef((props, ref) => {
                             }} />
                     </div>
 
-                    <div className="col form-group d-flex p-0 p-lg-2">
+                    <div className="col d-flex justify-content-center p-0 p-lg-2">
                         <button
-                            className="btn btn-primary text-uppercase btn-block"
+                            className="btn btn-primary btn-delete btn-block"
                             onClick={onDelete}
                             disabled={imgConfigs.isCropping}>
                             <FontAwesomeIcon icon={faTrash} className='faTrash' />
                         </button>
                     </div>
-
                 </div>
-
-
             </div>
-
-
-
         </div>
 
     );

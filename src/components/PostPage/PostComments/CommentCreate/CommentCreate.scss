@@ -17,11 +17,15 @@ $primaryColor: #00b7d6;
         bottom: 4px;
         z-index: 9;
     }
-    .PostPage-btn-post {
+    .btn-outline-primary {
         font-size: 12px;
-        color: white;
-        background-color: $primaryColor;
-        border: 2px solid #fafafa;
+        color: $primaryColor;
+        border-color: $primaryColor;
+        &:hover {
+            background-color: $primaryColor;
+            color: #fafafa;
+            border-color: $primaryColor;
+        }
     }
     ::placeholder {
         color: $primaryColor;

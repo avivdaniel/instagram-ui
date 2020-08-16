@@ -1,26 +1,40 @@
 $primaryColor: #00b7d6;
 
 .PostCreateSecondStep {
+    padding: 5px 10px;
     border-bottom: 1px solid #e9ecef;
     .btn.next-btn {
+        width: 70px;
+        font-size: 12px;
+        border: 1px solid $primaryColor;
         font-weight: 500;
         color: $primaryColor;
     }
 }
 
-.input-group-prepend {
-    position: absolute;
-    right: 4px;
-    top: 4px;
-    bottom: 4px;
-    z-index: 9;
-    .btn.btn-primary {
-        background-color: $primaryColor;
-        border: white;
+.PostCreateSecondStep-inputs {
+    .input-group {
+        .title-input.form-control.title-field {
+            position: relative;
+            min-height: 40vh;
+        }
     }
-}
 
-.title-field::placeholder {
-    font-weight: 300;
-    font-style: italic;
+    .input-group-prepend {
+        position: absolute;
+        max-height: 40px;
+        bottom: 0;
+        right: 0;
+        z-index: 9;
+        .btn.btn-primary {
+            background-color: $primaryColor;
+            border: white;
+        }
+    }
+
+    .title-field::placeholder {
+        padding-bottom: 40px;
+        font-weight: 300;
+        font-style: italic;
+    }
 }

@@ -1,24 +1,11 @@
 @import "~bootstrap";
 $text-shadow: 2px 1px 2px rgba(64, 64, 64, 0.2);
 $primaryColor: #00b7d6;
-// $custom-control-indicator-checked-bg:  !default;
 .CropCreate {
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-
-    // .form-control-range.custom-slider::-webkit-slider-thumb {
-    //     background: gray;
-    // }
-
-    // .form-control-range.custom-slider::-moz-range-thumb {
-    //     background: gray;
-    // }
-
-    // .form-control-range.custom-slider::-ms-thumb {
-    //     background: gray;
-    // }
 
     .iPhone-container {
         height: 100%;
@@ -132,14 +119,19 @@ $primaryColor: #00b7d6;
     }
     .controllers-container {
         flex: 1;
+        text-align: center;
+        .btn.btn-primary {
+            max-width: 50%;
+            background-color: $primaryColor;
+            border: 2px solid #fafafa;
+            font-weight: 500;
+            color: #fafafa;
+        }
         .controllers-content {
             border: 1px solid #e9ecef;
             @include media-breakpoint-up(lg) {
                 max-width: 50%;
             }
-            // @include media-breakpoint-up(lg) {
-            //     width: 50%;
-            // }
         }
     }
 }

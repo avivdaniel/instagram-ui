@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Field } from "formik";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-import 'emoji-mart/css/emoji-mart.css';
 import { Picker, Emoji } from 'emoji-mart';
+import { faSmile } from "@fortawesome/free-regular-svg-icons";
+import { UserContext } from "../../../user-context";
+import 'emoji-mart/css/emoji-mart.css';
 import './PostCreateSecondStep.scss';
+import Avatar from "../../Avatar/Avatar";
 
 export const PostCreateSecondStep = formikProps => {
-    const { errors, getPrevStage, setFieldValue, submitForm, isSubmitting, values } = formikProps;
+    const { setFieldValue, submitForm, isSubmitting } = formikProps;
+    const { user } = useContext(UserContext)
     const [reactionShown, setReactionShown] = useState(false);
     const [title, setTitle] = useState('');
 
@@ -16,19 +19,10 @@ export const PostCreateSecondStep = formikProps => {
         setTitle(title + emoji);
     }
 
-    useEffect(() => { console.log(values) }, [])
 
     return (
         <>
-            <nav className="PostCreateSecondStep d-flex justify-content-between mb-1">
-                {/* <button
-                    disabled={isSubmitting}
-                    className="btn"
-                    onClick={() => {
-                        getPrevStage()
-                    }}>
-                    <span className="text-secondary"><FontAwesomeIcon icon={faAngleLeft} /></span>
-                </button> */}
+            <nav className="PostCreateSecondStep d-flex justify-content-end justify-content-lg-end  mb-1">
 
                 <button
                     disabled={isSubmitting}
@@ -43,12 +37,16 @@ export const PostCreateSecondStep = formikProps => {
 
             </nav>
 
-            <div className="container d-flex flex-column align-items-center">
-                {/* <img src={values.image} /> */}
-                <div className="input-group">
+            <div className="PostCreateSecondStep-inputs container d-flex flex-column align-items-center">
+                <div className="p-3">
+                    <Avatar size='lg' image={user.avatar} />
+                </div>
+
+
+                <div className="input-group col-12 col-lg-6 p-0">
 
                     <Field
-                        className='form-control title-field'
+                        className='title-input form-control title-field'
                         value={title}
                         as="textarea"
                         id="title"
@@ -58,15 +56,20 @@ export const PostCreateSecondStep = formikProps => {
                         onChange={e => setTitle(e.target.value)}
                     />
 
-                    <div className="input-group-prepend">
-                        <button className="btn btn-primary" type="button" id="button-addon1" onClick={() => setReactionShown(!reactionShown)}>Button</button>
+                    <div className="input-group-prepend ">
+                        <button
+                            className="btn btn-primary rounded"
+                            type="button"
+                            id="button-addon1"
+                            onClick={() => setReactionShown(!reactionShown)}>
+                            <FontAwesomeIcon icon={faSmile} /></button>
                     </div>
 
                 </div>
 
 
                 {reactionShown &&
-                    <div className="col-12">
+                    <div className="col-12 p-0 mt-2">
 
                         <Picker
                             style={{ width: '100%' }}

@@ -5,6 +5,10 @@ $primaryColor: #00b7d6;
 
 .CreatePost {
     position: relative;
+    background-color: white;
+    @include media-breakpoint-up(lg) {
+        background-color: #fafafa;
+    }
     .CropCreate {
         flex: 1;
     }

@@ -11,7 +11,7 @@ function PostComment(props) {
         <div className="PostComment d-flex">
             <div className="avatar-container d-flex align-items-center">
                 <Avatar size="sm" image={userAvatar} />
-                <span className="PostComment-content ml-2">{username}</span>
+                <span className="PostComment-content username ml-2">{username}</span>
             </div>
             <div className="PostComment-content-container">
                 <span className="PostComment-content">{content}</span>

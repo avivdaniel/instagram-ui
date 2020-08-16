@@ -1,14 +1,16 @@
 .PostComment {
-    margin-bottom: 10px;
-    font-size: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
     .avatar-container {
         padding: 0 10px;
-        flex: 1 1 10%;
+        flex: 1 1 50%;
     }
-
+    .username {
+        font-weight: 500;
+    }
     .PostComment-content-container {
         padding: 0 10px;
-        flex: 1 1 90%;
+        flex: 1 1 50%;
         .PostComment-content {
             word-break: break-all;
         }

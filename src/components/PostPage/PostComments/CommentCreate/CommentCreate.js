@@ -46,25 +46,41 @@ function CommentCreate(props) {
                 >
                     {({ errors, isSubmitting }) => (
                         <Form className="comment-form">
-                            <div className="form-group m-0">
-                                <div className="input-group">
 
-                                    <div className="input-group-prepend">
-                                        <button type="submit" className="PostPage-btn-post btn input-group-text text-uppercase" disabled={isSubmitting || errors.content}>post</button>
-                                        {isSubmitting && <PageLoader />}
-                                    </div>
+                            <div className="input-group mb-3">
+                                <Field className="form-control"
+                                    as="textarea"
+                                    id="content"
+                                    // placeholder='Write comment...'
+                                    name="content"
+                                    aria-describedby="basic-addon2"
 
-                                    <Field className='form-control title-field'
-                                        as="textarea"
-                                        id="content"
-                                        placeholder='Write comment...'
-                                        name="content"
-                                        className="form-control"
-                                        aria-label="With textarea"
-                                    />
+                                />
 
+
+                                <div className="input-group-append">
+                                    <button type="submit" className="btn btn-outline-primary text-uppercase" disabled={isSubmitting || errors.content}>post</button>
+                                    {isSubmitting && <PageLoader />}
+                                    {/* <button className="btn btn-outline-secondary" type="button">Button</button> */}
                                 </div>
                             </div>
+                            {/* 
+                            <div className="input-group">
+                                <Field className='form-control'
+                                    as="textarea"
+                                    id="content"
+                                    placeholder='Write comment...'
+                                    name="content"
+                                    aria-describedby="basic-addon2"
+
+                                />
+                                <div className="input-group-prepend">
+                                    <button type="submit" className="PostPage-btn-post btn input-group-text text-uppercase rounded" disabled={isSubmitting || errors.content}>post</button>
+                                    {isSubmitting && <PageLoader />}
+                                </div>
+
+                            </div> */}
+
                         </Form>
                     )}
                 </Formik>

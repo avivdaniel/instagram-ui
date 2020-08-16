@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import CropCreate from "./CropCreate/CropCreate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faUpload, faArrowRight, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import "./PostCreateFirstStep.scss";
 
@@ -21,7 +21,7 @@ export const PostCreateFirstStep = formikProps => {
             ">
                 <ul className="nav  d-flex justify-content-between justify-content-md-center mb-1">
                     <li onClick={handleAddImageClick} className="nav-item">
-                        <span className="btn text-secondary"><FontAwesomeIcon icon={faUpload} /></span>
+                        <span className="btn"><FontAwesomeIcon icon={faUpload} /></span>
                         <input type="file"
                             className='form-control d-none'
                             accept="image/*"
@@ -44,8 +44,8 @@ export const PostCreateFirstStep = formikProps => {
                                 submitForm();
                             }}
                             className="btn next-btn" >
-                            Next
-                     </button>
+                            Next <FontAwesomeIcon icon={faAngleRight} />
+                        </button>
                     </li>
                 </ul>
 

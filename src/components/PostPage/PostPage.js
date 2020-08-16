@@ -46,7 +46,7 @@ function PostPage(props) {
             {!isLoading
                 ? <div className="PostPage">
                     <article className="PostPage-article d-flex flex-column flex-lg-row">
-                        <div className="col-12 col-lg-7 p-0 px-lg-2" >
+                        <div className="col-12 col-lg-7 p-0" >
                             <header className="p-3 d-flex justify-content-between">
                                 <Link to={`/profile/${post.user._id}`} className="text-decoration-none">
                                     <Avatar size='md' image={post.user.avatar} />
