@@ -13,15 +13,18 @@ $shadow: 1px 3px 0px #0086b6;
         background-size: cover;
         object-fit: cover;
         width: 100%;
-        min-height: 25vh;
+        min-height: 20vh;
         background-position: bottom;
     }
     .Profile-header {
-        padding: 35px 0 0 0;
+        padding: 25px 0 0 0;
+        @include media-breakpoint-up(lg) {
+            padding: 35px 0 0 0;
+        }
         position: relative;
         .avatar-container {
             position: absolute;
-            top: -80px;
+            top: -75px;
             @include media-breakpoint-up(lg) {
                 top: -100px;
             }

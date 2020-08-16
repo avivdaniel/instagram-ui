@@ -17,7 +17,7 @@ function Menu(props) {
                     <Link className="navlink-title" to="/">
                         <FontAwesomeIcon icon={faHome} className="Menu-icon-animation" />
 
-                        {/* <span className="sr-only">(current)</span> */}
+                        <span className="sr-only">(current)</span>
                     </Link>
                 </li>
                 <li className="nav-item">
@@ -35,10 +35,6 @@ function Menu(props) {
                         <FontAwesomeIcon icon={faUser} className="Menu-icon-animation" />
                     </Link>
                 </li>
-                {/* 
-                <li className="nav-item d-none d-lg-block ml-2">
-                    <MenuAvatar />
-                </li> */}
             </ul>
         </nav>
     );

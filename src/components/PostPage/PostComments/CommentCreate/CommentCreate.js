@@ -6,6 +6,7 @@ import { UserContext } from '../../../../user-context';
 import Avatar from '../../../Avatar/Avatar';
 import config from '../../../../config/index';
 import PageLoader from '../../../PageLoader/PageLoader';
+import { Link } from 'react-router-dom';
 import './CommentCreate.scss';
 
 function CommentCreate(props) {
@@ -35,7 +36,10 @@ function CommentCreate(props) {
             <div className="d-flex">
 
                 <div className="avatar-container d-flex align-items-center px-2">
-                    <Avatar size="md" image={user.avatar} />
+                    <Link to={`/profile/${user._id}`}>
+                        <Avatar size="md" image={user.avatar} />
+                    </Link>
+
                 </div>
 
 
@@ -51,7 +55,7 @@ function CommentCreate(props) {
                                 <Field className="form-control"
                                     as="textarea"
                                     id="content"
-                                    // placeholder='Write comment...'
+                                    placeholder='Write comment...'
                                     name="content"
                                     aria-describedby="basic-addon2"
 
@@ -61,25 +65,9 @@ function CommentCreate(props) {
                                 <div className="input-group-append">
                                     <button type="submit" className="btn btn-outline-primary text-uppercase" disabled={isSubmitting || errors.content}>post</button>
                                     {isSubmitting && <PageLoader />}
-                                    {/* <button className="btn btn-outline-secondary" type="button">Button</button> */}
+
                                 </div>
                             </div>
-                            {/* 
-                            <div className="input-group">
-                                <Field className='form-control'
-                                    as="textarea"
-                                    id="content"
-                                    placeholder='Write comment...'
-                                    name="content"
-                                    aria-describedby="basic-addon2"
-
-                                />
-                                <div className="input-group-prepend">
-                                    <button type="submit" className="PostPage-btn-post btn input-group-text text-uppercase rounded" disabled={isSubmitting || errors.content}>post</button>
-                                    {isSubmitting && <PageLoader />}
-                                </div>
-
-                            </div> */}
 
                         </Form>
                     )}
