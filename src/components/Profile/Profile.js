@@ -76,9 +76,9 @@ function Profile(props) {
 
     return (
 
-        <>
+        <div className="Profile">
             {!isLoadingPerson && !isLoading
-                ? (<div className="Profile">
+                ? (<div className="Profile-content">
 
                     <div className="Profile-bg">
                         {isVerified && <ProfileEdit id={id} />}
@@ -129,7 +129,7 @@ function Profile(props) {
                 )
                 : <PageLoader />
             }
-        </>
+        </div>
     );
 }
 

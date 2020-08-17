@@ -3,7 +3,8 @@
 
 $shadow: 3px 3px 0px rgba(64, 64, 64, 0.4);
 $text-shadow: 0px 2px 2px rgba(64, 64, 64, 0.2);
-$primaryColor: #00b7d6;
+$primaryColor: rgba(0, 183, 214, 1);
+$hoverColor: rgba(0, 183, 214, 0.8);
 
 .ProfileEdit {
     .cropper-container {
@@ -64,4 +65,16 @@ $primaryColor: #00b7d6;
     font-size: 12px;
     background-color: $primaryColor;
     border: 2px solid #fafafa;
+    transition: 0.3s;
+    &:hover {
+        font-size: 12px;
+        background-color: $hoverColor;
+        border: 2px solid #fafafa;
+    }
+    &:focus {
+        border: 2px solid #fafafa;
+        background-color: $primaryColor;
+        outline: none;
+        outline-offset: none;
+    }
 }

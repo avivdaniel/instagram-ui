@@ -55,7 +55,7 @@ function ProfileEdit(props) {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow} className="btn-edit m-2">
+            <Button onClick={handleShow} className="btn-edit m-2">
                 <FontAwesomeIcon icon={faEdit} /> Edit
              </Button>
 
