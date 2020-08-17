@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import config from '../../config/index';
 import { UserContext } from '../../user-context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle, faLock, faAt } from '@fortawesome/free-solid-svg-icons'
 import './Login.scss';
 
 const initBackground = '#00b7d6';
@@ -64,8 +64,8 @@ function Login(props) {
                                     </div>
 
                                     <div className="form-group">
-                                        <Field className='form-control' id="username" placeholder="Login" name="username" />
-                                        <FontAwesomeIcon className="Login-form-icon" icon={faUserCircle} />
+                                        <Field className='form-control' id="username" placeholder="Username" name="username" />
+                                        <FontAwesomeIcon className="Login-form-icon" icon={faAt} />
                                         {errors.username && touched.username && <small className="text-danger pl-2">{errors.username}</small>}
                                     </div>
                                     <div className="form-group">
@@ -80,7 +80,7 @@ function Login(props) {
 
                             <div className="col-12 col-lg-6 Login-img-container d-flex align-items-end align-items-lg-center">
                                 <div className="Login-button text-center p-4">
-                                    <button type="submit" className="btn btn-primary text-uppercase btn-block" disabled={isSubmitting}>Login</button>
+                                    <button type="submit" className="btn btn-primary text-uppercase btn-block" disabled={isSubmitting}>Sign In</button>
                                 </div>
                             </div>
 

@@ -55,6 +55,17 @@ $hoverColor: rgba(0, 183, 214, 0.8);
         font-size: 12px;
         background-color: $primaryColor;
         border: 2px solid #fafafa;
+        &:hover {
+            font-size: 12px;
+            background-color: $hoverColor;
+            border: 2px solid #fafafa;
+        }
+        &:focus {
+            border: 2px solid #fafafa;
+            background-color: $primaryColor;
+            outline: none;
+            outline-offset: none;
+        }
     }
 }
 

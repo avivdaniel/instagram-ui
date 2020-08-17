@@ -1,4 +1,5 @@
-$primaryColor: #00b7d6;
+$primaryColor: rgba(0, 183, 214, 1);
+$hoverColor: rgba(0, 183, 214, 0.8);
 
 .PostCreateSecondStep {
     padding: 5px 10px;
@@ -9,6 +10,11 @@ $primaryColor: #00b7d6;
         border: 1px solid $primaryColor;
         font-weight: 500;
         color: $primaryColor;
+        transition: 0.3s;
+        &:hover {
+            background-color: $primaryColor;
+            color: #fafafa;
+        }
     }
 }
 
@@ -29,6 +35,18 @@ $primaryColor: #00b7d6;
         .btn.btn-primary {
             background-color: $primaryColor;
             border: white;
+            transition: 0.3s;
+            &:hover {
+                font-size: 12px;
+                background-color: $hoverColor;
+                border: 2px solid #fafafa;
+            }
+            &:focus {
+                border: 2px solid #fafafa;
+                background-color: $primaryColor;
+                outline: none;
+                outline-offset: none;
+            }
         }
     }
 

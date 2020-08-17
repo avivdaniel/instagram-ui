@@ -1,7 +1,7 @@
 @import "../../_custom-variables";
-@import "~bootstrap/scss/bootstrap";
 
-$primaryColor: #00b7d6;
+$primaryColor: rgba(0, 183, 214, 1);
+$hoverColor: rgba(0, 183, 214, 0.8);
 .PostCreateFirstStep {
     padding: 5px 10px;
     border-bottom: 1px solid #e9ecef;
@@ -15,5 +15,12 @@ $primaryColor: #00b7d6;
         border: 1px solid $primaryColor;
         font-weight: 500;
         color: $primaryColor;
+        transition: 0.3s;
+        &:hover {
+            font-size: 12px;
+            color: #fafafa;
+            background-color: $hoverColor;
+            border: 2px solid #fafafa;
+        }
     }
 }

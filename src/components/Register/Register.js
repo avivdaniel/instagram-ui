@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import RegisterModal from './RegisterModal/RegisterModal';
 import config from '../../config/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faLock, faEnvelope, faAt } from '@fortawesome/free-solid-svg-icons';
 import './Register.scss';
 
 function Register(props) {
@@ -59,7 +59,7 @@ function Register(props) {
                                     </div>
                                     <div className="form-group">
                                         <Field className='form-control' id="username" placeholder="Username" name="username" />
-                                        <FontAwesomeIcon className="Register-form-icon" icon={faUserCircle} />
+                                        <FontAwesomeIcon className="Register-form-icon" icon={faAt} />
                                         {errors.username && touched.username && <small className="text-danger pl-2">{errors.username}</small>}
                                     </div>
                                     <div className="form-group">
@@ -84,7 +84,7 @@ function Register(props) {
 
                             <div className="col-12 col-lg-6 Register-img-container d-flex align-items-end align-items-lg-center">
                                 <div className="Register-button text-center p-4">
-                                    <button type="submit" className="btn btn-primary text-uppercase btn-block" disabled={isSubmitting}>Register</button>
+                                    <button type="submit" className="btn btn-primary text-uppercase btn-block" disabled={isSubmitting}>Sign Up</button>
                                 </div>
                             </div>
 

@@ -1,6 +1,7 @@
 @import "~bootstrap";
 
-$primaryColor: #00b7d6;
+$primaryColor: rgba(0, 183, 214, 1);
+$hoverColor: rgba(0, 183, 214, 0.8);
 $shadow: 1px 3px 0px #0086b6;
 
 .Register {
@@ -84,15 +85,16 @@ $shadow: 1px 3px 0px #0086b6;
             border-right: 6px solid #fafafa;
         }
         .Register-button {
-            width: 300px;
+            min-width: 300px;
             @include media-breakpoint-up(lg) {
                 width: 500px;
             }
             .btn-primary {
                 background-color: rgba(0, 183, 214, 1);
                 border: 2px solid #fafafa;
-                :hover {
-                    background-color: red;
+                transition: 0.3s;
+                &:hover {
+                    background-color: $hoverColor;
                 }
                 @include media-breakpoint-up(lg) {
                     height: 57px;
