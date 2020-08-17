@@ -45,60 +45,56 @@ function App() {
 
 
   return (
-    <UserContext.Provider value={{ user, setUser, setBackground, lastEdited, setLastEdited, overflow, setOverFlow }}>
+    <>
+      {!isLoading
+        ? <UserContext.Provider value={{ user, setUser, setBackground, lastEdited, setLastEdited, overflow, setOverFlow }}>
+          <div style={{ backgroundColor: background }} className="App d-flex flex-column flex-lg-column-reverse justify-content-between vh-100">
+            {user && < MenuMobileTop />}
+            <div className="App-scroller flex-grow-1">
+              <div style={{ overflowY: overflow }} className="App-wraper d-flex align-items-center flex-grow-1">
+                <div className="container-fluid">
 
-      <div style={{ backgroundColor: background }} className="App d-flex flex-column flex-lg-column-reverse justify-content-between vh-100">
-        {isLoading && <AppLoader />}
-        {user && < MenuMobileTop />}
-        <div className="App-scroller flex-grow-1">
-          <div style={{ overflowY: overflow }} className="App-wraper d-flex align-items-center flex-grow-1">
-            <div className="container-fluid">
+                  <Switch>
 
-              <Switch>
+                    <Route path="/register">
+                      <Register />
+                    </Route>
 
-                <Route path="/register">
-                  <Register />
-                </Route>
+                    <Route path="/login">
+                      <Login />
+                    </Route>
 
-                <Route path="/login">
-                  <Login />
-                </Route>
+                    <Route path="/post/create">
+                      <CreatePost />
+                    </Route>
 
-                <Route path="/post/create">
-                  <CreatePost />
-                </Route>
+                    <Route path="/search">
+                      <Search />
+                    </Route>
 
-                <Route path="/search">
-                  <Search />
-                </Route>
+                    <Route path="/profile/:id" >
+                      <Profile />
+                    </Route>
 
-                <Route path="/profile/:id" >
-                  <Profile />
-                </Route>
+                    <Route path="/posts/:id" >
+                      <PostPage />
+                    </Route>
 
-                <Route path="/posts/:id" >
-                  <PostPage />
-                </Route>
+                    <Route path="/">
+                      <Feed />
+                    </Route>
 
-                <Route path="/">
-                  <Feed />
-                </Route>
+                  </Switch>
 
-
-              </Switch>
-
+                </div>
+              </div>
             </div>
+            {user && < Menu />}
           </div>
+        </UserContext.Provider>
 
-        </div>
-
-        {user && < Menu />}
-
-
-
-      </div>
-
-    </UserContext.Provider>
+        : <AppLoader />}
+    </>
   );
 }
 

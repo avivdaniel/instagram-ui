@@ -11,19 +11,19 @@ function Avatar(props) {
     let size = props.size ? props.size : 'sm';
 
     return (
-        <div className="Avatar Avatar-holder">
-            <div className="avatar">
+        <span className="Avatar Avatar-holder">
+            <span className="avatar">
                 <img
                     src={isDeafultAvatar}
                     alt='Avatar'
                     className={`Avatar-img ${size}`} />
-            </div>
-        </div>
+            </span>
+        </span>
     );
 }
 
 Avatar.propTypes = {
-    size: propTypes.oneOf(['sm', 'md', 'lg'])
+    size: propTypes.oneOf(['xs', 'sm', 'md', 'lg'])
 };
 
 

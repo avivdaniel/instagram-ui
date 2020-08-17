@@ -12,12 +12,12 @@ function MenuAvatar(props) {
 
     }, [user]);
     return (
-        <Fragment>
-            <Link to={`/profile/${user._id}`}>
-                <Avatar size='md' image={user.avatar} />
-            </Link>
+        <>
+            {/* <Link to={`/profile/${user._id}`}> */}
+            <Avatar size='xs' image={user.avatar} />
+            {/* </Link> */}
 
-        </Fragment>
+        </>
     );
 }
 

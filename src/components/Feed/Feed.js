@@ -21,10 +21,10 @@ function Feed() {
         setOverFlow('hidden');
         async function getPosts() {
             try {
-                const res = await fetch(config.apiUrl + '/posts?sort=-1', {
+                const req = await fetch(config.apiUrl + '/posts?sort=-1', {
                     credentials: 'include'
                 });
-                const fetchedPosts = await res.json();
+                const fetchedPosts = await req.json();
                 setPosts(fetchedPosts);
                 setLoading(false);
                 setOverFlow('unset');

@@ -3,14 +3,17 @@
 
 $bounce-color: white;
 
+$xs-mob-image-size: 25px;
 $sm-mob-image-size: 35px;
 $md-mob-image-size: 45px;
 $lg-mob-image-size: 100px;
 
+$xs-tab-image-size: 20px;
 $sm-tab-image-size: 38px;
 $md-tab-image-size: 46px;
 $lg-tab-image-size: 110px;
 
+$xs-desk-image-size: 30px;
 $sm-desk-image-size: 40px;
 $md-desk-image-size: 50px;
 $lg-desk-image-size: 130px;
@@ -18,8 +21,21 @@ $lg-desk-image-size: 130px;
 .Avatar-holder {
     display: inline-block;
     .avatar {
+        display: inline-block;
         padding: 0;
         img.Avatar-img {
+            &.xs {
+                height: $xs-mob-image-size;
+                width: $xs-mob-image-size;
+                @include media-breakpoint-up(md) {
+                    height: $xs-tab-image-size;
+                    width: $xs-tab-image-size;
+                }
+                @include media-breakpoint-up(lg) {
+                    height: $xs-desk-image-size;
+                    width: $xs-desk-image-size;
+                }
+            }
             &.sm {
                 height: $sm-mob-image-size;
                 width: $sm-mob-image-size;
